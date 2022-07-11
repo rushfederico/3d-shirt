@@ -1,3 +1,21 @@
+#sectorRemera {
+  border: 2px solid red;
+}
+
+#sectorRemera div div {
+  border: 2px solid yellow;
+  display: flex;
+}
+
+#sectorRemera div div canvas {
+  border: 2px solid lime;
+  flex: 1;
+}
+
+#sectorCustomizacion {
+  border: 2px solid blue;
+}
+
 html,
 body {
   //overflow: hidden;
