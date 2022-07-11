@@ -179,12 +179,12 @@ function init() {
   var screen_rate = width / height;
 
   camera = new THREE.PerspectiveCamera(30, screen_rate, 100, 1200);
-  camera.position.set(500, 0, 0);
+  camera.position.set(600, 0, 200);
   scene.add(camera);
   controls = new THREE.OrbitControls(camera, container);
   controls.enableKeys = false;
-  controls.minDistance = 200;
-  controls.maxDistance = 700;
+  controls.minDistance = 300;
+  controls.maxDistance = 400;
   controls.update();
   var light, materials;
   //scene.add(new THREE.AmbientLight(0xffffff));
@@ -335,7 +335,7 @@ function obj2_model_load(model) {
     });
     var scale = height / 3;
     object.scale.set(scale, scale, scale);
-    object.position.set(0, -scale * 1.5, 0);
+    object.position.set(0, -scale * 1.3, 0);
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
@@ -395,13 +395,15 @@ function set_materials(response) {
   var paths = $("#svgTextContainer path");
   for (var i = 0; i < paths.length; i++) {
     $(paths[i]).remove();
-  }
+  } 
 
   var svg = document.getElementById("svgPathContainer").querySelector("svg");
   var svgData = new XMLSerializer().serializeToString(svg);
   var canvas = document.createElement("canvas");
   canvas.width = $(svg).width();
   canvas.height = $(svg).height();
+  // canvas.width = $("#container.lab").width();
+  // canvas.height = $("#container.lab").height();
   var ctx = canvas.getContext("2d");
 
   var img = document.createElement("img");
