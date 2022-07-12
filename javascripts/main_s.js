@@ -519,6 +519,8 @@ function load_text_details(idd) {
   var ff = $(id).attr("font-family");
   var sff = $(id).css("font-family");
   var fs = $(id).css("font-size");
+  var xPos = $(id).attr("x");
+  var yPos = $(id).attr("y");
   var textEditContainer =
     '<div class="text-editor-container"><h1>' + idd + "</h1>";
   textEditContainer +=
@@ -540,7 +542,13 @@ function load_text_details(idd) {
   textEditContainer +=
     '<div class="form-group"><label for="fs">Font-Family</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
     fs +
-    '"/></div></div>';
+    '"/></div>';
+
+    textEditContainer += '<div class="form-group"><label for="xPos">Posicion X</label><input id="xpos" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
+    0 +
+    '"/></div>';
+    textEditContainer += '</div>';
+
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
 }
@@ -600,6 +608,9 @@ function update_svg(op, value) {
   }
   if (op == "fs") {
     document.getElementById(selectedText).style.fontSize = value;
+  }
+  if (op == "xpos") {
+    document.getElementById(selectedText).attributes.x.value = parseInt(document.getElementById(selectedText).attributes.x.value) + parseInt(value);
   }
 
   set_materials(function (resp) {
