@@ -113,8 +113,7 @@
               </div>
             </div>
           </div>
-          <div class="color-palete"></div>
-          <div class="text-editor"></div>
+
           <div id="tabs">
             <ul>
               <li><a href="#tabs-1">Zones</a></li>
@@ -123,6 +122,8 @@
             <div id="tabs-1" class="materials"></div>
             <div id="tabs-2" class="texts"></div>
           </div>
+          <div class="color-palete"></div>
+          <div class="text-editor" style="display: none"></div>
         </div>
       </div>
 
@@ -170,18 +171,28 @@
         $("#tabs")
           .tabs()
           .on("click", function (event) {
-            console.log("t", event.target.id);
+            // console.log("t", event.target.id);
             if (event.target.id == "ui-id-1") {
-              $(".color-palete").show();
+              // $(".color-palete").show();
               $(".text-editor").hide();
             }
             if (event.target.id == "ui-id-2") {
-              $(".color-palete").hide();
+              // $(".color-palete").hide();
               $(".text-editor").show();
               load_text_details(selectedText);
             }
           });
       });
+
+      // probando:
+      $(".color-palete").hide();
+
+      // $(".molids").onclick(function () {
+      //   console.log("clicked");
+      //   $(".color-palete").show();
+      // });
+
+      //
     </script>
     <script type="text/javascript" src="javascripts/main_s.js"></script>
 

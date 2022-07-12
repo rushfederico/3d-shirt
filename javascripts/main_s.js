@@ -149,6 +149,7 @@ var container, stats, controls;
 var camera, scene, renderer, light, material, materialCount;
 var selectedMaterial = "ZONE(base)";
 var selectedText = "TEXT(team-name)";
+var selectedMaterialId = "mat_base";
 var animations = [];
 
 var manager = new THREE.LoadingManager();
@@ -167,7 +168,6 @@ if (width < height) {
   height = width;
 }
 var pixelRatio = window.devicePixelRatio;
-console.log("pixelRatio", pixelRatio);
 init();
 
 function init() {
@@ -308,7 +308,6 @@ function render() {
 var onProgress = function (xhr) {
   if (xhr.lengthComputable) {
     var percentComplete = (xhr.loaded / xhr.total) * 100;
-    console.log(Math.round(percentComplete, 2) + "% downloaded");
   }
 };
 
@@ -324,7 +323,6 @@ function obj2_model_load(model) {
     }
     object = null;
     object = data.detail.loaderRootNode;
-    console.log(object);
     materials = [];
     object.traverse(function (node) {
       if (node.isMesh) {
@@ -344,6 +342,10 @@ function obj2_model_load(model) {
 }
 
 function selectMaterial(id) {
+  var idPosta = `#mat_${id.split("(")[1].split(")")[0]}`;
+  var selectedZone = document.querySelector(idPosta);
+  $(selectedZone).hide("fast").siblings().show("fast");
+  $(".color-palete").show();
   selectedMaterial = id;
   load_materials();
 }
@@ -358,7 +360,6 @@ function setColorBk(color) {
     }
   });
   render();
-  console.log("color", selectedColors);
 }
 
 function changeProduct() {
@@ -395,7 +396,7 @@ function set_materials(response) {
   var paths = $("#svgTextContainer path");
   for (var i = 0; i < paths.length; i++) {
     $(paths[i]).remove();
-  } 
+  }
 
   var svg = document.getElementById("svgPathContainer").querySelector("svg");
   var svgData = new XMLSerializer().serializeToString(svg);
@@ -456,7 +457,6 @@ function set_materials(response) {
 
 function load_materials() {
   var paths = $("#svgContainer path");
-  console.log("paths", paths.length);
   var materialContainer = "";
   for (var i = 0; i < paths.length; i++) {
     var bg = $(paths[i]).attr("fill");
@@ -486,7 +486,6 @@ function load_materials() {
 
 function load_texts() {
   var texts = $("#svgContainer text");
-  console.log("texts", texts);
   var textContainer = "";
   for (var i = 0; i < texts.length; i++) {
     var id = $(texts[i]).attr("id");
@@ -512,6 +511,8 @@ function load_texts() {
 }
 
 function load_text_details(idd) {
+  console.log("cheeeeeeeeeeeeeeeeeeeeeeee");
+
   selectedText = idd;
   load_texts();
   var id = document.getElementById(idd);
@@ -554,7 +555,6 @@ function load_text_details(idd) {
 }
 
 function changeTeamName(e) {
-  console.log("e", e.target.value);
   update_svg(e.target.id, e.target.value);
 }
 
@@ -593,6 +593,7 @@ function loadColors() {
 
 function setColor(color) {
   update_svg("color", color);
+  $(".color-palete").hide();
 }
 
 function update_svg(op, value) {
