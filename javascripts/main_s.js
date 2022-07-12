@@ -344,7 +344,7 @@ function obj2_model_load(model) {
 function selectMaterial(id) {
   var idPosta = `#mat_${id.split("(")[1].split(")")[0]}`;
   var selectedZone = document.querySelector(idPosta);
-
+  $(selectedZone).hide("fast").siblings().show("fast");
   $(".color-palete").show();
   selectedMaterial = id;
   load_materials();
