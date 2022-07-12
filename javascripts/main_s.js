@@ -569,7 +569,8 @@ function setProduct(value) {
 }
 loadColors();
 function loadColors() {
-  var colorContainer = "<h3>Colors</h3>";
+  var colorContainer = `<i class="fa-solid fa-circle-xmark"></i>
+  <h3>Colors</h3>`;
   colors.forEach(function (color) {
     colorContainer +=
       '<div class="colaz" onClick="setColor(\'' +

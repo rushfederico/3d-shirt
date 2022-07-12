@@ -1,3 +1,8 @@
+.color-palete {
+  margin-top: -2px;
+}
+  
+
 .hider {
   display: none !important;
 }
@@ -104,8 +109,7 @@ span.egseas {
 .xixcust:hover .molids,
 .xixcust.active .molids {
   width: 40px;
-  height: 40px;
-  margin: 4px;
+  height: 40px;color-palete
 }
 /*/.colaz {
                 width: 30px;
