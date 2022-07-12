@@ -342,12 +342,10 @@ function obj2_model_load(model) {
 }
 
 function selectMaterial(id) {
-  var idPosta = `#mat_${id.split("(")[1].split(")")[0]}`;
-  var selectedZone = document.querySelector(idPosta);
-  $(selectedZone).hide("fast").siblings().show("fast");
-  $(".color-palete").show();
   selectedMaterial = id;
   load_materials();
+  $(".colorZona").not(".active").addClass("hidden");
+  $(".color-palete").show();
 }
 
 var selectedColors = [];
@@ -467,7 +465,7 @@ function load_materials() {
       materialContainer +=
         '<div id="mat_' +
         data +
-        '" class="xixcust ' +
+        '" class="xixcust colorZona' +
         selected +
         '" onclick="selectMaterial(\'' +
         id +
