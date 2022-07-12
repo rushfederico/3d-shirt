@@ -1,10 +1,9 @@
 .color-palete {
   margin-top: -2px;
 }
-  
 
 .hider {
-  display: none !important;
+  display: none;
 }
 
 #sectorRemera {
@@ -109,7 +108,8 @@ span.egseas {
 .xixcust:hover .molids,
 .xixcust.active .molids {
   width: 40px;
-  height: 40px;color-palete
+  height: 40px;
+  margin: 4px;
 }
 /*/.colaz {
                 width: 30px;

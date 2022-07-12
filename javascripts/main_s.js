@@ -569,7 +569,7 @@ function setProduct(value) {
 }
 loadColors();
 function loadColors() {
-  var colorContainer = `<i class="fa-solid fa-circle-xmark"></i>
+  var colorContainer = `<i class="fa-solid fa-circle-xmark" onclick="closeColorContainer()"})"></i>
   <h3>Colors</h3>`;
   colors.forEach(function (color) {
     colorContainer +=
@@ -582,8 +582,14 @@ function loadColors() {
   $(".color-palete").append(colorContainer).html();
 }
 
+function closeColorContainer() {
+  $(".color-palete").hide();
+  $(".colorZona").not(".active").removeClass("hidden");
+}
+
 function setColor(color) {
   update_svg("color", color);
+  console.log(color);
   $(".color-palete").hide();
 }
 
