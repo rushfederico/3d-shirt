@@ -179,13 +179,10 @@
           .on("click", function (event) {
             // console.log("t", event.target.id);
             if (event.target.id == "ui-id-1") {
-              // $(".color-palete").show();
-              $(".text-editor").hide();
+              closeTextEditor();
             }
             if (event.target.id == "ui-id-2") {
-              // $(".color-palete").hide();
-              $(".text-editor").show();
-              load_text_details(selectedText);
+              closeColorContainer();
             }
           });
       });

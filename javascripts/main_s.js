@@ -513,13 +513,19 @@ function load_text_details(idd) {
 
   selectedText = idd;
   load_texts();
+
+  $(".text-editor").show();
+  $(".texts").hide();
+
   var id = document.getElementById(idd);
   var text = $(id).html();
   var ff = $(id).attr("font-family");
   var sff = $(id).css("font-family");
   var fs = $(id).css("font-size");
   var textEditContainer =
-    '<div class="text-editor-container"><h1>' + idd + "</h1>";
+    '<div class="text-editor-container"><i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i><h1>' +
+    idd +
+    "</h1>";
   textEditContainer +=
     '<div class="form-group"><input id="ftext" onchange="changeTeamName(event)" type="text" class="form-control" value="' +
     text +
@@ -542,6 +548,11 @@ function load_text_details(idd) {
     '"/></div></div>';
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
+}
+
+function closeTextEditor() {
+  $(".text-editor").hide();
+  $(".texts").show();
 }
 
 function changeTeamName(e) {
