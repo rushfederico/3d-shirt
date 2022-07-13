@@ -1,3 +1,24 @@
+#colorAndMoveTextContainer {
+  display: flex;
+}
+#colorPickContainer {
+  margin-right: 40px;
+}
+.formTitles {
+  font-weight: bold;
+}
+#moveTextContainer i {
+  margin-right: 3px;
+  cursor: pointer;
+  font-size: 30px;
+}
+#colorPick {
+  height: 35px;
+  width: 35px;
+  background-color: #000;
+  margin-left: 2px;
+}
+
 .cursorPointer {
   cursor: pointer;
 }

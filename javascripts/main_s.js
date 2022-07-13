@@ -545,10 +545,34 @@ function load_text_details(idd) {
   textEditContainer +=
     '<div class="form-group"><label for="fs">Font-Size</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
     fs +
-    '"/></div></div>';
+    '"/></div>' +
+    `<div id="colorAndMoveTextContainer" class="form-group">
+      <div id="colorPickContainer">
+        <p id="colorPickTitle" class="formTitles">Color</p>
+        <div id="colorPick"></div>
+      </div> 
+      <div id="moveTextContainer">
+        <p id="moveTextTitle" class="formTitles">Mover</p>
+        <i class="fa-solid fa-arrow-up" onclick="moveTextUp()"></i>
+        <i class="fa-solid fa-arrow-down" onclick="moveTextDown()"></i>
+        <i class="fa-solid fa-arrow-left" onclick="moveTextLeft()"></i>
+        <i class="fa-solid fa-arrow-right" onclick="moveTextRight()"></i>
+      </div>
+    </div>` +
+    "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
 }
+
+// 4 functions to move the texts cardinally in THree.js
+
+function moveTextUp() {}
+
+function moveTextDown() {}
+
+function moveTextLeft() {}
+
+function moveTextRight() {}
 
 function closeTextEditor() {
   $(".text-editor").hide();
