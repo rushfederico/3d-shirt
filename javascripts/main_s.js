@@ -513,15 +513,21 @@ function load_text_details(idd) {
 
   selectedText = idd;
   load_texts();
+
+  $(".text-editor").show();
+  $(".texts").hide();
+
   var id = document.getElementById(idd);
   var text = $(id).html();
   var ff = $(id).attr("font-family");
   var sff = $(id).css("font-family");
   var fs = $(id).css("font-size");
-  var xPos = $(id).attr("x");
-  var yPos = $(id).attr("y");
+  var xPos = parseInt($(id).attr("x"));
+  var yPos = parseInt($(id).attr("y"));
   var textEditContainer =
-    '<div class="text-editor-container"><h1>' + idd + "</h1>";
+    '<div class="text-editor-container"><i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i><h1>' +
+    idd +
+    "</h1>";
   textEditContainer +=
     '<div class="form-group"><input id="ftext" onchange="changeTeamName(event)" type="text" class="form-control" value="' +
     text +
@@ -539,17 +545,30 @@ function load_text_details(idd) {
     fontFamilies +
     "</div>";
   textEditContainer +=
-    '<div class="form-group"><label for="fs">Font-Family</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
+    '<div class="form-group"><label for="fs">Font-Size</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
     fs +
-    '"/></div>';
-
-    textEditContainer += '<div class="form-group"><label for="xPos">Posicion X</label><input id="xpos" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
-    0 +
-    '"/></div>';
-    textEditContainer += '</div>';
-
+    '"/></div>' +
+    `<div id="colorAndMoveTextContainer" class="form-group">
+      <div id="colorPickContainer">
+        <p id="colorPickTitle" class="formTitles">Color</p>
+        <div id="colorPick"></div>
+      </div> 
+      <div id="moveTextContainer">
+        <p id="moveTextTitle" class="formTitles">Mover</p>
+        <i class="fa-solid fa-arrow-up" onclick="update_svg('ypos', -10)"></i>
+        <i class="fa-solid fa-arrow-down" onclick="update_svg('ypos', 10)"></i>
+        <i class="fa-solid fa-arrow-left" onclick="update_svg('xpos', -10)"></i>
+        <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
+      </div>
+    </div>` +
+    "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
+}
+
+function closeTextEditor() {
+  $(".text-editor").hide();
+  $(".texts").show();
 }
 
 function changeTeamName(e) {
@@ -578,7 +597,7 @@ function setProduct(value) {
 loadColors();
 function loadColors() {
   var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
-  <h3>Colors</h3>`;
+  <h3>Colores</h3>`;
   colors.forEach(function (color) {
     colorContainer +=
       '<div class="colaz" onClick="setColor(\'' +
@@ -616,7 +635,12 @@ function update_svg(op, value) {
     document.getElementById(selectedText).style.fontSize = value;
   }
   if (op == "xpos") {
-    document.getElementById(selectedText).attributes.x.value = parseInt(document.getElementById(selectedText).attributes.x.value) + parseInt(value);
+    document.getElementById(selectedText).attributes.x.value = parseInt(document.getElementById(selectedText).attributes.x.value) + value;
+    console.log("X: "+document.getElementById(selectedText).attributes.x.value);
+  }
+  if (op == "ypos") {
+    document.getElementById(selectedText).attributes.y.value = parseInt(document.getElementById(selectedText).attributes.y.value) + value;
+    console.log("Y: "+document.getElementById(selectedText).attributes.y.value);
   }
 
   set_materials(function (resp) {

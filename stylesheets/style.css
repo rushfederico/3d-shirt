@@ -1,3 +1,24 @@
+#colorAndMoveTextContainer {
+  display: flex;
+}
+#colorPickContainer {
+  margin-right: 40px;
+}
+.formTitles {
+  font-weight: bold;
+}
+#moveTextContainer i {
+  margin-right: 3px;
+  cursor: pointer;
+  font-size: 30px;
+}
+#colorPick {
+  height: 35px;
+  width: 35px;
+  background-color: #000;
+  margin-left: 2px;
+}
+
 .cursorPointer {
   cursor: pointer;
 }
@@ -150,13 +171,14 @@ span.egseas {
 
 .xixcust:hover .molids:after,
 .xixcust.active .molids:after {
-  content: "\2713";
+  /* TILDE DEL COLOR PICKER */
+  /* content: "\2712";
   display: inline-block;
   color: white;
   width: 40px;
   height: 20px;
   margin-top: 9px;
-  text-align: center;
+  text-align: center; */
 }
 
 #mat0 .molids {
@@ -251,9 +273,16 @@ span.egseas {
   border: none !important;
 }
 .text-editor-container {
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 1px 2px 0 rgba(43, 45, 66, 0.2),
     0 4px 12px 0 rgba(43, 45, 66, 0.1);
+}
+.closeTextX {
+  text-align: right;
+  width: fit-content;
+  align-self: end;
 }
