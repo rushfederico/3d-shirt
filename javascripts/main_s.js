@@ -537,7 +537,7 @@ function load_text_details(idd) {
     fontFamilies +
     "</div>";
   textEditContainer +=
-    '<div class="form-group"><label for="fs">Font-Family</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
+    '<div class="form-group"><label for="fs">Font-Size</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
     fs +
     '"/></div></div>';
   $(".text-editor").empty();
@@ -570,7 +570,7 @@ function setProduct(value) {
 loadColors();
 function loadColors() {
   var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
-  <h3>Colors</h3>`;
+  <h3>Colores</h3>`;
   colors.forEach(function (color) {
     colorContainer +=
       '<div class="colaz" onClick="setColor(\'' +
