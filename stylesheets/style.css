@@ -1,5 +1,13 @@
+.cursorPointer {
+  cursor: pointer;
+}
+
+.color-palete {
+  margin-top: -2px;
+}
+
 .hider {
-  display: none !important;
+  display: none;
 }
 
 #sectorRemera {
