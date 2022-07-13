@@ -3,4 +3,8 @@
 <text font-family="Kumar One" font-size="160" x="1226" y="1506" id="TEXT(front-number)" dominant-baseline="hanging" text-anchor="middle" style="font-family:Kumar One;font-size:160px;font-weight:normal;stroke:#ffffff;stroke-width:10;fill:#1A1819">23</text>
 <text font-family="Advent Pro" font-size="66" x="400" y="1124" id="TEXT(back-name)" dominant-baseline="baseline" text-anchor="middle" style="font-family:Advent Pro;font-size:66px;font-weight:normal;stroke:#1A1819;stroke-width:8;fill:#5F002A">PLAYER</text>
 <text font-family="Kumar One" font-size="170" x="400" y="1170" id="TEXT(back-number)" dominant-baseline="hanging" text-anchor="middle" style="font-family:Kumar One;font-size:170px;font-weight:normal;stroke:#ffffff;stroke-width:10;fill:#1A1819">23</text>
+</g>
+<g style="paint-order:stroke" stroke-linejoin="round">
+<text font-family="Advent Pro" font-size="60" x="376" y="550" id="TEXT(manga-der)" dominant-baseline="baseline" text-anchor="middle" style="font-display:block;font-family:Advent Pro;font-size:80px;font-weight:normal;stroke:#1A1819;stroke-width:8;fill:#5F002A">44</text>
+<text font-family="Advent Pro" font-size="60" x="1186" y="550" id="TEXT(manga-izq)" dominant-baseline="baseline" text-anchor="middle" style="font-display:block;font-family:Advent Pro;font-size:80px;font-weight:normal;stroke:#1A1819;stroke-width:8;fill:#5F002A">55</text>
 </g></svg>
