@@ -150,13 +150,14 @@ span.egseas {
 
 .xixcust:hover .molids:after,
 .xixcust.active .molids:after {
-  content: "\2713";
+  /* TILDE DEL COLOR PICKER */
+  /* content: "\2712";
   display: inline-block;
   color: white;
   width: 40px;
   height: 20px;
   margin-top: 9px;
-  text-align: center;
+  text-align: center; */
 }
 
 #mat0 .molids {
