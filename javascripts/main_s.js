@@ -551,11 +551,11 @@ function load_text_details(idd) {
     `<div id="colorAndMoveTextContainer" class="form-group">
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
-        <input type="text" class="colorPickers" id="colorPick"/>
+        <input type="text" class="colorPickers" id="colorPick" op="fillText"/>
       </div>
       <div id="strokeColorPickContainer">
         <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
-        <input type="text" class="colorPickers" id="strokeColorPick"/>
+        <input type="text" class="colorPickers" id="strokeColorPick" op="fillStroke"/>
       </div> 
       <div id="moveTextContainer">
         <p id="moveTextTitle" class="formTitles">Mover</p>
@@ -568,23 +568,24 @@ function load_text_details(idd) {
     "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
-  $("#colorPick").spectrum({
-    color: $(id).css("fill"),
-    showInput: true,
-    className: "full-spectrum",
-    showInitial: true,
-    showPalette: true,
-    showSelectionPalette: true,
-    maxPaletteSize: 10,
-    preferredFormat: "hex",
-    localStorageKey: "spectrum.demo",
-    move: function (color) {
-      update_svg("fill", color.toHexString());
-    },
-  });
+  // $("#colorPick").spectrum({
+  //   color: $(id).css("fill"),
+  //   showInput: true,
+  //   className: "full-spectrum",
+  //   showInitial: true,
+  //   showPalette: true,
+  //   showSelectionPalette: true,
+  //   maxPaletteSize: 10,
+  //   preferredFormat: "rgb",
+  //   localStorageKey: "spectrum.demo",
+
+  // });
   $(document).ready(function () {
     $(".colorPickers").spectrum({
       color: "#f00",
+      change: function (color) {
+        update_svg($(this).attr("op"), color.toHexString());
+      },
     });
   });
 }
@@ -649,6 +650,15 @@ function update_svg(op, value) {
   }
   if (op == "ftext") {
     document.getElementById(selectedText).innerHTML = value;
+  }
+  if (op == "fillText") {
+    console.log(value);
+    document.getElementById(selectedText).setAttribute("fill", value);
+    document.getElementById(selectedText).style.fill = value;
+  }
+  if (op == "fillStroke") {
+    document.getElementById(selectedText).setAttribute("stroke", value);
+    document.getElementById(selectedText).style.stroke = value;
   }
   if (op == "ff") {
     document.getElementById(selectedText).setAttribute("font-family", value);
