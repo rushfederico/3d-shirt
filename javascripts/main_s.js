@@ -580,15 +580,16 @@ function load_text_details(idd) {
   //   localStorageKey: "spectrum.demo",
 
   // });
-  $(document).ready(function () {
-    $(".colorPickers").spectrum({
-      color: "#f00",
-      change: function (color) {
-        update_svg($(this).attr("op"), color.toHexString());
-      },
-    });
-  });
 }
+
+$(document).ready(function () {
+  $(".colorPickers").spectrum({
+    color: "#f00",
+    change: function (color) {
+      update_svg($(this).attr("op"), color.toHexString());
+    },
+  });
+});
 
 function closeTextEditor() {
   $(".text-editor").hide();
@@ -620,16 +621,21 @@ function setProduct(value) {
 }
 loadColors();
 function loadColors() {
+  // var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
+  // <h3>Colores</h3>`;
+  // colors.forEach(function (color) {
+  //   colorContainer +=
+  //     '<div class="colaz" onClick="setColor(\'' +
+  //     color +
+  //     '\')" style="background:' +
+  //     color +
+  //     ';"></div>';
+  // });
   var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
-  <h3>Colores</h3>`;
-  colors.forEach(function (color) {
-    colorContainer +=
-      '<div class="colaz" onClick="setColor(\'' +
-      color +
-      '\')" style="background:' +
-      color +
-      ';"></div>';
-  });
+  <h3>Colores</h3><div id="colorPickerContainer">
+      <p id="colorPickerTitle" class="formTitles">Color</p>
+      <input type="text" class="colorPickers" id="colorPicker" op="color" />
+  </div>`;
   $(".color-palete").append(colorContainer).html();
 }
 
@@ -652,7 +658,7 @@ function update_svg(op, value) {
     document.getElementById(selectedText).innerHTML = value;
   }
   if (op == "fillText") {
-    console.log(value);
+    // console.log(value);
     document.getElementById(selectedText).setAttribute("fill", value);
     document.getElementById(selectedText).style.fill = value;
   }
