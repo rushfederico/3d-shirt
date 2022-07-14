@@ -621,16 +621,6 @@ function setProduct(value) {
 }
 loadColors();
 function loadColors() {
-  // var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
-  // <h3>Colores</h3>`;
-  // colors.forEach(function (color) {
-  //   colorContainer +=
-  //     '<div class="colaz" onClick="setColor(\'' +
-  //     color +
-  //     '\')" style="background:' +
-  //     color +
-  //     ';"></div>';
-  // });
   var colorContainer = `<i class="fa-solid fa-circle-xmark cursorPointer" onclick="closeColorContainer()"})"></i>
   <h3>Colores</h3><div id="colorPickerContainer">
       <p id="colorPickerTitle" class="formTitles">Color</p>
