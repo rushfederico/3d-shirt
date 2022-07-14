@@ -4,6 +4,9 @@
 #colorPickContainer {
   margin-right: 40px;
 }
+#strokeColorPickContainer {
+  margin-right: 40px;
+}
 .formTitles {
   font-weight: bold;
 }
@@ -13,6 +16,12 @@
   font-size: 30px;
 }
 #colorPick {
+  height: 35px;
+  width: 35px;
+  background-color: #000;
+  margin-left: 2px;
+}
+#strokeColorPick {
   height: 35px;
   width: 35px;
   background-color: #000;

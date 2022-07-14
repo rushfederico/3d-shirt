@@ -552,6 +552,10 @@ function load_text_details(idd) {
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
         <div id="colorPick"></div>
+      </div>
+      <div id="strokeColorPickContainer">
+        <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
+        <div id="colorPick"></div>
       </div> 
       <div id="moveTextContainer">
         <p id="moveTextTitle" class="formTitles">Mover</p>
@@ -635,12 +639,20 @@ function update_svg(op, value) {
     document.getElementById(selectedText).style.fontSize = value;
   }
   if (op == "xpos") {
-    document.getElementById(selectedText).attributes.x.value = parseInt(document.getElementById(selectedText).attributes.x.value) + value;
-    console.log("X: "+document.getElementById(selectedText).attributes.x.value);
+    document.getElementById(selectedText).attributes.x.value =
+      parseInt(document.getElementById(selectedText).attributes.x.value) +
+      value;
+    console.log(
+      "X: " + document.getElementById(selectedText).attributes.x.value
+    );
   }
   if (op == "ypos") {
-    document.getElementById(selectedText).attributes.y.value = parseInt(document.getElementById(selectedText).attributes.y.value) + value;
-    console.log("Y: "+document.getElementById(selectedText).attributes.y.value);
+    document.getElementById(selectedText).attributes.y.value =
+      parseInt(document.getElementById(selectedText).attributes.y.value) +
+      value;
+    console.log(
+      "Y: " + document.getElementById(selectedText).attributes.y.value
+    );
   }
 
   set_materials(function (resp) {
