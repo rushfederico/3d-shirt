@@ -551,11 +551,11 @@ function load_text_details(idd) {
     `<div id="colorAndMoveTextContainer" class="form-group">
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
-        <div id="colorPick"></div>
+        <input type="text" class="colorPickers" id="colorPick"/>
       </div>
       <div id="strokeColorPickContainer">
         <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
-        <div id="colorPick"></div>
+        <input type="text" class="colorPickers" id="strokeColorPick"/>
       </div> 
       <div id="moveTextContainer">
         <p id="moveTextTitle" class="formTitles">Mover</p>
@@ -568,6 +568,25 @@ function load_text_details(idd) {
     "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
+  $("#colorPick").spectrum({
+    color: $(id).css("fill"),
+    showInput: true,
+    className: "full-spectrum",
+    showInitial: true,
+    showPalette: true,
+    showSelectionPalette: true,
+    maxPaletteSize: 10,
+    preferredFormat: "hex",
+    localStorageKey: "spectrum.demo",
+    move: function (color) {
+      update_svg("fill", color.toHexString());
+    },
+  });
+  $(document).ready(function () {
+    $(".colorPickers").spectrum({
+      color: "#f00",
+    });
+  });
 }
 
 function closeTextEditor() {
