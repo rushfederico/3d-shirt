@@ -1,3 +1,9 @@
+#model-container {
+  border: 2px solid lime;
+}
+#svgPathContainer {
+}
+
 #colorAndMoveTextContainer {
   display: flex;
 }
@@ -41,6 +47,7 @@
 }
 
 #sectorRemera {
+  border: 2px solid red;
 }
 
 #sectorRemera div div {
@@ -48,7 +55,7 @@
 }
 
 #sectorRemera div div canvas {
-  flex: 1;
+  border: 2px solid black;
 }
 
 #sectorCustomizacion {
