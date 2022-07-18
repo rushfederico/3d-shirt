@@ -7,6 +7,7 @@ h6,
 p,
 span {
   font-family: "Rubik", sans-serif !important;
+  color: whitesmoke;
 }
 
 /* cyrillic-ext */
@@ -221,7 +222,10 @@ span {
 
 #sectorRemera {
 }
-#container {
+body {
+}
+.container {
+  height: fit-content;
 }
 #sectorRemera div div {
   display: flex;
@@ -235,12 +239,14 @@ span {
 
 html,
 body {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
-  background: #ddedf9;
+  background: #000;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .lab-panel_main {
