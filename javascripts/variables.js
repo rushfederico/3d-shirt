@@ -159,7 +159,7 @@ var mesh;
 var materials = [];
 var geometries = [];
 
-var width = window.innerWidth;
+var width = $("#container").width();
 var height = window.innerHeight;
 if (width < height) {
   height = width;

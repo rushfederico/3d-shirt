@@ -47,15 +47,14 @@
 }
 
 #sectorRemera {
-  border: 2px solid red;
 }
-
+#container {
+}
 #sectorRemera div div {
   display: flex;
 }
 
 #sectorRemera div div canvas {
-  border: 2px solid black;
 }
 
 #sectorCustomizacion {
@@ -88,7 +87,6 @@ body {
 }
 @media only screen and (min-width: 991px) {
   #container canvas {
-    margin-left: -30vw;
   }
 }
 
