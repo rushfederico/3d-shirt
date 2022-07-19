@@ -258,9 +258,11 @@ function load_materials() {
   $(".materials").append(materialContainer).html();
 }
 
+function addNewText() {}
+
 function load_texts() {
   var texts = $("#svgContainer text");
-  var textContainer = "";
+  var textContainer = `<h3 class="cursorPointer" onclick="addNewText()">+ Agregar texto</h3>`;
   for (var i = 0; i < texts.length; i++) {
     var id = $(texts[i]).attr("id");
     var bg = $(texts[i]).css("fill");
@@ -300,10 +302,19 @@ function load_text_details(idd) {
 
   var xPos = parseInt($(id).attr("x"));
   var yPos = parseInt($(id).attr("y"));
-  var textEditContainer =
-    '<div class="text-editor-container"><i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i><h1>' +
-    idd +
-    "</h1>";
+  var textEditContainer = `<div class="text-editor-container">
+        <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
+        <div class="form-check form-check-inline">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente">
+            <label class="form-check-label" for="frente">Frente</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
+            <label class="form-check-label" for="dorso">Dorso</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="mangaizq">
+            <label class="form-check-label" for="mangaizq">Manga Izq</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="mangader">
+            <label class="form-check-label" for="mangader">Manga Der</label>
+          </div>
+        <h1>${idd}</h1>`;
   textEditContainer +=
     '<div class="form-group"><input id="ftext" onchange="changeTeamName(event)" type="text" class="form-control" value="' +
     text +
