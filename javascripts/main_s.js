@@ -3,12 +3,24 @@ if (!Detector.webgl) Detector.addGetWebGLMessage();
 init();
 loadColors();
 
-function loadColorPickers() {
+function loadColorPickers(initialColor) {
   $(document).ready(function () {
     $(".colorPickers").spectrum({
-      color: "#f00",
+      color: initialColor,
       change: function (color) {
         update_svg($(this).attr("op"), color.toHexString());
+        closeColorContainer();
+      },
+    });
+  });
+}
+
+function loadTextStrokeColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#strokeColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        update_svg("fillStroke", color.toHexString());
         closeColorContainer();
       },
     });
@@ -107,6 +119,9 @@ function obj2_model_load(model) {
 
 function selectMaterial(id) {
   selectedMaterial = id;
+  var idd = document.getElementById(id);
+  var color = $(idd).css("fill");
+  loadColorPickers(color);
   load_materials();
   $(".colorZona").not(".active").addClass("hidden");
   $(".color-palete").show();
@@ -241,7 +256,6 @@ function load_materials() {
   $(".texts").empty();
   $(".materials").empty();
   $(".materials").append(materialContainer).html();
-  loadColorPickers();
 }
 
 function load_texts() {
@@ -281,6 +295,9 @@ function load_text_details(idd) {
   var ff = $(id).attr("font-family");
   var sff = $(id).css("font-family");
   var fs = $(id).css("font-size");
+  var textColor = $(id).css("fill");
+  var textStrokeColor = $(id).css("stroke");
+
   var xPos = parseInt($(id).attr("x"));
   var yPos = parseInt($(id).attr("y"));
   var textEditContainer =
@@ -314,7 +331,7 @@ function load_text_details(idd) {
       </div>
       <div id="strokeColorPickContainer">
         <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
-        <input type="text" class="colorPickers" id="strokeColorPick" op="fillStroke"/>
+        <input type="text" class="" id="strokeColorPick" op="fillStroke"/>
       </div> 
       <div id="moveTextContainer">
         <p id="moveTextTitle" class="formTitles">Mover</p>
@@ -327,7 +344,8 @@ function load_text_details(idd) {
     "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
-  loadColorPickers();
+  loadColorPickers(textColor);
+  loadTextStrokeColorPickers(textStrokeColor);
 }
 
 function closeTextEditor() {
