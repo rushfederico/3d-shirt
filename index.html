@@ -128,7 +128,9 @@
 
           <div id="tabs">
             <ul>
-              <li><a href="#tabs-1">Colores</a></li>
+              <li>
+                <a href="#tabs-1">Colores</a>
+              </li>
               <li><a href="#tabs-2">Textos</a></li>
             </ul>
             <div id="tabs-1" class="materials"></div>
@@ -186,9 +188,11 @@
           .on("click", function (event) {
             if (event.target.id == "ui-id-1") {
               closeTextEditor();
+              load_materials();
             }
             if (event.target.id == "ui-id-2") {
               closeColorContainer();
+              load_texts();
             }
           });
       });

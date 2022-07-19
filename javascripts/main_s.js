@@ -1,14 +1,19 @@
 if (!Detector.webgl) Detector.addGetWebGLMessage();
-$(document).ready(function () {
-  $(".colorPickers").spectrum({
-    color: "#f00",
-    change: function (color) {
-      update_svg($(this).attr("op"), color.toHexString());
-    },
-  });
-});
+
 init();
 loadColors();
+
+function loadColorPickers() {
+  $(document).ready(function () {
+    $(".colorPickers").spectrum({
+      color: "#f00",
+      change: function (color) {
+        update_svg($(this).attr("op"), color.toHexString());
+        closeColorContainer();
+      },
+    });
+  });
+}
 
 function init() {
   // no esta usando model_container en ningun lado
@@ -233,10 +238,10 @@ function load_materials() {
         "</span></div>";
     }
   }
-  load_texts();
-
+  $(".texts").empty();
   $(".materials").empty();
   $(".materials").append(materialContainer).html();
+  loadColorPickers();
 }
 
 function load_texts() {
@@ -266,9 +271,8 @@ function load_texts() {
 }
 
 function load_text_details(idd) {
+  console.log("esto");
   selectedText = idd;
-  load_texts();
-
   $(".text-editor").show();
   $(".texts").hide();
 
@@ -323,23 +327,13 @@ function load_text_details(idd) {
     "</div>";
   $(".text-editor").empty();
   $(".text-editor").append(textEditContainer).html();
-  // $("#colorPick").spectrum({
-  //   color: $(id).css("fill"),
-  //   showInput: true,
-  //   className: "full-spectrum",
-  //   showInitial: true,
-  //   showPalette: true,
-  //   showSelectionPalette: true,
-  //   maxPaletteSize: 10,
-  //   preferredFormat: "rgb",
-  //   localStorageKey: "spectrum.demo",
-
-  // });
+  loadColorPickers();
 }
 
 function closeTextEditor() {
   $(".text-editor").hide();
   $(".texts").show();
+  load_texts();
 }
 
 function changeTeamName(e) {

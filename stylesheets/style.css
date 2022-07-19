@@ -264,8 +264,9 @@ body {
   position: relative;
   z-index: 5;
 }
-@media only screen and (min-width: 991px) {
+@media only screen and (max-width: 991px) {
   #container canvas {
+    margin-left: -40vw;
   }
 }
 
