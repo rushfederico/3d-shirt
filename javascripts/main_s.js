@@ -466,10 +466,11 @@ function createTextName(text) {
   nuevaLeyenda[0].innerHTML = $("#newftext").val();
   nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
   nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
-  nuevaLeyenda[0].setAttribute("fill", $("#nuevaLeyendaColorPick").val());
+  nuevaLeyenda.css("fill", $("#nuevaLeyendaColorPick").spectrum('get').toHexString());
+  nuevaLeyenda.css("stroke", $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString());
   nuevaLeyenda[0].setAttribute(
     "stroke",
-    $("#nuevaLeyendaStrokeColorPick").val()
+    $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString()
   );
 
   nuevaLeyenda.attr(
