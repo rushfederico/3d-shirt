@@ -145,6 +145,8 @@ var fonts = [
 var container, stats, controls;
 var camera, scene, renderer, light, material, materialCount;
 var selectedMaterial = "ZONE(base)";
+var nuevaLeyenda = "";
+var nuevoId = "";
 var selectedText = "TEXT(team-name)";
 var selectedMaterialId = "mat_base";
 var animations = [];

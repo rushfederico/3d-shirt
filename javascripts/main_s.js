@@ -27,6 +27,28 @@ function loadTextStrokeColorPickers(initialColor) {
   });
 }
 
+function loadNuevaLeyendaColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#nuevaLeyendaColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        closeColorContainer();
+      },
+    });
+  });
+}
+
+function loadNuevaLeyendaStrokeColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#nuevaLeyendaStrokeColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        closeColorContainer();
+      },
+    });
+  });
+}
+
 function init() {
   // no esta usando model_container en ningun lado
   // var modelContainer = document.getElementById("model-container");
@@ -368,8 +390,8 @@ function addNewText() {
   var editor = createTextEditor(selectedText);
   $(".text-editor").empty();
   $(".text-editor").append(editor).html();
-  loadColorPickers("#000");
-  loadTextStrokeColorPickers("#fff");
+  loadNuevaLeyendaColorPickers("rgb(0,0,0)");
+  loadNuevaLeyendaStrokeColorPickers("rgb(255,255,255)");
 }
 
 function createTextEditor(textName) {
@@ -396,11 +418,11 @@ function createTextEditor(textName) {
           </div>
         <h1>Nueva Leyenda</h1>`;
   editor +=
-    '<div class="form-group"><input id="ftext" onchange="" type="text" class="form-control" value="' +
+    '<div class="form-group"><input id="newftext" onchange="" type="text" class="form-control" value="' +
     "Nueva Leyenda" +
     '"/></div>';
   var fontFamilies =
-    '<select id="ff" onchange="" class="form-control"><option value="">choose font</option>';
+    '<select id="newff" onchange="" class="form-control"><option value="">choose font</option>';
   fonts.forEach(function (font) {
     var selected = "Advent Pro" == font ? "selected" : "";
     fontFamilies +=
@@ -412,17 +434,17 @@ function createTextEditor(textName) {
     fontFamilies +
     "</div>";
   editor +=
-    '<div class="form-group"><label for="fs">Font-Size</label><input id="fs" type="text" onchange="" class="form-control" value="' +
+    '<div class="form-group"><label for="newfs">Font-Size</label><input id="newfs" type="text" onchange="" class="form-control" value="' +
     "20px" +
     '"/></div>' +
     `<div id="colorAndMoveTextContainer" class="form-group">
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
-        <input type="text" class="colorPickers" id="colorPick" op="fillText"/>
+        <input type="text" class="" id="nuevaLeyendaColorPick"/>
       </div>
       <div id="strokeColorPickContainer">
         <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
-        <input type="text" class="" id="strokeColorPick" op="fillStroke"/>
+        <input type="text" class="" id="nuevaLeyendaStrokeColorPick"/>
       </div>
       <!--<div id="moveTextContainer">
         <p id="moveTextTitle" class="formTitles">Mover</p>
@@ -437,25 +459,29 @@ function createTextEditor(textName) {
 }
 
 function createTextName(text) {
-  var nuevaLeyenda = $("#svgTextContainer text").last().clone();
+  nuevaLeyenda = $("#svgTextContainer text").last().clone();
   var nroDeLeyenda = $("#svgTextContainer text").length;
-  var nuevoId = "texto_" + nroDeLeyenda;
-  $(nuevaLeyenda).attr("id", nuevoId);
+  nuevoId = "texto_" + nroDeLeyenda;
+  nuevaLeyenda[0].id = nuevoId;
+  nuevaLeyenda[0].innerHTML = $("#newftext").val();
+  nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
+  nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
+  nuevaLeyenda[0].setAttribute("fill", $("#nuevaLeyendaColorPick").val());
+  nuevaLeyenda[0].setAttribute(
+    "stroke",
+    $("#nuevaLeyendaStrokeColorPick").val()
+  );
 
-  $(nuevaLeyenda).html($("#ftext").val());
-  $(nuevaLeyenda).attr("font-family", $("#ff").val());
-  $(nuevaLeyenda).attr("font-size", $("#fs").val());
-  $(nuevaLeyenda).css("fill", $("#colorPick").val());
-  $(nuevaLeyenda).css("stroke", $("#strokeColorPick").val());
-  $(nuevaLeyenda).attr(
+  nuevaLeyenda.attr(
     "x",
     parseInt($("#svgTextContainer text").first().attr("x"))
   );
-  $(nuevaLeyenda).attr(
+  nuevaLeyenda.attr(
     "y",
     parseInt($("#svgTextContainer text").first().attr("y")) - 70
   );
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
+
   update_svg("", "");
   closeTextEditor();
 }
@@ -511,6 +537,7 @@ function update_svg(op, value) {
     document.getElementById(selectedText).innerHTML = value;
   }
   if (op == "fillText") {
+    console.log(value);
     document.getElementById(selectedText).setAttribute("fill", value);
     document.getElementById(selectedText).style.fill = value;
   }
@@ -534,6 +561,9 @@ function update_svg(op, value) {
     document.getElementById(selectedText).attributes.y.value =
       parseInt(document.getElementById(selectedText).attributes.y.value) +
       value;
+  }
+  if (op == "fillNuevaLeyenda") {
+    document.getElementById(nuevoId).style.fill = value;
   }
 
   set_materials(function (resp) {
