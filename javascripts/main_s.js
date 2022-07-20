@@ -448,10 +448,18 @@ function createTextName(text) {
   $(nuevaLeyenda).attr("font-size", $("#fs").val());
   $(nuevaLeyenda).css("fill", $("#colorPick").val());
   $(nuevaLeyenda).css("stroke", $("#strokeColorPick").val());
-  $(nuevaLeyenda).attr("x", $("#svgTextContainer text").last().attr("x"));
-  $(nuevaLeyenda).attr("y", $("#svgTextContainer text").last().attr("y"));
+  $(nuevaLeyenda).attr(
+    "x",
+    parseInt($("#svgTextContainer text").last().attr("x"))
+  );
+  $(nuevaLeyenda).attr(
+    "y",
+    parseInt($("#svgTextContainer text").last().attr("y"))
+  );
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
   load_materials();
+  load_texts();
+  closeTextEditor();
 }
 
 function changeTeamName(e) {
