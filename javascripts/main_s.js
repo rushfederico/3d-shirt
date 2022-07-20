@@ -279,7 +279,6 @@ function load_texts() {
         "</span></div>";
     }
   }
-  load_texts();
   $(".texts").empty();
   $(".texts").append(textContainer).html();
 }
@@ -450,11 +449,11 @@ function createTextName(text) {
   $(nuevaLeyenda).css("stroke", $("#strokeColorPick").val());
   $(nuevaLeyenda).attr(
     "x",
-    parseInt($("#svgTextContainer text").last().attr("x"))
+    parseInt($("#svgTextContainer text").first().attr("x"))
   );
   $(nuevaLeyenda).attr(
     "y",
-    parseInt($("#svgTextContainer text").last().attr("y"))
+    parseInt($("#svgTextContainer text").first().attr("y")) - 70
   );
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
   load_materials();
