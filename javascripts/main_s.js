@@ -456,7 +456,6 @@ function createTextName(text) {
     parseInt($("#svgTextContainer text").first().attr("y")) - 70
   );
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
-  load_materials();
   update_svg("", "");
   closeTextEditor();
 }
