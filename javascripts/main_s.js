@@ -253,7 +253,6 @@ function load_materials() {
         "</span></div>";
     }
   }
-  $(".texts").empty();
   $(".materials").empty();
   $(".materials").append(materialContainer).html();
 }
@@ -280,6 +279,7 @@ function load_texts() {
         "</span></div>";
     }
   }
+  load_texts();
   $(".texts").empty();
   $(".texts").append(textContainer).html();
 }
@@ -458,7 +458,7 @@ function createTextName(text) {
   );
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
   load_materials();
-  load_texts();
+  update_svg("", "");
   closeTextEditor();
 }
 
