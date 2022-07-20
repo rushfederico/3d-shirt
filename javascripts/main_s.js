@@ -380,6 +380,7 @@ function load_text_details(idd) {
 function closeTextEditor() {
   $(".text-editor").hide();
   $(".texts").show();
+  selectedText = null;
   load_texts();
 }
 
