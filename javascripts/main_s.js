@@ -27,6 +27,28 @@ function loadTextStrokeColorPickers(initialColor) {
   });
 }
 
+function loadNuevaLeyendaColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#nuevaLeyendaColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        closeColorContainer();
+      },
+    });
+  });
+}
+
+function loadNuevaLeyendaStrokeColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#nuevaLeyendaStrokeColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        closeColorContainer();
+      },
+    });
+  });
+}
+
 function init() {
   // no esta usando model_container en ningun lado
   // var modelContainer = document.getElementById("model-container");
@@ -253,14 +275,13 @@ function load_materials() {
         "</span></div>";
     }
   }
-  $(".texts").empty();
   $(".materials").empty();
   $(".materials").append(materialContainer).html();
 }
 
 function load_texts() {
   var texts = $("#svgContainer text");
-  var textContainer = "";
+  var textContainer = `<h3 class="cursorPointer" onclick="addNewText()">+ Agregar texto</h3>`;
   for (var i = 0; i < texts.length; i++) {
     var id = $(texts[i]).attr("id");
     var bg = $(texts[i]).css("fill");
@@ -285,7 +306,6 @@ function load_texts() {
 }
 
 function load_text_details(idd) {
-  console.log("esto");
   selectedText = idd;
   $(".text-editor").show();
   $(".texts").hide();
@@ -300,10 +320,19 @@ function load_text_details(idd) {
 
   var xPos = parseInt($(id).attr("x"));
   var yPos = parseInt($(id).attr("y"));
-  var textEditContainer =
-    '<div class="text-editor-container"><i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i><h1>' +
-    idd +
-    "</h1>";
+  var textEditContainer = `<div class="text-editor-container">
+        <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
+        <div class="form-check form-check-inline">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente">
+            <label class="form-check-label" for="frente">Frente</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
+            <label class="form-check-label" for="dorso">Dorso</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="mangaizq">
+            <label class="form-check-label" for="mangaizq">Manga Izq</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="mangader">
+            <label class="form-check-label" for="mangader">Manga Der</label>
+          </div>
+        <h1>${idd}</h1>`;
   textEditContainer +=
     '<div class="form-group"><input id="ftext" onchange="changeTeamName(event)" type="text" class="form-control" value="' +
     text +
@@ -351,7 +380,112 @@ function load_text_details(idd) {
 function closeTextEditor() {
   $(".text-editor").hide();
   $(".texts").show();
+  selectedText = null;
   load_texts();
+}
+
+function addNewText() {
+  selectedText = `nuevaLeyenda`;
+  $(".text-editor").show();
+  $(".texts").hide();
+  var editor = createTextEditor(selectedText);
+  $(".text-editor").empty();
+  $(".text-editor").append(editor).html();
+  loadNuevaLeyendaColorPickers("rgb(0,0,0)");
+  loadNuevaLeyendaStrokeColorPickers("rgb(255,255,255)");
+}
+
+function createTextEditor(textName) {
+  var textEditorContainer = document.createElement("div");
+  $(textEditorContainer).html(textName);
+  $(textEditorContainer).attr("font-family", "Advent Pro");
+  $(textEditorContainer).css("font-family", "Advent Pro");
+  $(textEditorContainer).css("font-size", "20px");
+  $(textEditorContainer).css("fill", "#000");
+  $(textEditorContainer).css("stroke", "#fff");
+  // var xPos = parseInt($(id).attr("x"));
+  // var yPos = parseInt($(id).attr("y"));
+  var editor = `<div class="text-editor-container">
+        <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
+        <div class="form-check form-check-inline">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente">
+            <label class="form-check-label" for="frente">Frente</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
+            <label class="form-check-label" for="dorso">Dorso</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="mangaizq">
+            <label class="form-check-label" for="mangaizq">Manga Izq</label>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="mangader">
+            <label class="form-check-label" for="mangader">Manga Der</label>
+          </div>
+        <h1>Nueva Leyenda</h1>`;
+  editor +=
+    '<div class="form-group"><input id="newftext" onchange="" type="text" class="form-control" value="' +
+    "Nueva Leyenda" +
+    '"/></div>';
+  var fontFamilies =
+    '<select id="newff" onchange="" class="form-control"><option value="">choose font</option>';
+  fonts.forEach(function (font) {
+    var selected = "Advent Pro" == font ? "selected" : "";
+    fontFamilies +=
+      "<option " + selected + ' value="' + font + '">' + font + "</option>";
+  });
+  fontFamilies += "</select>";
+  editor +=
+    '<div class="form-group"><label for="ff-list">Font-Family</label>' +
+    fontFamilies +
+    "</div>";
+  editor +=
+    '<div class="form-group"><label for="newfs">Font-Size</label><input id="newfs" type="text" onchange="" class="form-control" value="' +
+    "20px" +
+    '"/></div>' +
+    `<div id="colorAndMoveTextContainer" class="form-group">
+      <div id="colorPickContainer">
+        <p id="colorPickTitle" class="formTitles">Color</p>
+        <input type="text" class="" id="nuevaLeyendaColorPick"/>
+      </div>
+      <div id="strokeColorPickContainer">
+        <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
+        <input type="text" class="" id="nuevaLeyendaStrokeColorPick"/>
+      </div>
+      <!--<div id="moveTextContainer">
+        <p id="moveTextTitle" class="formTitles">Mover</p>
+        <i class="fa-solid fa-arrow-up" onclick="update_svg('ypos', -10)"></i>
+        <i class="fa-solid fa-arrow-down" onclick="update_svg('ypos', 10)"></i>
+        <i class="fa-solid fa-arrow-left" onclick="update_svg('xpos', -10)"></i>
+        <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
+      </div>-->
+    </div>` +
+    `<div><button onclick="createTextName()">Agregar Leyenda</button></div></div>`;
+  return editor;
+}
+
+function createTextName(text) {
+  nuevaLeyenda = $("#svgTextContainer text").last().clone();
+  var nroDeLeyenda = $("#svgTextContainer text").length;
+  nuevoId = "texto_" + nroDeLeyenda;
+  nuevaLeyenda[0].id = nuevoId;
+  nuevaLeyenda[0].innerHTML = $("#newftext").val();
+  nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
+  nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
+  nuevaLeyenda.css("fill", $("#nuevaLeyendaColorPick").spectrum('get').toHexString());
+  nuevaLeyenda.css("stroke", $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString());
+  nuevaLeyenda[0].setAttribute(
+    "stroke",
+    $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString()
+  );
+
+  nuevaLeyenda.attr(
+    "x",
+    parseInt($("#svgTextContainer text").first().attr("x"))
+  );
+  nuevaLeyenda.attr(
+    "y",
+    parseInt($("#svgTextContainer text").first().attr("y")) - 70
+  );
+  nuevaLeyenda.insertAfter($("#svgContainer text").last());
+
+  update_svg("", "");
+  closeTextEditor();
 }
 
 function changeTeamName(e) {
@@ -405,6 +539,7 @@ function update_svg(op, value) {
     document.getElementById(selectedText).innerHTML = value;
   }
   if (op == "fillText") {
+    console.log(value);
     document.getElementById(selectedText).setAttribute("fill", value);
     document.getElementById(selectedText).style.fill = value;
   }
@@ -428,6 +563,9 @@ function update_svg(op, value) {
     document.getElementById(selectedText).attributes.y.value =
       parseInt(document.getElementById(selectedText).attributes.y.value) +
       value;
+  }
+  if (op == "fillNuevaLeyenda") {
+    document.getElementById(nuevoId).style.fill = value;
   }
 
   set_materials(function (resp) {
