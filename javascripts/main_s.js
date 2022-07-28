@@ -49,6 +49,26 @@ function loadNuevaLeyendaStrokeColorPickers(initialColor) {
   });
 }
 
+function getCanvas() {
+  return $(document).ready(function () {
+    return $("canvas")[0];
+  });
+}
+
+function getCanvasContext() {
+  return $(document).ready(function () {
+    return $("canvas")[0].getContext("2d");
+  });
+}
+
+function createCanvasEventListener() {
+  return $(document).ready(function () {
+    $("canvas").on("click", function (e) {
+      console.log("click");
+    });
+  });
+}
+
 function init() {
   // no esta usando model_container en ningun lado
   // var modelContainer = document.getElementById("model-container");
@@ -77,6 +97,7 @@ function init() {
   renderer.shadowMap.soft = true;
 
   window.addEventListener("resize", onWindowResize, false);
+  createCanvasEventListener();
 
   animate();
 }
@@ -467,11 +488,17 @@ function createTextName(text) {
   nuevaLeyenda[0].innerHTML = $("#newftext").val();
   nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
   nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
-  nuevaLeyenda.css("fill", $("#nuevaLeyendaColorPick").spectrum('get').toHexString());
-  nuevaLeyenda.css("stroke", $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString());
+  nuevaLeyenda.css(
+    "fill",
+    $("#nuevaLeyendaColorPick").spectrum("get").toHexString()
+  );
+  nuevaLeyenda.css(
+    "stroke",
+    $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
+  );
   nuevaLeyenda[0].setAttribute(
     "stroke",
-    $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString()
+    $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
 
   nuevaLeyenda.attr(
