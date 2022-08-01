@@ -63,10 +63,33 @@ function getCanvasContext() {
 
 function createCanvasEventListener() {
   return $(document).ready(function () {
-    $("canvas").on("click", function (e) {
-      console.log("click");
-    });
+    const canvas = $("canvas")[0];
+    window.onkeydown = (e) => {
+      if (e.keyCode != 17) return; // Ctrl
+      console.log("Ctrl pressed");
+      disableControls();
+      canvas.onmousedown = (e) => (draggingOn = true);
+      canvas.onmousemove = (e) => dragText(e);
+      canvas.onmouseup = (e) => (draggingOn = false);
+    };
+    window.onkeyup = (e) => {
+      if (e.keyCode != 17) return; // Ctrl
+      console.log("Ctrl released");
+      canvas.onmousedown = null;
+      canvas.onmousemove = null;
+      canvas.onmouseup = null;
+      enableControls();
+    };
   });
+}
+
+function dragText(e) {
+  if (!draggingOn) return;
+  console.log(e.clientX, e.clientY);
+  let textContainer = $("#svgTextContainer")[0];
+  // update_svg
+
+  console.log(textContainer);
 }
 
 function init() {

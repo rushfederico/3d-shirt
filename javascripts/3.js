@@ -6,3 +6,10 @@ function getControls() {
   controls.maxDistance = 400;
   controls.update();
 }
+function disableControls() {
+  controls.enabled = false;
+}
+
+function enableControls() {
+  controls.enabled = true;
+}

@@ -202,3 +202,5 @@ var lights = [
   },
 ];
 var screen_rate = width / height;
+
+let draggingOn = false;
