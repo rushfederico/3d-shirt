@@ -68,7 +68,10 @@ function createCanvasEventListener() {
       if (e.keyCode != 17) return; // Ctrl
       console.log("Ctrl pressed");
       disableControls();
-      canvas.onmousedown = (e) => (draggingOn = true);
+      canvas.onmousedown = (e) => {
+        draggingOn = true;
+        checkClickedText(e.clientX, e.clientY);
+      };
       canvas.onmousemove = (e) => dragText(e);
       canvas.onmouseup = (e) => (draggingOn = false);
     };
@@ -83,13 +86,23 @@ function createCanvasEventListener() {
   });
 }
 
+function checkClickedText(x, y) {
+  const textContainer = $("#svgTextContainer text");
+  for (let i = 0; i < textContainer.length; i++) {
+    const text = textContainer[i];
+    const positionX = text.getAttribute("x");
+    const positionY = text.getAttribute("y");
+    console.log(positionX, x);
+    console.log(positionY, y);
+
+    if (positionX == x && positionY == y) {
+      console.log("Text clicked");
+    }
+  }
+}
+
 function dragText(e) {
   if (!draggingOn) return;
-  console.log(e.clientX, e.clientY);
-  let textContainer = $("#svgTextContainer")[0];
-  // update_svg
-
-  console.log(textContainer);
 }
 
 function init() {
@@ -614,6 +627,13 @@ function update_svg(op, value) {
       parseInt(document.getElementById(selectedText).attributes.y.value) +
       value;
   }
+  if (op == "dragX") {
+    document.getElementById(selectedText).attributes.x.value = value;
+  }
+  if (op == "dragY") {
+    document.getElementById(selectedText).attributes.y.value = value;
+  }
+
   if (op == "fillNuevaLeyenda") {
     document.getElementById(nuevoId).style.fill = value;
   }
