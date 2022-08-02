@@ -261,7 +261,7 @@ function set_materials(response) {
   // canvas.height = $("#container.lab").height();
   var ctx = canvas.getContext("2d");
 
-  var img = document.createElement("img");
+  var img = document.createElement("img");//REMERA SOLA
   var material;
   img.setAttribute(
     "src",
@@ -270,8 +270,8 @@ function set_materials(response) {
   );
 
   img.onload = function () {
-    ctx.drawImage(img, 0, 0);
-    var oImg = document.createElement("img");
+    ctx.drawImage(img, 0, 0); //ACA DIBUJA LA REMERA SOLA
+    var oImg = document.createElement("img"); //TEXTURA DRY FIT
     oImg.width = "100px";
     oImg.height = "100px";
     oImg.setAttribute(
@@ -297,7 +297,7 @@ function set_materials(response) {
           window.btoa(unescape(encodeURIComponent(svgTextData)))
       );
       imgT.onload = function () {
-        ctx.drawImage(imgT, 0, 0);
+        ctx.drawImage(imgT, 0, 0);//DIBUJA TODOS LOS TEXTOS A LA VEZ
         var texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
         map = texture;
