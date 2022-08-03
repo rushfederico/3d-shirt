@@ -228,16 +228,16 @@ body {
   /* border: 6px solid green; */
 }
 #sectorRemera {
-  border: 6px solid blue;
+  /* border: 6px solid blue; */
 }
 #sectorRemera .lab {
-  border: 6px solid orangered;
+  /* border: 6px solid orangered; */
 }
 #sectorRemera .lab div {
-  border: 6px solid lightcoral;
+  /* border: 6px solid lightcoral; */
 }
 #sectorRemera .lab div canvas {
-  border: 6px solid black;
+  /* border: 6px solid black; */
 }
 #sectorCustomizacion {
   /* border: 6px solid purple; */
