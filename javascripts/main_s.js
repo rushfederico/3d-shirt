@@ -61,22 +61,31 @@ function getCanvasContext() {
   });
 }
 
+var dragInitX, dragInitY;
+var crtlPress = false;
+var ani = true;
+
 function createCanvasEventListener() {
   return $(document).ready(function () {
     const canvas = $("canvas")[0];
     window.onkeydown = (e) => {
-      if (e.keyCode != 17) return; // Ctrl
+      if (e.keyCode != 17 || crtlPress) return; // Ctrl
+      crtlPress = true;
       console.log("Ctrl pressed");
       disableControls();
       canvas.onmousedown = (e) => {
         draggingOn = true;
-        checkClickedText(e.clientX, e.clientY);
+        dragInitX = e.clientX;
+        dragInitY = e.clientY;
+        //checkClickedText(e.clientX, e.clientY);
       };
       canvas.onmousemove = (e) => dragText(e);
       canvas.onmouseup = (e) => (draggingOn = false);
     };
     window.onkeyup = (e) => {
       if (e.keyCode != 17) return; // Ctrl
+      crtlPress = false;
+
       console.log("Ctrl released");
       canvas.onmousedown = null;
       canvas.onmousemove = null;
@@ -103,6 +112,14 @@ function checkClickedText(x, y) {
 
 function dragText(e) {
   if (!draggingOn) return;
+  
+  selectedText = 'TEXT(team-name)';
+
+  if( Math.abs(e.clientX - dragInitX) > 5){
+    update_svg('xpos', e.clientX - dragInitX);
+    console.log('update_svg');
+  }
+  //update_svg('ypos', e.clientY - dragInitY);
 }
 
 function init() {
@@ -152,8 +169,10 @@ function onWindowResize() {
 
 function animate() {
   requestAnimationFrame(animate);
-  controls.update();
-  render();
+  if(!crtlPress){
+    //controls.update();
+    render();    
+  }
 }
 
 function render() {
@@ -298,6 +317,8 @@ function set_materials(response) {
       );
       imgT.onload = function () {
         ctx.drawImage(imgT, 0, 0);//DIBUJA TODOS LOS TEXTOS A LA VEZ
+        /*console.log("width: "+imgT.width);
+        console.log("height: "+imgT.height);*/
         var texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
         map = texture;
@@ -432,6 +453,8 @@ function load_text_details(idd) {
   $(".text-editor").append(textEditContainer).html();
   loadColorPickers(textColor);
   loadTextStrokeColorPickers(textStrokeColor);
+
+  disableControls();
 }
 
 function closeTextEditor() {
