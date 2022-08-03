@@ -7,7 +7,7 @@ h6,
 p,
 span {
   font-family: "Rubik", sans-serif !important;
-  color: whitesmoke;
+  color: rgb(0, 0, 0);
 }
 
 /* cyrillic-ext */
@@ -173,7 +173,6 @@ span {
     U+FEFF, U+FFFD;
 }
 #model-container {
-  border: 2px solid lime;
 }
 #svgPathContainer {
 }
@@ -220,35 +219,29 @@ span {
   display: none;
 }
 
+body {
+}
+
+#subBody {
+}
+#theRow {
+  /* border: 6px solid green; */
+}
 #sectorRemera {
+  /* border: 6px solid blue; */
 }
-body {
+#sectorRemera .lab {
+  /* border: 6px solid orangered; */
 }
-.container {
-  height: fit-content;
+#sectorRemera .lab div {
+  /* border: 6px solid lightcoral; */
 }
-#sectorRemera div div {
-  display: flex;
+#sectorRemera .lab div canvas {
+  /* border: 6px solid black; */
 }
-
-#sectorRemera div div canvas {
-}
-
 #sectorCustomizacion {
+  /* border: 6px solid purple; */
 }
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
 .lab-panel_main {
   min-height: 100vh;
   padding: 8.5em 2.5em 8em;
@@ -264,11 +257,11 @@ body {
   position: relative;
   z-index: 5;
 }
-@media only screen and (max-width: 991px) {
+/* @media only screen and (max-width: 991px) {
   #container canvas {
     margin-left: -40vw;
   }
-}
+} */
 
 .lab_ui-region {
   position: relative;
@@ -479,4 +472,56 @@ span.egseas {
   text-align: right;
   width: fit-content;
   align-self: end;
+}
+
+#headerLeft {
+}
+
+#headerLeft ul {
+  justify-content: space-between;
+  margin-right: 40%;
+}
+
+#headerLogo {
+}
+
+#headerRight {
+}
+
+#headerRight ul {
+  list-style: none;
+  justify-content: space-between;
+  margin-left: 40%;
+}
+
+.linkBlanco {
+  color: #fff;
+  font-family: "Rubik", sans-serif;
+}
+
+#navBar {
+  background-color: #000;
+}
+
+#foot {
+  background-color: #1a1a1a;
+  font-size: 1.2em;
+}
+
+#foot div {
+}
+
+#foot div .row {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#foot div .row div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#foot div .row div:first-child {
+  padding-left: 10%;
+  padding-right: 10%;
 }
