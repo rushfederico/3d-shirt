@@ -3,7 +3,7 @@ function getContainer() {
   document.getElementById("container").appendChild(container);
 }
 function getCamera() {
-  camera = new THREE.PerspectiveCamera(30, screen_rate, 100, 1200);
+  camera = new THREE.PerspectiveCamera(50, screen_rate, 100, 1200);
   camera.position.set(600, 0, 200);
 }
 function getLights() {
