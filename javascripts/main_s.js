@@ -467,11 +467,17 @@ function createTextName(text) {
   nuevaLeyenda[0].innerHTML = $("#newftext").val();
   nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
   nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
-  nuevaLeyenda.css("fill", $("#nuevaLeyendaColorPick").spectrum('get').toHexString());
-  nuevaLeyenda.css("stroke", $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString());
+  nuevaLeyenda.css(
+    "fill",
+    $("#nuevaLeyendaColorPick").spectrum("get").toHexString()
+  );
+  nuevaLeyenda.css(
+    "stroke",
+    $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
+  );
   nuevaLeyenda[0].setAttribute(
     "stroke",
-    $("#nuevaLeyendaStrokeColorPick").spectrum('get').toHexString()
+    $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
 
   nuevaLeyenda.attr(
@@ -592,3 +598,52 @@ function createCircleTexture(color, size, response) {
   // return a texture made from the canvas
   response(texture);
 }
+
+let buttonDisenio = document.getElementById("buttonDisenio");
+let buttonTexto = document.getElementById("buttonTexto");
+let buttonImagen = document.getElementById("buttonImagen");
+let buttonPedido = document.getElementById("buttonPedido");
+
+buttonDisenio.onclick = () => {
+  buttonImagen.classList.remove("buttonSelected");
+  buttonImagen.classList.add("buttonNotSelected");
+  buttonTexto.classList.remove("buttonSelected");
+  buttonTexto.classList.add("buttonNotSelected");
+  buttonPedido.classList.remove("buttonSelected");
+  buttonPedido.classList.add("buttonNotSelected");
+  buttonDisenio.classList.remove("buttonNotSelected");
+  buttonDisenio.classList.add("buttonSelected");
+};
+
+buttonTexto.onclick = () => {
+  buttonImagen.classList.remove("buttonSelected");
+  buttonImagen.classList.add("buttonNotSelected");
+  buttonTexto.classList.remove("buttonNotSelected");
+  buttonTexto.classList.add("buttonSelected");
+  buttonPedido.classList.remove("buttonSelected");
+  buttonPedido.classList.add("buttonNotSelected");
+  buttonDisenio.classList.remove("buttonSelected");
+  buttonDisenio.classList.add("buttonNotSelected");
+};
+
+buttonImagen.onclick = () => {
+  buttonImagen.classList.remove("buttonNotSelected");
+  buttonImagen.classList.add("buttonSelected");
+  buttonTexto.classList.remove("buttonSelected");
+  buttonTexto.classList.add("buttonNotSelected");
+  buttonPedido.classList.remove("buttonSelected");
+  buttonPedido.classList.add("buttonNotSelected");
+  buttonDisenio.classList.remove("buttonSelected");
+  buttonDisenio.classList.add("buttonNotSelected");
+};
+
+buttonPedido.onclick = () => {
+  buttonImagen.classList.remove("buttonSelected");
+  buttonImagen.classList.add("buttonNotSelected");
+  buttonTexto.classList.remove("buttonSelected");
+  buttonTexto.classList.add("buttonNotSelected");
+  buttonPedido.classList.remove("buttonNotSelected");
+  buttonPedido.classList.add("buttonSelected");
+  buttonDisenio.classList.remove("buttonSelected");
+  buttonDisenio.classList.add("buttonNotSelected");
+};
