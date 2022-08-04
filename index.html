@@ -132,77 +132,77 @@
       <div class="col-md-6" id="sectorRemera">
         <div class="lab" id="container"></div>
       </div>
-      <div class="col-md-4" id="sectorCustomizacion">
+      <div class="col-md-4" id="pasosContainer">
         <h3>Personaliza tu prenda</h3>
-        <p>
-          Selecciona tipo de prenda, colores y textos que quieras incluir.
-        </p>
-        <div class="action-container">
-          <div class="dropdown">
-            <button id="gender" class="dropbtn">Prenda</button>
-            <div class="dropdown-content">
-              <a href="#" onclick="setGender('men')">Remera</a>
-              <a href="#" onclick="setGender('women')">Calza</a>
+        <div id="pasoDisenio" class="paso active">
+          <p>
+            Selecciona tipo de prenda, colores y textos que quieras incluir.
+          </p>
+          <div class="action-container">
+            <div class="dropdown">
+              <button id="gender" class="dropbtn">Prenda</button>
+              <div class="dropdown-content">
+                <a href="#" onclick="setGender('men')">Remera</a>
+                <a href="#" onclick="setGender('women')">Calza</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button id="category" class="dropbtn">Categoría</button>
+              <div class="dropdown-content">
+                <a href="#" onclick="setCategory('1')">1</a>
+                <a href="#" onclick="setCategory('2')">2</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button id="product" class="dropbtn">Producto</button>
+              <div class="dropdown-content">
+                <a href="#" onclick="setProduct('1')">1</a>
+                <a href="#" onclick="setProduct('2')">2</a>
+              </div>
             </div>
           </div>
-          <div class="dropdown">
-            <button id="category" class="dropbtn">Categoría</button>
-            <div class="dropdown-content">
-              <a href="#" onclick="setCategory('1')">1</a>
-              <a href="#" onclick="setCategory('2')">2</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button id="product" class="dropbtn">Producto</button>
-            <div class="dropdown-content">
-              <a href="#" onclick="setProduct('1')">1</a>
-              <a href="#" onclick="setProduct('2')">2</a>
-            </div>
-          </div>
-        </div>
 
-        <div id="tabs">
-          <ul>
-            <li>
-              <a href="#tabs-1">Colores</a>
-            </li>
-            <li><a href="#tabs-2">Textos</a></li>
-          </ul>
-          <div id="tabs-1" class="materials"></div>
-          <div id="tabs-2" class="texts"></div>
+          <div id="tabs">
+            <ul>
+              <li>
+                <a href="#tabs-1">Colores</a>
+              </li>
+              <li><a href="#tabs-2">Textos</a></li>
+            </ul>
+            <div id="tabs-1" class="materials"></div>
+            <div id="tabs-2" class="texts"></div>
+          </div>
+          <div class="color-palete"></div>
+          <div class="text-editor" style="display: none"></div>
         </div>
-        <div class="color-palete"></div>
-        <div class="text-editor" style="display: none"></div>
+        <div id="pasoTexto" class="paso">
+          <p>
+            Incluye textos en tu remera:
+          </p>
+        </div>
       </div>
+
       <div class="col-md-2">
-        <div id="pasosContainer">
-          <div class="paso" id="pasoDisenio">
-            <div id="buttonDisenio" class="buttonPaso buttonSelected">
-              <i class="textoPasos">
-                DISEÑO
-              </i>
-            </div>
+        <div id="buttonPasosContainer">
+          <div class="buttonPaso active" data-paso="pasoDisenio">
+            <i class="textoPasos">
+              DISEÑO
+            </i>
           </div>
-          <div class="paso" id="pasoTexto">
-            <div id="buttonTexto" class="buttonPaso buttonNotSelected">
-              <i class="textoPasos">
-                TEXTO
-              </i>
-            </div>
+          <div class="buttonPaso" data-paso="pasoTexto">
+            <i class="textoPasos">
+              TEXTO
+            </i>
           </div>
-          <div class="paso" id="pasoImagen">
-            <div id="buttonImagen" class="buttonPaso buttonNotSelected">
-              <i class="textoPasos">
-                IMAGEN
-              </i>
-            </div>
+          <div class="buttonPaso" data-paso="pasoImagen">
+            <i class="textoPasos">
+              IMAGEN
+            </i>
           </div>
-          <div class="paso" id="pasoPedido">
-            <div id="buttonPedido" class="buttonPaso buttonNotSelected">
-              <i class="textoPasos">
-                PEDIDO
-              </i>
-            </div>
+          <div class="buttonPaso" data-paso="pasoPedido">
+            <i class="textoPasos">
+              PEDIDO
+            </i>
           </div>
         </div>
       </div>

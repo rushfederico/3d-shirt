@@ -3,6 +3,12 @@ if (!Detector.webgl) Detector.addGetWebGLMessage();
 init();
 loadColors();
 
+//EJECUTAR ACA TODAS LAS FUNCIONES DE INICIALIZACION NECESARIAS
+$(document).ready(function () {
+  configPasos();
+
+});
+
 function loadColorPickers(initialColor) {
   $(document).ready(function () {
     $(".colorPickers").spectrum({
@@ -599,6 +605,19 @@ function createCircleTexture(color, size, response) {
   response(texture);
 }
 
+function configPasos(){
+  $(".buttonPaso").on("click", function(e){
+    if(!$(this).hasClass("active")){
+      $(".buttonPaso, .paso").removeClass("active");
+      $(this).addClass("active");
+
+      var idPaso = $(this).data("paso");
+      $("#"+idPaso).addClass("active");
+
+    }
+  });
+}
+/*
 let buttonDisenio = document.getElementById("buttonDisenio");
 let buttonTexto = document.getElementById("buttonTexto");
 let buttonImagen = document.getElementById("buttonImagen");
@@ -637,3 +656,4 @@ function hidePasoButtons(button1, button2, button3) {
   button3.classList.remove("buttonSelected");
   button3.classList.add("buttonNotSelected");
 }
+*/
