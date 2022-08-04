@@ -605,45 +605,35 @@ let buttonImagen = document.getElementById("buttonImagen");
 let buttonPedido = document.getElementById("buttonPedido");
 
 buttonDisenio.onclick = () => {
-  buttonImagen.classList.remove("buttonSelected");
-  buttonImagen.classList.add("buttonNotSelected");
-  buttonTexto.classList.remove("buttonSelected");
-  buttonTexto.classList.add("buttonNotSelected");
-  buttonPedido.classList.remove("buttonSelected");
-  buttonPedido.classList.add("buttonNotSelected");
-  buttonDisenio.classList.remove("buttonNotSelected");
-  buttonDisenio.classList.add("buttonSelected");
+  hidePasoButtons(buttonTexto, buttonImagen, buttonPedido);
+  showPasoButton(buttonDisenio);
 };
 
 buttonTexto.onclick = () => {
-  buttonImagen.classList.remove("buttonSelected");
-  buttonImagen.classList.add("buttonNotSelected");
-  buttonTexto.classList.remove("buttonNotSelected");
-  buttonTexto.classList.add("buttonSelected");
-  buttonPedido.classList.remove("buttonSelected");
-  buttonPedido.classList.add("buttonNotSelected");
-  buttonDisenio.classList.remove("buttonSelected");
-  buttonDisenio.classList.add("buttonNotSelected");
+  hidePasoButtons(buttonDisenio, buttonImagen, buttonPedido);
+  showPasoButton(buttonTexto);
 };
 
 buttonImagen.onclick = () => {
-  buttonImagen.classList.remove("buttonNotSelected");
-  buttonImagen.classList.add("buttonSelected");
-  buttonTexto.classList.remove("buttonSelected");
-  buttonTexto.classList.add("buttonNotSelected");
-  buttonPedido.classList.remove("buttonSelected");
-  buttonPedido.classList.add("buttonNotSelected");
-  buttonDisenio.classList.remove("buttonSelected");
-  buttonDisenio.classList.add("buttonNotSelected");
+  hidePasoButtons(buttonDisenio, buttonTexto, buttonPedido);
+  showPasoButton(buttonImagen);
 };
 
 buttonPedido.onclick = () => {
-  buttonImagen.classList.remove("buttonSelected");
-  buttonImagen.classList.add("buttonNotSelected");
-  buttonTexto.classList.remove("buttonSelected");
-  buttonTexto.classList.add("buttonNotSelected");
-  buttonPedido.classList.remove("buttonNotSelected");
-  buttonPedido.classList.add("buttonSelected");
-  buttonDisenio.classList.remove("buttonSelected");
-  buttonDisenio.classList.add("buttonNotSelected");
+  hidePasoButtons(buttonDisenio, buttonTexto, buttonImagen);
+  showPasoButton(buttonPedido);
 };
+
+function showPasoButton(button) {
+  button.classList.remove("buttonNotSelected");
+  button.classList.add("buttonSelected");
+}
+
+function hidePasoButtons(button1, button2, button3) {
+  button1.classList.remove("buttonSelected");
+  button1.classList.add("buttonNotSelected");
+  button2.classList.remove("buttonSelected");
+  button2.classList.add("buttonNotSelected");
+  button3.classList.remove("buttonSelected");
+  button3.classList.add("buttonNotSelected");
+}
