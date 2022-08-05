@@ -229,6 +229,21 @@ body {
 #theRow {
   /* border: 6px solid green; */
 }
+#pasosContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#pasosContainer > div {
+}
+
+#pasosContainer > div > div {
+}
+
+#pasosContainer > div > div > div {
+}
 #sectorRemera {
   /* border: 6px solid blue; */
 }
