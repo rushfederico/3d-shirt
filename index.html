@@ -138,47 +138,38 @@
           <p>
             Selecciona tipo de prenda, colores y textos que quieras incluir.
           </p>
-
-
-          <div id="tabs">
-            <ul>
-              <li> 
-                <a href="#tabs-1">Colores</a>
-              </li>
-              <li><a href="#tabs-2">Textos</a></li>
-            </ul>
-            <div id="tabs-1" class="materials"></div>
-            <div id="tabs-2" class="texts"></div>
-          </div>
+          <div class="materials"></div>
           <div class="color-palete"></div>
-          <div class="text-editor" style="display: none"></div>
+          
         </div>
         <div id="pasoTexto" class="paso">
           <p>
             Incluye textos en tu remera:
           </p>
+          <div class="texts"></div>
+          <div class="text-editor" style="display: none"></div>
         </div>
       </div>
 
       <div class="col-md-2">
         <div id="buttonPasosContainer">
           <div  class="buttonPaso active" data-paso="pasoDisenio">
-            <i class="textoPasos">
+            <i>
               DISEÑO
             </i>
           </div>
           <div  class="buttonPaso" data-paso="pasoTexto">
-            <i class="textoPasos">
+            <i>
               TEXTO
             </i>
           </div>
           <div class="buttonPaso" data-paso="pasoImagen">
-            <i class="textoPasos">
+            <i>
               IMAGEN
             </i>
           </div>
           <div class="buttonPaso" data-paso="pasoPedido">
-            <i class="textoPasos">
+            <i>
               PEDIDO
             </i>
           </div>
@@ -232,25 +223,6 @@
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-    $(function () {
-      $("#tabs")
-        .tabs()
-        .on("click", function (event) {
-          if (event.target.id == "ui-id-1") {
-            closeTextEditor();
-            load_materials();
-            $(".texts").empty();
-          }
-          if (event.target.id == "ui-id-2") {
-            closeColorContainer();
-            load_texts();
-          }
-        });
-    });
-
-    $(".color-palete").hide();
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
   <script type="text/javascript" src="javascripts/variables.js"></script>
   <script type="text/javascript" src="javascripts/dom.js"></script>

@@ -6,8 +6,9 @@ loadColors();
 //EJECUTAR ACA TODAS LAS FUNCIONES DE INICIALIZACION NECESARIAS
 $(document).ready(function () {
   configPasos();
-
 });
+
+$(".color-palete").hide();
 
 function loadColorPickers(initialColor) {
   $(document).ready(function () {
@@ -605,55 +606,22 @@ function createCircleTexture(color, size, response) {
   response(texture);
 }
 
-function configPasos(){
-  $(".buttonPaso").on("click", function(e){
-    if(!$(this).hasClass("active")){
+function configPasos() {
+  $(".buttonPaso").on("click", function (e) {
+    if (!$(this).hasClass("active")) {
       $(".buttonPaso, .paso").removeClass("active");
       $(this).addClass("active");
-
       var idPaso = $(this).data("paso");
-      $("#"+idPaso).addClass("active");
-
+      $("#" + idPaso).addClass("active");
+      console.log(idPaso);
+      if (idPaso == "pasoDisenio") {
+        closeTextEditor();
+        load_materials();
+        $(".texts").empty();
+      } else if (idPaso == "pasoTexto") {
+        closeColorContainer();
+        load_texts();
+      }
     }
   });
 }
-/*
-let buttonDisenio = document.getElementById("buttonDisenio");
-let buttonTexto = document.getElementById("buttonTexto");
-let buttonImagen = document.getElementById("buttonImagen");
-let buttonPedido = document.getElementById("buttonPedido");
-
-buttonDisenio.onclick = () => {
-  hidePasoButtons(buttonTexto, buttonImagen, buttonPedido);
-  showPasoButton(buttonDisenio);
-};
-
-buttonTexto.onclick = () => {
-  hidePasoButtons(buttonDisenio, buttonImagen, buttonPedido);
-  showPasoButton(buttonTexto);
-};
-
-buttonImagen.onclick = () => {
-  hidePasoButtons(buttonDisenio, buttonTexto, buttonPedido);
-  showPasoButton(buttonImagen);
-};
-
-buttonPedido.onclick = () => {
-  hidePasoButtons(buttonDisenio, buttonTexto, buttonImagen);
-  showPasoButton(buttonPedido);
-};
-
-function showPasoButton(button) {
-  button.classList.remove("buttonNotSelected");
-  button.classList.add("buttonSelected");
-}
-
-function hidePasoButtons(button1, button2, button3) {
-  button1.classList.remove("buttonSelected");
-  button1.classList.add("buttonNotSelected");
-  button2.classList.remove("buttonSelected");
-  button2.classList.add("buttonNotSelected");
-  button3.classList.remove("buttonSelected");
-  button3.classList.add("buttonNotSelected");
-}
-*/
