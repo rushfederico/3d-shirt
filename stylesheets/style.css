@@ -9,7 +9,9 @@ span {
   font-family: "Rubik", sans-serif !important;
   color: rgb(0, 0, 0);
 }
-
+.hidden {
+  display: none;
+}
 /* cyrillic-ext */
 @font-face {
   font-family: "Rubik";
@@ -526,10 +528,10 @@ span.egseas {
   padding-right: 10%;
 }
 
-.paso{
+.paso {
   display: none;
 }
-.paso.active{
+.paso.active {
   display: block;
 }
 
@@ -540,7 +542,6 @@ span.egseas {
   justify-content: space-evenly;
   align-items: center;
 }
-
 
 .buttonPaso {
   cursor: pointer;
