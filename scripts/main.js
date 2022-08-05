@@ -2,8 +2,11 @@
 $(document).ready(function () {
   // WebGL compatibility check
   if (!Detector.webgl) Detector.addGetWebGLMessage();
+
   $(".color-palete").hide();
   configPasos();
   init();
   loadColors();
+  // onWindowResize();
+  $(window).on("resize", onWindowResize);
 });

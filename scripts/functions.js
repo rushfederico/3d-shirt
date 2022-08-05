@@ -1,3 +1,43 @@
+// THREEJS FUNCTIONS
+
+function init() {
+  createScene();
+  getContainer();
+  getCamera();
+  getControls();
+  getLights();
+  fillScene();
+  createObject();
+  textureLoader = new THREE.TextureLoader();
+  changeProduct();
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(pixelRatio);
+  renderer.setSize(width, height);
+  renderer.setClearColor(0x000000, 0);
+
+  container.appendChild(renderer.domElement);
+  renderer.gammaInput = true;
+  renderer.gammaOutput = true;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.soft = true;
+
+  animate();
+}
+
+function fillScene() {
+  scene.add(camera);
+  scene.add(new THREE.AmbientLight(0x666666));
+  scene.add(light);
+}
+
+function createScene() {
+  scene = new THREE.Scene();
+}
+
+function createObject() {
+  object = new THREE.Object3D();
+}
+
 function getContainer() {
   container = document.createElement("div");
   document.getElementById("container").appendChild(container);
@@ -6,6 +46,15 @@ function getCamera() {
   camera = new THREE.PerspectiveCamera(50, screen_rate, 100, 1200);
   camera.position.set(600, 0, 200);
 }
+function getControls() {
+  controls = new THREE.OrbitControls(camera, container);
+  controls.enableKeys = false;
+  controls.enablePan = false;
+  controls.minDistance = 310;
+  controls.maxDistance = 400;
+  controls.update();
+}
+
 function getLights() {
   lights.forEach(function (light) {
     var dlight = new THREE.DirectionalLight(light.color, light.intensity);
@@ -40,35 +89,7 @@ function getLights() {
   light.shadowCameraVisible = true;
 }
 
-function init() {
-  scene = new THREE.Scene();
-  getContainer();
-  getCamera();
-  getControls();
-
-  object = new THREE.Object3D();
-  getLights();
-  scene.add(camera);
-  scene.add(new THREE.AmbientLight(0x666666));
-  scene.add(light);
-
-  textureLoader = new THREE.TextureLoader();
-  changeProduct();
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(pixelRatio);
-  renderer.setSize(width, height);
-  renderer.setClearColor(0x000000, 0);
-
-  container.appendChild(renderer.domElement);
-  renderer.gammaInput = true;
-  renderer.gammaOutput = true;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.soft = true;
-
-  window.addEventListener("resize", onWindowResize, false);
-
-  animate();
-}
+///////////////////////////////////////////////////////////////////////////////////////////
 
 function loadColorPickers(initialColor) {
   $(document).ready(function () {
@@ -652,12 +673,4 @@ function configPasos() {
       }
     }
   });
-}
-function getControls() {
-  controls = new THREE.OrbitControls(camera, container);
-  controls.enableKeys = false;
-  controls.enablePan = false;
-  controls.minDistance = 310;
-  controls.maxDistance = 400;
-  controls.update();
 }
