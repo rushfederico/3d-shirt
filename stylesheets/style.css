@@ -230,10 +230,10 @@ body {
   /* border: 6px solid green; */
 }
 #pasosContainer {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
 }
 
 #pasosContainer > div {
