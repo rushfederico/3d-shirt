@@ -185,7 +185,7 @@ function obj2_model_load(model) {
     });
 
     var scale = height / 3;
-    object.scale.set(scale * 0.05 , scale * 0.05, scale * 0.05);
+    object.scale.set(scale * 0.05, scale * 0.05, scale * 0.05);
     object.position.set(0, -80, 0);
     //object.scale.set(scale, scale, scale);
     //object.position.set(0, -scale * 1.335, 0);
@@ -312,10 +312,11 @@ function load_materials() {
   var paths = $("#svgContainer path");
   var materialContainer = "";
   for (var i = 0; i < paths.length; i++) {
-    var bg = $(paths[i]).attr("fill");
-    var id = $(paths[i]).attr("id");
+    var id = $(paths[i]).attr("class");
+    var bg = $(paths).css("fill");
+    console.log(bg, id);
     if (bg != undefined && id != undefined) {
-      var data = id.split("(")[1].split(")")[0];
+      var data = id;
       var selected = selectedMaterial == id ? "active" : "";
       materialContainer +=
         '<div id="mat_' +
