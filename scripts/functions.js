@@ -186,10 +186,10 @@ function obj2_model_load(model) {
       }
     });
     var scale = height / 3;
-    //object.scale.set(scale * 0.05 , scale * 0.05, scale * 0.05);
-    //object.position.set(0, -90, 0);
-    object.scale.set(scale, scale, scale);
-    object.position.set(0, -scale * 1.335, 0);
+    object.scale.set(scale * 0.05 , scale * 0.05, scale * 0.05);
+    object.position.set(0, -80, 0);
+    //object.scale.set(scale, scale, scale);
+    //object.position.set(0, -scale * 1.335, 0);
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
