@@ -7,6 +7,13 @@ $(document).ready(function () {
   configPasos();
   init();
   loadColors();
-  // onWindowResize();
-  $(window).on("resize", onWindowResize);
+});
+
+$(window).on("resize", function () {
+  camera.aspect = $(svg).width() / $(svg).height();
+  camera.updateProjectionMatrix();
+  if (width < height) {
+    height = width;
+  }
+  renderer.setSize(width, hegiht);
 });

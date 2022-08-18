@@ -1,3 +1,22 @@
+const textLocation = {
+  frente: {
+    x: 1226,
+    y: 1480,
+  },
+  dorso: {
+    x: 400,
+    y: 1124,
+  },
+  izquierda: {
+    x: 1186,
+    y: 550,
+  },
+  derecha: {
+    x: 376,
+    y: 550,
+  },
+};
+
 var colors = [
   "rgb(255, 255, 255)",
   "rgb(255, 248, 241)",

@@ -176,7 +176,8 @@ span {
 }
 #model-container {
 }
-#svgPathContainer {
+#svgPathContainer svg {
+  border: 4px solid #000;
 }
 
 #colorAndMoveTextContainer {
@@ -237,6 +238,12 @@ span {
     margin-left: -40vw;
   }
 } */
+
+#container {
+}
+
+#container canvas {
+}
 
 .lab_ui-region {
   position: relative;
@@ -539,7 +546,6 @@ span.egseas {
   align-items: center;
   /* padding: 25% 0 25% 0; */
   font-size: 0.9em;
-  border: 2px solid green;
 }
 
 .buttonPaso {
@@ -567,5 +573,5 @@ span.egseas {
   color: #000;
 }
 
-#theRow{
+#theRow {
 }

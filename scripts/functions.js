@@ -43,13 +43,14 @@ function getContainer() {
   document.getElementById("container").appendChild(container);
 }
 function getCamera() {
+  // acá quizás esté el quid de la cuestión del resize?
   camera = new THREE.PerspectiveCamera(50, screen_rate, 100, 1200);
   camera.position.set(600, 0, 200);
 }
 function getControls() {
   controls = new THREE.OrbitControls(camera, container);
   controls.enableKeys = false;
-  controls.enablePan = false;
+  // controls.enablePan = false;
   controls.minDistance = 170;
   controls.maxDistance = 200;
   controls.update();
@@ -137,17 +138,14 @@ function loadNuevaLeyendaStrokeColorPickers(initialColor) {
   });
 }
 
-function onWindowResize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  if (width < height) {
-    height = width;
-  }
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(width, height);
-}
+// function onWindowResize() {
+//   // if (width < height) {
+//   //   height = width;
+//   // }
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+//   camera.aspect = width / height;
+//   camera.updateProjectionMatrix();
+// }
 
 function animate() {
   requestAnimationFrame(animate);
@@ -185,11 +183,13 @@ function obj2_model_load(model) {
         //object = node;
       }
     });
+
     var scale = height / 3;
     object.scale.set(scale * 0.05 , scale * 0.05, scale * 0.05);
     object.position.set(0, -80, 0);
     //object.scale.set(scale, scale, scale);
     //object.position.set(0, -scale * 1.335, 0);
+
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
@@ -258,8 +258,6 @@ function set_materials(response) {
   var canvas = document.createElement("canvas");
   canvas.width = $(svg).width();
   canvas.height = $(svg).height();
-  // canvas.width = $("#container.lab").width();
-  // canvas.height = $("#container.lab").height();
   var ctx = canvas.getContext("2d");
 
   var img = document.createElement("img");
@@ -470,9 +468,9 @@ function createTextEditor(textName) {
             <label class="form-check-label" for="frente">Frente</label>
             <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
             <label class="form-check-label" for="dorso">Dorso</label>
-            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="mangaizq">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="izquierda">
             <label class="form-check-label" for="mangaizq">Manga Izq</label>
-            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="mangader">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="derecha">
             <label class="form-check-label" for="mangader">Manga Der</label>
           </div>
         <h1>Nueva Leyenda</h1>`;
@@ -537,19 +535,34 @@ function createTextName(text) {
     "stroke",
     $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
-
-  nuevaLeyenda.attr(
-    "x",
-    parseInt($("#svgTextContainer text").first().attr("x"))
-  );
-  nuevaLeyenda.attr(
-    "y",
-    parseInt($("#svgTextContainer text").first().attr("y")) - 70
-  );
+  ////////////////////////////////////////////////////// acá
+  setTextLocation();
   nuevaLeyenda.insertAfter($("#svgContainer text").last());
-
+  //////////////////////////////////////////////////////////
   update_svg("", "");
   closeTextEditor();
+}
+
+function setTextLocation() {
+  const location = $("input[name=zonaPrenda]:checked").val();
+  if (location == "frente") {
+    setCoordinates(textLocation.frente.x, textLocation.frente.y);
+    nuevaLeyenda.attr("data-zona", location);
+  } else if (location == "dorso") {
+    setCoordinates(textLocation.dorso.x, textLocation.dorso.y);
+    nuevaLeyenda.attr("data-zona", location);
+  } else if (location == "izquierda") {
+    setCoordinates(textLocation.izquierda.x, textLocation.izquierda.y);
+    nuevaLeyenda.attr("data-zona", location);
+  } else if (location == "derecha") {
+    setCoordinates(textLocation.derecha.x, textLocation.derecha.y);
+    nuevaLeyenda.attr("data-zona", location);
+  }
+}
+
+function setCoordinates(x, y) {
+  nuevaLeyenda.attr("x", x);
+  nuevaLeyenda.attr("y", y);
 }
 
 function changeTeamName(e) {
