@@ -509,7 +509,8 @@ function createTextEditor(textName) {
 }
 
 function createTextName(text) {
-  nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  //nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  nuevaLeyenda = $("<text>");
   var nroDeLeyenda = "1";
   nuevoId = "texto_" + nroDeLeyenda;
   $(nuevaLeyenda)[0].id = nuevoId;
@@ -531,7 +532,7 @@ function createTextName(text) {
   ////////////////////////////////////////////////////// acá
   setTextLocation();
   console.log(nuevaLeyenda);
-  $("#svgTextContainer g").append(nuevaLeyenda);
+  $("#svgContainer g").append($(nuevaLeyenda));
   //////////////////////////////////////////////////////////
   update_svg("", "");
   closeTextEditor();
@@ -539,19 +540,8 @@ function createTextName(text) {
 
 function setTextLocation() {
   const location = $("input[name=zonaPrenda]:checked").val();
-  if (location == "frente") {
-    setCoordinates(textLocation.frente.x, textLocation.frente.y);
-    $(nuevaLeyenda).attr("data-zona", location);
-  } else if (location == "dorso") {
-    setCoordinates(textLocation.dorso.x, textLocation.dorso.y);
-    $(nuevaLeyenda).attr("data-zona", location);
-  } else if (location == "izquierda") {
-    setCoordinates(textLocation.izquierda.x, textLocation.izquierda.y);
-    $(nuevaLeyenda).attr("data-zona", location);
-  } else if (location == "derecha") {
-    setCoordinates(textLocation.derecha.x, textLocation.derecha.y);
-    $(nuevaLeyenda).attr("data-zona", location);
-  }
+  $(nuevaLeyenda).data("zona", location);
+  setCoordinates(textLocation[location].x, textLocation[location].y);
 }
 
 function setCoordinates(x, y) {
