@@ -138,15 +138,6 @@ function loadNuevaLeyendaStrokeColorPickers(initialColor) {
   });
 }
 
-// function onWindowResize() {
-//   // if (width < height) {
-//   //   height = width;
-//   // }
-//   renderer.setSize(window.innerWidth, window.innerHeight);
-//   camera.aspect = width / height;
-//   camera.updateProjectionMatrix();
-// }
-
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
@@ -311,12 +302,11 @@ function set_materials(response) {
 function load_materials() {
   var paths = $("#svgContainer path");
   var materialContainer = "";
-  console.log(paths);
+
   for (var i = 0; i < paths.length; i++) {
     var id = $(paths[i]).attr("id");
     var bg = $(paths[i]).css("fill");
 
-    console.log(id, bg);
     if (bg != undefined && id != undefined) {
       var data = id;
       var selected = selectedMaterial == id ? "active" : "";
@@ -519,28 +509,29 @@ function createTextEditor(textName) {
 }
 
 function createTextName(text) {
-  nuevaLeyenda = $("#svgTextContainer text").last().clone();
-  var nroDeLeyenda = $("#svgTextContainer text").length;
+  nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  var nroDeLeyenda = "1";
   nuevoId = "texto_" + nroDeLeyenda;
-  nuevaLeyenda[0].id = nuevoId;
-  nuevaLeyenda[0].innerHTML = $("#newftext").val();
-  nuevaLeyenda[0].setAttribute("font-family", $("#newff").val());
-  nuevaLeyenda[0].setAttribute("font-size", $("#newfs").val());
-  nuevaLeyenda.css(
+  $(nuevaLeyenda)[0].id = nuevoId;
+  $(nuevaLeyenda)[0].innerHTML = $("#newftext").val();
+  $(nuevaLeyenda)[0].setAttribute("font-family", $("#newff").val());
+  $(nuevaLeyenda)[0].setAttribute("font-size", $("#newfs").val());
+  $(nuevaLeyenda).css(
     "fill",
     $("#nuevaLeyendaColorPick").spectrum("get").toHexString()
   );
-  nuevaLeyenda.css(
+  $(nuevaLeyenda).css(
     "stroke",
     $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
-  nuevaLeyenda[0].setAttribute(
+  $(nuevaLeyenda)[0].setAttribute(
     "stroke",
     $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
   ////////////////////////////////////////////////////// acá
   setTextLocation();
-  nuevaLeyenda.insertAfter($("#svgContainer text").last());
+  console.log(nuevaLeyenda);
+  $("#svgTextContainer g").append(nuevaLeyenda);
   //////////////////////////////////////////////////////////
   update_svg("", "");
   closeTextEditor();
@@ -550,22 +541,22 @@ function setTextLocation() {
   const location = $("input[name=zonaPrenda]:checked").val();
   if (location == "frente") {
     setCoordinates(textLocation.frente.x, textLocation.frente.y);
-    nuevaLeyenda.attr("data-zona", location);
+    $(nuevaLeyenda).attr("data-zona", location);
   } else if (location == "dorso") {
     setCoordinates(textLocation.dorso.x, textLocation.dorso.y);
-    nuevaLeyenda.attr("data-zona", location);
+    $(nuevaLeyenda).attr("data-zona", location);
   } else if (location == "izquierda") {
     setCoordinates(textLocation.izquierda.x, textLocation.izquierda.y);
-    nuevaLeyenda.attr("data-zona", location);
+    $(nuevaLeyenda).attr("data-zona", location);
   } else if (location == "derecha") {
     setCoordinates(textLocation.derecha.x, textLocation.derecha.y);
-    nuevaLeyenda.attr("data-zona", location);
+    $(nuevaLeyenda).attr("data-zona", location);
   }
 }
 
 function setCoordinates(x, y) {
-  nuevaLeyenda.attr("x", x);
-  nuevaLeyenda.attr("y", y);
+  $(nuevaLeyenda).attr("x", x);
+  $(nuevaLeyenda).attr("y", y);
 }
 
 function changeTeamName(e) {
@@ -613,15 +604,12 @@ function setColor(color) {
 
 function update_svg(op, value) {
   if (op == "color") {
-    console.log(op, value);
-    console.log(selectedMaterial);
     $(`#${selectedMaterial}`)[0].setAttribute("fill", value);
   }
   if (op == "ftext") {
     document.getElementById(selectedText).innerHTML = value;
   }
   if (op == "fillText") {
-    console.log(value);
     document.getElementById(selectedText).setAttribute("fill", value);
     document.getElementById(selectedText).style.fill = value;
   }
@@ -682,7 +670,6 @@ function configPasos() {
       $(this).addClass("active");
       var idPaso = $(this).data("paso");
       $("#" + idPaso).addClass("active");
-      console.log(idPaso);
       if (idPaso == "pasoDisenio") {
         closeTextEditor();
         load_materials();

@@ -15,5 +15,5 @@ $(window).on("resize", function () {
   if (width < height) {
     height = width;
   }
-  renderer.setSize(width, hegiht);
+  renderer.setSize(width, height);
 });
