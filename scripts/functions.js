@@ -311,10 +311,12 @@ function set_materials(response) {
 function load_materials() {
   var paths = $("#svgContainer path");
   var materialContainer = "";
+  console.log(paths);
   for (var i = 0; i < paths.length; i++) {
-    var id = $(paths[i]).attr("class");
-    var bg = $(paths).css("fill");
-    console.log(bg, id);
+    var id = $(paths[i]).attr("id");
+    var bg = $(paths[i]).css("fill");
+
+    console.log(id, bg);
     if (bg != undefined && id != undefined) {
       var data = id;
       var selected = selectedMaterial == id ? "active" : "";
@@ -611,7 +613,9 @@ function setColor(color) {
 
 function update_svg(op, value) {
   if (op == "color") {
-    document.getElementById(selectedMaterial).setAttribute("fill", value);
+    console.log(op, value);
+    console.log(selectedMaterial);
+    $(`#${selectedMaterial}`)[0].setAttribute("fill", value);
   }
   if (op == "ftext") {
     document.getElementById(selectedText).innerHTML = value;

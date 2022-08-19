@@ -163,7 +163,7 @@ var fonts = [
 
 var container, stats, controls;
 var camera, scene, renderer, light, material, materialCount;
-var selectedMaterial = "ZONE(base)";
+var selectedMaterial = "cls-1";
 var nuevaLeyenda = "";
 var nuevoId = "";
 var selectedText = "TEXT(team-name)";
