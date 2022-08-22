@@ -189,7 +189,7 @@ function obj2_model_load(model) {
 
     var scale = height / 3;
     object.scale.set(scale * 0.05, scale * 0.05, scale * 0.05);
-    object.position.set(0, -80, 0);
+    object.position.set(0, -85, 0);
     //object.scale.set(scale, scale, scale);
     //object.position.set(0, -scale * 1.335, 0);
 
@@ -384,7 +384,7 @@ function load_text_details(idd) {
   var textEditContainer = `<div class="text-editor-container">
         <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
         <div class="form-check form-check-inline">
-            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked>
             <label class="form-check-label" for="frente">Frente</label>
             <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
             <label class="form-check-label" for="dorso">Dorso</label>
@@ -469,7 +469,7 @@ function createTextEditor(textName) {
   var editor = `<div class="text-editor-container">
         <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
         <div class="form-check form-check-inline">
-            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente">
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked>
             <label class="form-check-label" for="frente">Frente</label>
             <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
             <label class="form-check-label" for="dorso">Dorso</label>

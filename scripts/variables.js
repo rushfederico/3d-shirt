@@ -4,8 +4,8 @@ const textLocation = {
     y: 790,
   },
   dorso: {
-    x: 1760,
-    y: 770,
+    x: 1710,
+    y: 740,
   },
   izquierda: {
     x: 1310,
