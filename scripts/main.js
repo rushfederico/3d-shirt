@@ -9,11 +9,13 @@ $(document).ready(function () {
   loadColors();
 });
 
-$(window).on("resize", function () {
-  camera.aspect = $(svg).width() / $(svg).height();
-  camera.updateProjectionMatrix();
-  if (width < height) {
-    height = width;
-  }
-  renderer.setSize(width, height);
-});
+// $(window).on("resize", function () {
+//   camera.aspect = $(svg).width() / $(svg).height();
+//   camera.updateProjectionMatrix();
+//   if (width < height) {
+//     height = width;
+//   }
+//   renderer.setSize(width, height);
+// });
+
+$(window).on("resize", onWindowResize);

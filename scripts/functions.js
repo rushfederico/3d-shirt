@@ -50,7 +50,7 @@ function getCamera() {
 function getControls() {
   controls = new THREE.OrbitControls(camera, container);
   controls.enableKeys = false;
-  // controls.enablePan = false;
+  controls.enablePan = false;
   controls.minDistance = 170;
   controls.maxDistance = 200;
   controls.update();
@@ -136,6 +136,18 @@ function loadNuevaLeyendaStrokeColorPickers(initialColor) {
       },
     });
   });
+}
+
+function onWindowResize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  if (width < height) {
+    height = width;
+  }
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height);
 }
 
 function animate() {
