@@ -139,8 +139,10 @@ function loadNuevaLeyendaStrokeColorPickers(initialColor) {
 }
 
 function onWindowResize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
+  // width = window.innerWidth;
+  // height = window.innerHeight;
+  width = $("#container").width();
+  height = $("#container").height();
   if (width < height) {
     height = width;
   }
@@ -186,13 +188,18 @@ function obj2_model_load(model) {
         //object = node;
       }
     });
-
-    var scale = height / 3;
-    object.scale.set(scale * 0.05, scale * 0.05, scale * 0.05);
-    object.position.set(0, -70, 0);
+    // if (window.innerWidth > 1366) {
+    //   object.scale.set(9, 9, 9);
+    //   object.position.set(0, -75, 0);
+    // } else {
+    object.scale.set(9, 9, 9);
+    object.position.set(0, -75, 0);
+    // var scale = height / 3;
+    // object.scale.set(scale * 0.05, scale * 0.05, scale * 0.05);
+    // object.position.set(0, -70, 0);
     //object.scale.set(scale, scale, scale);
     // object.position.set(0, -scale * 0.335, 0);
-
+    // }
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
