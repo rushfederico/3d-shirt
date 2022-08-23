@@ -39,6 +39,11 @@ main {
   overflow-y: scroll;
 }
 
+.texts {
+  max-height: 89%;
+  overflow-y: scroll;
+}
+
 #buttonPasosContainer {
   display: flex;
   flex-direction: column;
