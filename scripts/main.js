@@ -18,4 +18,8 @@ $(document).ready(function () {
 //   renderer.setSize(width, height);
 // });
 
+$(object).ready(function () {
+  $("#sectorRemera").css("background-image", "none");
+});
+
 $(window).on("resize", onWindowResize);

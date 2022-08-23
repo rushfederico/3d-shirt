@@ -23,6 +23,10 @@ main {
 }
 
 #sectorRemera {
+  background-image: url("../assets/precarga.gif");
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: center;
   height: 100%;
   /* overflow: hidden; */
 }
