@@ -48,14 +48,14 @@ function getContainer() {
 }
 function getCamera() {
   // acá quizás esté el quid de la cuestión del resize?
-  camera = new THREE.PerspectiveCamera(50, screen_rate, 100, 1200);
+  camera = new THREE.PerspectiveCamera(40, screen_rate, 100, 1200);
   camera.position.set(600, 0, 200);
 }
 function getControls() {
   controls = new THREE.OrbitControls(camera, container);
   controls.enableKeys = false;
   controls.enablePan = false;
-  controls.minDistance = 170;
+  controls.minDistance = 166;
   controls.maxDistance = 200;
   controls.update();
 }
