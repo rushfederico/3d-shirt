@@ -12,6 +12,43 @@ span {
 .hidden {
   display: none;
 }
+
+main {
+  height: 100vh;
+}
+
+#theRow {
+  height: 100%;
+}
+
+#sectorRemera {
+  height: 100%;
+}
+
+#pasosContainer {
+  border-left: 2px solid #000;
+  height: 100%;
+}
+
+#pasosContainer > div {
+  height: 94%;
+}
+
+.materials {
+  max-height: 89%;
+  overflow-y: scroll;
+}
+
+#buttonPasosContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 0.9em;
+
+  height: 100%;
+}
 /* cyrillic-ext */
 @font-face {
   font-family: "Rubik";
@@ -511,13 +548,6 @@ span.egseas {
   padding-right: 10%;
 }
 
-#pasosContainer {
-  border-left: 2px solid #000;
-  /* padding: 25% 0 25% 0; */
-  position: relative;
-  overflow-y: scroll;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -529,22 +559,9 @@ span.egseas {
   display: block;
 }
 
-.materials {
-}
-
 .color-palete {
   /* margin-top: -2px; */
   border: 3px solid black;
-}
-
-#buttonPasosContainer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  /* padding: 25% 0 25% 0; */
-  font-size: 0.9em;
 }
 
 .buttonPaso {
@@ -570,7 +587,4 @@ span.egseas {
 .buttonPaso.active {
   border: 2px solid black;
   color: #000;
-}
-
-#theRow {
 }
