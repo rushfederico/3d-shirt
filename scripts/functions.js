@@ -1,4 +1,9 @@
 // THREEJS FUNCTIONS
+manager.onLoad = function ( ) {  
+  animate();
+	container.appendChild(renderer.domElement);
+  $("#sectorRemera").css("background-image", "none");
+};
 
 function init() {
   createScene();
@@ -10,18 +15,16 @@ function init() {
   createObject();
   textureLoader = new THREE.TextureLoader();
   changeProduct();
+  
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(pixelRatio);
   renderer.setSize(width, height);
   renderer.setClearColor(0x000000, 0);
-
-  container.appendChild(renderer.domElement);
+  
   renderer.gammaInput = true;
   renderer.gammaOutput = true;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.soft = true;
-
-  animate();
+  renderer.shadowMap.soft = true;  
 }
 
 function fillScene() {
@@ -39,8 +42,9 @@ function createObject() {
 }
 
 function getContainer() {
-  container = document.createElement("div");
-  document.getElementById("container").appendChild(container);
+  //container = document.createElement("div");
+  //document.getElementById("container").appendChild(container);
+  container = document.getElementById("container");
 }
 function getCamera() {
   // acá quizás esté el quid de la cuestión del resize?
@@ -203,7 +207,7 @@ function obj2_model_load(model) {
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
-    scene.add(object);
+    scene.add(object);    
   });
 }
 
@@ -312,7 +316,7 @@ function set_materials(response) {
         map = texture;
         textureMaterial = new THREE.MeshPhongMaterial({ map: map });
         load_materials();
-        response(true);
+        response(true);        
       };
     };
   };
