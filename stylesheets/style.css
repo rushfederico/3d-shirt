@@ -12,9 +12,10 @@ span {
 .hidden {
   display: none;
 }
-
+body {
+}
 main {
-  height: 100vh;
+  height: 80vh;
 }
 
 #theRow {
@@ -23,10 +24,25 @@ main {
 
 #sectorRemera {
   height: 100%;
+  border: 2px solid pink;
+  /* overflow: hidden; */
+}
+
+#sectorRemera #container {
+  /* border: 2px solid brown; */
+  height: 100%;
+}
+
+#sectorRemera #container div {
+  /* border: 2px solid green; */
+  height: 100%;
+}
+
+#sectorRemera #container div canvas {
+  height: 100%;
 }
 
 #pasosContainer {
-  border-left: 2px solid #000;
   height: 100%;
 }
 
@@ -45,13 +61,16 @@ main {
 }
 
 #buttonPasosContainer {
+  font-size: 0.9em;
+
+  height: 100%;
+}
+
+#buttonPasosContainer > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  font-size: 0.9em;
-
   height: 100%;
 }
 /* cyrillic-ext */

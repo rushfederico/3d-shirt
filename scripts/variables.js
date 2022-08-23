@@ -181,7 +181,7 @@ var materials = [];
 var geometries = [];
 
 var width = $("#container").width();
-var height = window.innerHeight;
+var height = $("#container").height();
 if (width < height) {
   height = width;
 }
