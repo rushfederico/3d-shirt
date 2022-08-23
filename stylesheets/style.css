@@ -46,6 +46,7 @@ main {
 }
 
 #pasosContainer {
+  border-left: 2px solid black;
   height: 100%;
 }
 
@@ -54,7 +55,7 @@ main {
 }
 
 .materials {
-  max-height: 89%;
+  max-height: 86%;
   overflow-y: scroll;
 }
 
