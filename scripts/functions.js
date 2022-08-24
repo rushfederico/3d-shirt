@@ -431,7 +431,7 @@ function load_texts() {
         id +
         '\')"><span class="molids" style="background:' +
         bg +
-        '"></span><span class="egseas">' +
+        '"></span><span class="d-inline-block text-truncate egseas" style="max-width: 300px;">' +
         id +
         "</span></div>";
     }
