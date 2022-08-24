@@ -1,7 +1,7 @@
 // THREEJS FUNCTIONS
-manager.onLoad = function ( ) {  
+manager.onLoad = function () {
   animate();
-	container.appendChild(renderer.domElement);
+  container.appendChild(renderer.domElement);
   $("#sectorRemera").css("background-image", "none");
 };
 
@@ -15,16 +15,16 @@ function init() {
   createObject();
   textureLoader = new THREE.TextureLoader();
   changeProduct();
-  
+
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(pixelRatio);
   renderer.setSize(width, height);
   renderer.setClearColor(0x000000, 0);
-  
+
   renderer.gammaInput = true;
   renderer.gammaOutput = true;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.soft = true;  
+  renderer.shadowMap.soft = true;
 }
 
 function fillScene() {
@@ -202,7 +202,7 @@ function obj2_model_load(model) {
 
     scene.add(object);
 
-    model_logo_load();  
+    model_logo_load();
   });
 }
 
@@ -227,8 +227,8 @@ function model_logo_load() {
     objectLogo.rotation.set(0, Math.PI / 2, 0);
     objectLogo.receiveShadow = true;
     objectLogo.castShadow = true;
-    
-    scene.add(objectLogo);    
+
+    scene.add(objectLogo);
   });
 }
 
@@ -259,22 +259,29 @@ function changeProduct() {
 }
 function loadSvg(response) {
   $.ajax({
-    url: "assets/" + gender + "/cat" + category + "/prod" + product + "/pattern.svg",
+    url:
+      "assets/" +
+      gender +
+      "/cat" +
+      category +
+      "/prod" +
+      product +
+      "/pattern.svg",
     async: false,
     success: function (data) {
       var svgData = new XMLSerializer().serializeToString(data.documentElement);
       $("#svgContainer").empty();
       $("#svgContainer").append(svgData).html();
-    }
+    },
   });
   $.ajax({
     url: "assets/men/cat1/logo-frontal-pattern.svg",
     async: false,
-    success: function(data) {
+    success: function (data) {
       var svgData = new XMLSerializer().serializeToString(data.documentElement);
       $("#svgLogoContainer").empty();
       $("#svgLogoContainer").append(svgData).html();
-    }
+    },
   });
   set_materials(function (resp) {
     response(resp);
@@ -330,10 +337,12 @@ function set_materials(response) {
       ctx.fillRect(0, 0, canvas.width * 3.33, canvas.height * 3.33);
       ctx.globalAlpha = 1;
       ctx.scale(3.33, 3.33);
-      
-      var svgLogo = document.getElementById("svgLogoContainer").querySelector("svg");
+
+      var svgLogo = document
+        .getElementById("svgLogoContainer")
+        .querySelector("svg");
       var svgLogoData = new XMLSerializer().serializeToString(svgLogo);
-      
+
       var canvasLogo = document.createElement("canvas");
       canvasLogo.width = $(svgLogo).width();
       canvasLogo.height = $(svgLogo).height();
@@ -369,7 +378,7 @@ function set_materials(response) {
           map = texture;
           textureMaterial = new THREE.MeshPhongMaterial({ map: map });
           load_materials();
-          response(true);        
+          response(true);
         };
       };
     };
@@ -476,9 +485,10 @@ function load_text_details(idd) {
     fontFamilies +
     "</div>";
   textEditContainer +=
-    '<div class="form-group"><label for="fs">Font-Size</label><input id="fs" type="text" onchange="changeTeamName(event)" class="form-control" value="' +
-    fs +
-    '"/></div>' +
+    `<div class="form-group">
+  <label for="newfs">Font-Size</label>
+  <input id="newfs" class="form-range form-control" type="range" min="20" max="200" onchange="updateTextSize(event)"/>
+</div>` +
     `<div id="colorAndMoveTextContainer" class="form-group">
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
@@ -508,6 +518,11 @@ function closeTextEditor() {
   $(".texts").show();
   selectedText = null;
   load_texts();
+}
+
+function updateTextSize(event) {
+  update_svg("fs", `${event.target.value}px`);
+  console.log(event.target.value);
 }
 
 function addNewText() {
@@ -561,9 +576,10 @@ function createTextEditor(textName) {
     fontFamilies +
     "</div>";
   editor +=
-    '<div class="form-group"><label for="newfs">Font-Size</label><input id="newfs" type="text" onchange="" class="form-control" value="' +
-    "20px" +
-    '"/></div>' +
+    `<div class="form-group">
+        <label for="newfs">Font-Size</label>
+        <input id="newfs" class="form-range form-control" type="range" min="20" max="200"/>
+    </div>` +
     `<div id="colorAndMoveTextContainer" class="form-group">
       <div id="colorPickContainer">
         <p id="colorPickTitle" class="formTitles">Color</p>
