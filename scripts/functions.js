@@ -39,6 +39,7 @@ function createScene() {
 
 function createObject() {
   object = new THREE.Object3D();
+  objectLogo = new THREE.Object3D();
 }
 
 function getContainer() {
@@ -192,22 +193,42 @@ function obj2_model_load(model) {
         //object = node;
       }
     });
-    // if (window.innerWidth > 1366) {
-    //   object.scale.set(9, 9, 9);
-    //   object.position.set(0, -75, 0);
-    // } else {
+
     object.scale.set(9, 9, 9);
     object.position.set(0, -75, 0);
-    // var scale = height / 3;
-    // object.scale.set(scale * 0.05, scale * 0.05, scale * 0.05);
-    // object.position.set(0, -70, 0);
-    //object.scale.set(scale, scale, scale);
-    // object.position.set(0, -scale * 0.335, 0);
-    // }
     object.rotation.set(0, Math.PI / 2, 0);
     object.receiveShadow = true;
     object.castShadow = true;
-    scene.add(object);    
+
+    scene.add(object);
+
+    model_logo_load();  
+  });
+}
+
+function model_logo_load() {
+  var loader = new THREE.OBJLoader2();
+  loader.load("assets/men/cat1/logo-frontal.obj", function (data) {
+    if (objectLogo != null) {
+      scene.remove(objectLogo);
+    }
+    objectLogo = null;
+    objectLogo = data.detail.loaderRootNode;
+    materials = [];
+    objectLogo.traverse(function (node) {
+      if (node.isMesh) {
+        node.material = textureLogoMaterial;
+        node.geometry.uvsNeedUpdate = true;
+      }
+    });
+
+    objectLogo.scale.set(9, 9, 9);
+    objectLogo.position.set(0, -75, 0);
+    objectLogo.rotation.set(0, Math.PI / 2, 0);
+    objectLogo.receiveShadow = true;
+    objectLogo.castShadow = true;
+    
+    scene.add(objectLogo);    
   });
 }
 
@@ -237,17 +258,27 @@ function changeProduct() {
   });
 }
 function loadSvg(response) {
-  $.get(
-    "assets/" + gender + "/cat" + category + "/prod" + product + "/pattern.svg",
-    function (data) {
+  $.ajax({
+    url: "assets/" + gender + "/cat" + category + "/prod" + product + "/pattern.svg",
+    async: false,
+    success: function (data) {
       var svgData = new XMLSerializer().serializeToString(data.documentElement);
       $("#svgContainer").empty();
       $("#svgContainer").append(svgData).html();
-      set_materials(function (resp) {
-        response(resp);
-      });
     }
-  );
+  });
+  $.ajax({
+    url: "assets/men/cat1/logo-frontal-pattern.svg",
+    async: false,
+    success: function(data) {
+      var svgData = new XMLSerializer().serializeToString(data.documentElement);
+      $("#svgLogoContainer").empty();
+      $("#svgLogoContainer").append(svgData).html();
+    }
+  });
+  set_materials(function (resp) {
+    response(resp);
+  });
 }
 
 function set_materials(response) {
@@ -299,24 +330,47 @@ function set_materials(response) {
       ctx.fillRect(0, 0, canvas.width * 3.33, canvas.height * 3.33);
       ctx.globalAlpha = 1;
       ctx.scale(3.33, 3.33);
-      var svgText = document
-        .getElementById("svgTextContainer")
-        .querySelector("svg");
-      var svgTextData = new XMLSerializer().serializeToString(svgText);
-      var imgT = document.createElement("img");
-      imgT.setAttribute(
+      
+      var svgLogo = document.getElementById("svgLogoContainer").querySelector("svg");
+      var svgLogoData = new XMLSerializer().serializeToString(svgLogo);
+      
+      var canvasLogo = document.createElement("canvas");
+      canvasLogo.width = $(svgLogo).width();
+      canvasLogo.height = $(svgLogo).height();
+      var ctxLogo = canvasLogo.getContext("2d");
+
+      var logoImg = document.createElement("img");
+      logoImg.setAttribute(
         "src",
         "data:image/svg+xml;base64," +
-          window.btoa(unescape(encodeURIComponent(svgTextData)))
+          window.btoa(unescape(encodeURIComponent(svgLogoData)))
       );
-      imgT.onload = function () {
-        ctx.drawImage(imgT, 0, 0);
-        var texture = new THREE.Texture(canvas);
-        texture.needsUpdate = true;
-        map = texture;
-        textureMaterial = new THREE.MeshPhongMaterial({ map: map });
-        load_materials();
-        response(true);        
+      logoImg.onload = function () {
+        ctxLogo.drawImage(logoImg, 0, 0);
+        var textureLogo = new THREE.Texture(canvas);
+        textureLogo.needsUpdate = true;
+        mapLogo = textureLogo;
+        textureLogoMaterial = new THREE.MeshPhongMaterial({ map: mapLogo });
+
+        var svgText = document
+          .getElementById("svgTextContainer")
+          .querySelector("svg");
+        var svgTextData = new XMLSerializer().serializeToString(svgText);
+        var imgT = document.createElement("img");
+        imgT.setAttribute(
+          "src",
+          "data:image/svg+xml;base64," +
+            window.btoa(unescape(encodeURIComponent(svgTextData)))
+        );
+        imgT.onload = function () {
+          ctx.drawImage(imgT, 0, 0);
+          var texture = new THREE.Texture(canvas);
+          texture.needsUpdate = true;
+          map = texture;
+          textureMaterial = new THREE.MeshPhongMaterial({ map: map });
+          load_materials();
+          response(true);        
+        };
       };
     };
   };

@@ -173,9 +173,10 @@ var animations = [];
 var manager = new THREE.LoadingManager();
 
 var mixers = [];
-var object;
+var object, objectLogo;
 var operand1, operand2, operator1, operator2, solution, question, answer;
 var textureLoader, map, textureMaterial;
+var mapLogo, textureLogoMaterial;
 var mesh;
 var materials = [];
 var geometries = [];
