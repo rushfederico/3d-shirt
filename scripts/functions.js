@@ -622,17 +622,16 @@ function createTextName(text) {
     $("#nuevaLeyendaStrokeColorPick").spectrum("get").toHexString()
   );
   ////////////////////////////////////////////////////// acá
-  setTextLocation();
-  console.log(nuevaLeyenda);
+  setTextLocation(nuevaLeyenda);
   $("#svgContainer g").append($(nuevaLeyenda));
   //////////////////////////////////////////////////////////
   update_svg("", "");
   closeTextEditor();
 }
 
-function setTextLocation() {
+function setTextLocation(t) {
   const location = $("input[name=zonaPrenda]:checked").val();
-  $(nuevaLeyenda).data("zona", location);
+  $(t).data("zona", location);
   setCoordinates(textLocation[location].x, textLocation[location].y);
 }
 
