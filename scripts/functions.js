@@ -604,8 +604,7 @@ function createTextEditor(textName) {
 function createTextName(text) {
   //nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
   nuevaLeyenda = $("<text>");
-  var nroDeLeyenda = $("#svgTextContainer text").length;
-  nuevoId = "texto_" + nroDeLeyenda;
+  nuevoId = `${$("#newftext").val()}`;
   $(nuevaLeyenda)[0].id = nuevoId;
   $(nuevaLeyenda)[0].innerHTML = $("#newftext").val();
   $(nuevaLeyenda)[0].setAttribute("font-family", $("#newff").val());
