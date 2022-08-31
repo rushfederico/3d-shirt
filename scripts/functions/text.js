@@ -1,5 +1,4 @@
 function addNewText() {
-  let newTextElement = 
   let newText = `Nueva Leyenda`;
   $(".text-editor").show();
   $(".texts").hide();
