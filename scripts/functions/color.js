@@ -10,6 +10,17 @@ function loadColorPickers(initialColor) {
   });
 }
 
+function loadTextColorPickers(initialColor) {
+  $(document).ready(function () {
+    $("#textColorPick").spectrum({
+      color: initialColor,
+      change: function (color) {
+        closeColorContainer();
+      },
+    });
+  });
+}
+
 function loadTextStrokeColorPickers(initialColor) {
   $(document).ready(function () {
     $("#textStrokeColorPick").spectrum({
@@ -22,27 +33,6 @@ function loadTextStrokeColorPickers(initialColor) {
   });
 }
 
-function loadNuevaLeyendaColorPickers(initialColor) {
-  $(document).ready(function () {
-    $("#textColorPick").spectrum({
-      color: initialColor,
-      change: function (color) {
-        closeColorContainer();
-      },
-    });
-  });
-}
-
-function loadNuevaLeyendaStrokeColorPickers(initialColor) {
-  $(document).ready(function () {
-    $("#textStrokeColorPick").spectrum({
-      color: initialColor,
-      change: function (color) {
-        closeColorContainer();
-      },
-    });
-  });
-}
 function setColorBk(color) {
   selectedColors.push(color);
   object.traverse(function (node) {

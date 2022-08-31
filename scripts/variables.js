@@ -1,3 +1,12 @@
+// const textObject = {
+//   ff: fonts[0],
+//   fs: "30px",
+//   textColor: "#000000",
+//   textStrokeColor: "#FFFFFF",
+//   xPos: textLocation.frente.x,
+//   yPos: textLocation.frente.y,
+// };
+
 const textLocation = {
   frente: {
     x: 740,

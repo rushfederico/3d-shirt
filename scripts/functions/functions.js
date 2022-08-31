@@ -317,32 +317,30 @@ function update_svg(op, value) {
     $(`#${selectedMaterial}`)[0].setAttribute("fill", value);
   }
   if (op == "ftext") {
-    document.getElementById(selectedText).innerHTML = value;
+    document.getElementById(nuevoId).innerHTML = value;
   }
   if (op == "fillText") {
-    document.getElementById(selectedText).setAttribute("fill", value);
-    document.getElementById(selectedText).style.fill = value;
+    document.getElementById(nuevoId).setAttribute("fill", value);
+    document.getElementById(nuevoId).style.fill = value;
   }
   if (op == "fillStroke") {
-    document.getElementById(selectedText).setAttribute("stroke", value);
-    document.getElementById(selectedText).style.stroke = value;
+    document.getElementById(nuevoId).setAttribute("stroke", value);
+    document.getElementById(nuevoId).style.stroke = value;
   }
   if (op == "ff") {
-    document.getElementById(selectedText).setAttribute("font-family", value);
-    document.getElementById(selectedText).style.fontFamily = value;
+    document.getElementById(nuevoId).setAttribute("font-family", value);
+    document.getElementById(nuevoId).style.fontFamily = value;
   }
   if (op == "fs") {
-    document.getElementById(selectedText).style.fontSize = value;
+    document.getElementById(nuevoId).style.fontSize = value;
   }
   if (op == "xpos") {
-    document.getElementById(selectedText).attributes.x.value =
-      parseInt(document.getElementById(selectedText).attributes.x.value) +
-      value;
+    document.getElementById(nuevoId).attributes.x.value =
+      parseInt(document.getElementById(nuevoId).attributes.x.value) + value;
   }
   if (op == "ypos") {
-    document.getElementById(selectedText).attributes.y.value =
-      parseInt(document.getElementById(selectedText).attributes.y.value) +
-      value;
+    document.getElementById(nuevoId).attributes.y.value =
+      parseInt(document.getElementById(nuevoId).attributes.y.value) + value;
   }
   if (op == "fillNuevaLeyenda") {
     document.getElementById(nuevoId).style.fill = value;
