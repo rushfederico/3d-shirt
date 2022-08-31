@@ -2,6 +2,10 @@ function addNewText() {
   let text = `Nueva Leyenda`;
   $(".text-editor").show();
   $(".texts").hide();
+  let ff = fonts[0];
+  let fs = "30px";
+  let xPos = textLocation.frente.x;
+  let yPos = textLocation.frente.y;
   var editor = createTextEditor(text, ff, fs, xPos, yPos);
   $(".text-editor").empty();
   $(".text-editor").append(editor).html();
@@ -87,7 +91,7 @@ function createTextEditor(text, ff, fs) {
         </div>
         <div class="form-group">
             <label for="fs">Font-Size</label>
-            <input id="fs" class="form-range form-control" type="range" min="20" max="200" value="${fs}"/>
+            <input id="fs" class="form-range form-control" type="range" min="20" max="200" value="${fs}" onchange="${`updateTextSize(event)`}"/>
         </div>
         <div id="colorAndMoveTextContainer" class="form-group">
           <div id="colorPickContainer">
