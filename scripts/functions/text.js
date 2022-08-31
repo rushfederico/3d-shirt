@@ -1,8 +1,9 @@
 function addNewText() {
-  selectedText = `Nueva Leyenda`;
+  let newTextElement = 
+  let newText = `Nueva Leyenda`;
   $(".text-editor").show();
   $(".texts").hide();
-  var editor = createTextEditor(selectedText);
+  var editor = createTextEditor(newText);
   $(".text-editor").empty();
   $(".text-editor").append(editor).html();
   loadNuevaLeyendaColorPickers("rgb(0,0,0)");
@@ -18,13 +19,8 @@ function loadTexts() {
     var fill = $(texts[i]).css("fill");
     var text = $(texts[i]).text();
     var selected = selectedText == textId ? "active" : "";
-    // console.log(textId);
-    // console.log(text);
-    // console.log(selected);
-    // console.log(selectedText);
-    // console.log("//////////////////////");
     if (textId != undefined) {
-      textContainer += `<div id="txt_${textId}" class="xixcust ${selected}" onclick="loadTextEditor('${textId}')">
+      textContainer += `<div id="txt_${textId}" class="xixcust ${selected}" onclick="loadText('${textId}')">
             <span class="molids" style="background: ${fill}"></span>
             <span class="d-inline-block text-truncate egseas" style="max-width: 300px;">${text}</span>
           </div>`;
@@ -34,28 +30,46 @@ function loadTexts() {
   $(".texts").append(textContainer).html();
 }
 
-function loadTextEditor(idd) {
+function loadText(textId) {
   $(".text-editor").show();
   $(".texts").hide();
 
-  var id = document.getElementById(idd);
-  var text = $(id).html();
+  var textElement = document.getElementById(textId);
+  var text = $(textElement).html();
   selectedText = text;
-  var ff = $(id).attr("font-family");
-  var sff = $(id).css("font-family");
-  var fs = $(id).css("font-size");
-  var textColor = $(id).css("fill");
-  var textStrokeColor = $(id).css("stroke");
+  var ff = $(textElement).attr("font-family");
+  var sff = $(textElement).css("font-family");
+  var fs = $(textElement).css("font-size");
+  var textColor = $(textElement).css("fill");
+  var textStrokeColor = $(textElement).css("stroke");
 
-  var xPos = parseInt($(id).attr("x"));
-  var yPos = parseInt($(id).attr("y"));
-  var editor = createTextEditor(text, ff, sff, fs, textColor, textStrokeColort);
+  var xPos = parseInt($(textElement).attr("x"));
+  var yPos = parseInt($(textElement).attr("y"));
+  var editor = createTextEditor(
+    text,
+    ff,
+    sff,
+    fs,
+    textColor,
+    textStrokeColor,
+    xPos,
+    yPos
+  );
   $(".text-editor").empty();
   $(".text-editor").append(editor).html();
   loadColorPickers(textColor);
   loadTextStrokeColorPickers(textStrokeColor);
 }
-function createTextEditor(text, ff, sff, fs, textColor, textStrokeColort) {
+function createTextEditor(
+  text,
+  ff,
+  sff,
+  fs,
+  textColor,
+  textStrokeColor,
+  xPos,
+  yPos
+) {
   var textEditorContainer = document.createElement("div");
   $(textEditorContainer).html(text);
   $(textEditorContainer).attr("font-family", "Advent Pro");
@@ -63,11 +77,9 @@ function createTextEditor(text, ff, sff, fs, textColor, textStrokeColort) {
   $(textEditorContainer).css("font-size", "20px");
   $(textEditorContainer).css("fill", "#000");
   $(textEditorContainer).css("stroke", "#fff");
-  // var xPos = parseInt($(id).attr("x"));
-  // var yPos = parseInt($(id).attr("y"));
   var editor = `<div class="text-editor-container">
             <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline" onchange="${`setTextLocation(newText)`}">
                 <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked>
                 <label class="form-check-label" for="frente">Frente</label>
                 <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
@@ -77,7 +89,7 @@ function createTextEditor(text, ff, sff, fs, textColor, textStrokeColort) {
                 <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="derecha">
                 <label class="form-check-label" for="mangader">Manga Der</label>
               </div>
-            <h1>Nueva Leyenda</h1>
+            <h1>${text}</h1>
             <div class="form-group">
               <input id="ftext" onchange="changeTeamName()" type="text" class="form-control" value="${text}"/>
             </div>`;
@@ -114,23 +126,6 @@ function createTextEditor(text, ff, sff, fs, textColor, textStrokeColort) {
           </div>
         </div>` +
     `<div><button onclick="createTextName()">Agregar Leyenda</button></div></div>`;
-  // <div id="colorAndMoveTextContainer" class="form-group">
-  // <div id="colorPickContainer">
-  // <p id="colorPickTitle" class="formTitles">Color</p>
-  // <input type="text" class="colorPickers" id="colorPick" op="fillText"/>
-  // </div>
-  // <div id="strokeColorPickContainer">
-  // <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
-  // <input type="text" class="" id="strokeColorPick" op="fillStroke"/>
-  // </div>
-  // <div id="moveTextContainer">
-  // <p id="moveTextTitle" class="formTitles">Mover</p>
-  // <i class="fa-solid fa-arrow-up" onclick="update_svg('ypos', -10)"></i>
-  // <i class="fa-solid fa-arrow-down" onclick="update_svg('ypos', 10)"></i>
-  // <i class="fa-solid fa-arrow-left" onclick="update_svg('xpos', -10)"></i>
-  // <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
-  // </div>
-  // </div>
   return editor;
 }
 function closeTextEditor() {
@@ -145,15 +140,14 @@ function updateTextSize(event) {
   console.log(event.target.value);
 }
 
-function createTextName(text) {
-  //nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
+function createTextName() {
   newText = $("<text>");
   var nroDeLeyenda = $("#svgTextContainer text").length;
   nuevoId = "texto_" + nroDeLeyenda;
   $(newText)[0].id = nuevoId;
-  $(newText)[0].innerHTML = $("#newftext").val();
-  $(newText)[0].setAttribute("font-family", $("#newff").val());
-  $(newText)[0].setAttribute("font-size", $("#newfs").val());
+  $(newText)[0].innerHTML = $("#ftext").val();
+  $(newText)[0].setAttribute("font-family", $("#ff").val());
+  $(newText)[0].setAttribute("font-size", $("#fs").val());
   $(newText).css("fill", $("#textColorPick").spectrum("get").toHexString());
   $(newText).css(
     "stroke",
@@ -180,6 +174,7 @@ function setTextLocation(t) {
 function setCoordinates(x, y) {
   $(newText).attr("x", x);
   $(newText).attr("y", y);
+  update_svg("", "");
 }
 function changeTeamName(e) {
   console.log(e.target.id, e.target.value);
@@ -199,7 +194,7 @@ function changeTeamName(e) {
 //     <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="mangader">
 //     <label class="form-check-label" for="mangader">Manga Der</label>
 //   </div>
-// <h1>${idd}</h1>
+// <h1>${textId}</h1>
 // <div class="form-group">
 //   <input id="ftext" onchange="changeTeamName()" type="text" class="form-control" value="${text}">
 // </div>`;
