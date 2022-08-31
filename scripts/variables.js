@@ -164,9 +164,12 @@ var fonts = [
 var container, stats, controls;
 var camera, scene, renderer, light, material, materialCount;
 var selectedMaterial = "cls-1";
-var nuevaLeyenda = "";
 var nuevoId = "";
+
+var newText = "";
+var newTextId = "";
 var selectedText = "TEXT(team-name)";
+var selectedTextId = "";
 var selectedMaterialId = "mat_base";
 var animations = [];
 
