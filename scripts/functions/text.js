@@ -3,7 +3,7 @@ function addNewText() {
   $(".text-editor").show();
   $(".texts").hide();
   let ff = fonts[0];
-  let fs = "30px";
+  let fs = "60";
   let xPos = textLocation.frente.x;
   let yPos = textLocation.frente.y;
   var editor = createTextEditor(text, ff, fs, xPos, yPos);
@@ -11,6 +11,7 @@ function addNewText() {
   $(".text-editor").append(editor).html();
   loadTextColorPickers("rgb(0,0,0)");
   loadTextStrokeColorPickers("rgb(255,255,255)");
+  createTextName();
 }
 
 function loadTexts() {
@@ -74,7 +75,7 @@ function createTextEditor(text, ff, fs) {
         </div>
         <h1>${text}</h1>
         <div class="form-group">
-          <input id="ftext" onchange="${`changeTeamName()`}" type="text" class="form-control" value="${text}"/>
+          <input id="ftext" onchange="${`changeTeamName(event)`}" type="text" class="form-control" value="${text}"/>
         </div>`;
   var fontFamilies = `
     <select id="ff" onchange="${`changeTeamName(event)`}" class="form-control">
@@ -147,7 +148,7 @@ function createTextName() {
   $("#svgContainer g").append($(newText));
   //////////////////////////////////////////////////////////
   update_svg("", "");
-  closeTextEditor();
+  // closeTextEditor();
 }
 
 function setTextLocation(t) {
@@ -162,5 +163,7 @@ function setCoordinates(x, y) {
   update_svg("", "");
 }
 function changeTeamName(e) {
+  console.log(e.target.id);
+  console.log(e.target.value);
   update_svg(e.target.id, e.target.value);
 }

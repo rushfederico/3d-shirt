@@ -9,19 +9,19 @@
 
 const textLocation = {
   frente: {
-    x: 740,
+    x: 575,
     y: 790,
   },
   dorso: {
-    x: 1710,
+    x: 1580,
     y: 740,
   },
   izquierda: {
-    x: 1310,
+    x: 1210,
     y: 790,
   },
   derecha: {
-    x: 190,
+    x: 100,
     y: 790,
   },
 };
