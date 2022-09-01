@@ -1,35 +1,29 @@
 function loadColorPickers(initialColor) {
-  $(document).ready(function () {
-    $(".colorPickers").spectrum({
-      color: initialColor,
-      change: function (color) {
-        update_svg($(this).attr("op"), color.toHexString());
-        closeColorContainer();
-      },
-    });
+  $(".colorPickers").spectrum({
+    color: initialColor,
+    change: function (color) {
+      update_svg($(this).attr("op"), color.toHexString());
+      closeColorContainer();
+    },
   });
 }
 
 function loadTextColorPickers(initialColor) {
-  $(document).ready(function () {
-    $("#textColorPick").spectrum({
-      color: initialColor,
-      change: function (color) {
-        closeColorContainer();
-      },
-    });
+  $("#textColorPick").spectrum({
+    color: initialColor,
+    change: function (color) {
+      closeColorContainer();
+    },
   });
 }
 
 function loadTextStrokeColorPickers(initialColor) {
-  $(document).ready(function () {
-    $("#textStrokeColorPick").spectrum({
-      color: initialColor,
-      change: function (color) {
-        update_svg("fillStroke", color.toHexString());
-        closeColorContainer();
-      },
-    });
+  $("#textStrokeColorPick").spectrum({
+    color: initialColor,
+    change: function (color) {
+      update_svg("fillStroke", color.toHexString());
+      closeColorContainer();
+    },
   });
 }
 

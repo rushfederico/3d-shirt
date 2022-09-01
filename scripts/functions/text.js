@@ -163,7 +163,5 @@ function setCoordinates(x, y) {
   update_svg("", "");
 }
 function changeTeamName(e) {
-  console.log(e.target.id);
-  console.log(e.target.value);
   update_svg(e.target.id, e.target.value);
 }
