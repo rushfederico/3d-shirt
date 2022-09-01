@@ -25,6 +25,10 @@ function init() {
   renderer.gammaOutput = true;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.soft = true;
+
+  $(".text-editor-container").on("click", "input[name='zonaPrenda']", function(){
+    setTextLocation(selectedText);
+  });
 }
 
 function fillScene() {
@@ -202,7 +206,7 @@ function obj2_model_load(model) {
 
     scene.add(object);
 
-    model_logo_load();
+    //model_logo_load();
   });
 }
 
@@ -481,12 +485,12 @@ function load_text_details(idd) {
   });
   fontFamilies += "</select>";
   textEditContainer +=
-    '<div class="form-group"><label for="ff-list">Font-Family</label>' +
+    '<div class="form-group"><label for="ff-list">Tipografía</label>' +
     fontFamilies +
     "</div>";
   textEditContainer +=
     `<div class="form-group">
-  <label for="newfs">Font-Size</label>
+  <label for="newfs">Tamaño</label>
   <input id="newfs" class="form-range form-control" type="range" min="20" max="200" onchange="updateTextSize(event)"/>
 </div>` +
     `<div id="colorAndMoveTextContainer" class="form-group">
@@ -549,7 +553,7 @@ function createTextEditor(textName) {
   var editor = `<div class="text-editor-container">
         <i class="fa-solid fa-circle-xmark cursorPointer closeTextX" onclick="closeTextEditor()"})"></i>
         <div class="form-check form-check-inline">
-            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked>
+            <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked="checked">
             <label class="form-check-label" for="frente">Frente</label>
             <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
             <label class="form-check-label" for="dorso">Dorso</label>
@@ -561,7 +565,7 @@ function createTextEditor(textName) {
         <h1>Nueva Leyenda</h1>`;
   editor +=
     '<div class="form-group"><input id="newftext" onchange="" type="text" class="form-control" value="' +
-    "Nueva Leyenda" +
+    "" +
     '"/></div>';
   var fontFamilies =
     '<select id="newff" onchange="" class="form-control"><option value="">choose font</option>';
@@ -572,12 +576,12 @@ function createTextEditor(textName) {
   });
   fontFamilies += "</select>";
   editor +=
-    '<div class="form-group"><label for="ff-list">Font-Family</label>' +
+    '<div class="form-group"><label for="ff-list">Tipografía</label>' +
     fontFamilies +
     "</div>";
   editor +=
     `<div class="form-group">
-        <label for="newfs">Font-Size</label>
+        <label for="newfs">Tamaño</label>
         <input id="newfs" class="form-range form-control" type="range" min="20" max="200"/>
     </div>` +
     `<div id="colorAndMoveTextContainer" class="form-group">
@@ -601,7 +605,7 @@ function createTextEditor(textName) {
   return editor;
 }
 
-function createTextName(text) {
+function createTextName() {
   //nuevaLeyenda = document.createElementNS("http://www.w3.org/2000/svg", "text");
   nuevaLeyenda = $("<text>");
   nuevoId = `${$("#newftext").val()}`;

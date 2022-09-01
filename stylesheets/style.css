@@ -15,7 +15,7 @@ span {
 body {
 }
 main {
-  height: 85vh;
+  height: 95vh;
 }
 
 #theRow {
@@ -505,7 +505,14 @@ span.egseas {
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 1px 2px 0 rgba(43, 45, 66, 0.2),
-    0 4px 12px 0 rgba(43, 45, 66, 0.1);
+  0 4px 12px 0 rgba(43, 45, 66, 0.1);
+}
+.text-editor-container .form-check-label{
+  margin-right: 10px;
+  cursor: pointer;
+}
+.form-check-input{
+  cursor: pointer;
 }
 .closeTextX {
   text-align: right;
