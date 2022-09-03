@@ -6,11 +6,10 @@ function addNewText() {
   let fs = "60";
   let xPos = textLocation.frente.x;
   let yPos = textLocation.frente.y;
-  var editor = createTextEditor(text, ff, fs, xPos, yPos);
+  /*var editor = createTextEditor(text, ff, fs, xPos, yPos);
   $(".text-editor").empty();
   $(".text-editor").append(editor).html();
-  loadTextColorPickers("rgb(0,0,0)");
-  loadTextStrokeColorPickers("rgb(255,255,255)");
+  */
   createTextName();
 }
 
@@ -19,12 +18,12 @@ function loadTexts() {
   var textContainer = `<h3 class="cursorPointer" onclick="addNewText()">${title}</h3>`;
   var texts = $("#svgContainer text");
   for (var i = 0; i < texts.length; i++) {
-    var textId = $(texts[i]).attr("id");
+    var textId = i; //$(texts[i]).attr("id");
     var fill = $(texts[i]).css("fill");
     var text = $(texts[i]).text();
-    var selected = selectedText == textId ? "active" : "";
+    //var selected = selectedText == textId ? "active" : "";
     if (textId != undefined) {
-      textContainer += `<div id="txt_${textId}" class="xixcust ${selected}" onclick="loadText('${textId}')">
+      textContainer += `<div id="txt_${textId}" class="xixcust" onclick="loadText('${textId}')">
             <span class="molids" style="background: ${fill}"></span>
             <span class="d-inline-block text-truncate egseas" style="max-width: 300px;">${text}</span>
           </div>`;
@@ -38,7 +37,8 @@ function loadText(textId) {
   $(".text-editor").show();
   $(".texts").hide();
 
-  var textElement = document.getElementById(textId);
+  var textElement = $("#texto_"+textId);
+  nuevoId = "texto_"+textId;
   var text = $(textElement).html();
   selectedText = text;
   // var ff = $(textElement).attr("font-family");
@@ -46,11 +46,15 @@ function loadText(textId) {
   var fs = $(textElement).css("font-size");
   var textColor = $(textElement).css("fill");
   var textStrokeColor = $(textElement).css("stroke");
-  var editor = createTextEditor(text, ff, fs);
-  $(".text-editor").empty();
-  $(".text-editor").append(editor).html();
-  loadColorPickers(textColor);
-  loadTextStrokeColorPickers(textStrokeColor);
+
+  $(".text-editor input#ftext").val(text);
+  //falta setear la fuente, el dato font-family hay que ver como hacemos para que se corresponda con la opción que mostramos en el dropdown
+  //$(".text-editor input#ff").val(???);
+  //seteo de font size
+  $(".text-editor input#fs").val(fs.replace('px', ''));
+  //seteo de color pickers
+  $("#textColorPick").spectrum('set', textColor);
+  $("#textStrokeColorPick").spectrum('set', textStrokeColor);
 }
 function createTextEditor(text, ff, fs) {
   var textEditorContainer = document.createElement("div");
@@ -120,10 +124,37 @@ function closeTextEditor() {
   selectedText = null;
   loadTexts();
 }
+function configTextEditor(){
+  $(".text-editor").on("click", ".closeTextX", function(e){
+    closeTextEditor();
+  });
+  $(".text-editor").on("change", "input[name='zonaPrenda']", function(e){
+    setTextLocation(newText);
+  });
+  $(".text-editor").on("change", "#ftext, #ff", function(e){
+    changeTeamName(e);
+  });
 
-function updateTextSize(event) {
-  update_svg("fs", `${event.target.value}px`);
-  console.log(event.target.value);
+  fonts.forEach(function (font) {    
+    $("#ff").append(`<option value="${font}">${font}</option>`);
+  });
+
+  $(".text-editor").on("change", "#fs", function(e){
+    updateTextSize($(this).val());
+  });
+
+  /*loadTextColorPickers("rgb(0,0,0)");
+  loadTextStrokeColorPickers("rgb(255,255,255)");*/
+  loadColorPickers("rgb(0,0,0)");
+
+  $("#btnAceptarTexto").on("click", function(e){
+    //createTextName();
+    closeTextEditor();
+  });
+}
+function updateTextSize(size) {
+  update_svg("fs", `${size}px`);
+  console.log(size);
 }
 
 function createTextName() {

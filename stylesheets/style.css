@@ -510,7 +510,9 @@ span.egseas {
   width: fit-content;
   align-self: end;
 }
-
+.form-check-label {
+  margin-right: 10px;
+}
 #headerLeft {
 }
 

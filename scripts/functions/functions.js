@@ -9,6 +9,8 @@ function init() {
   textureLoader = new THREE.TextureLoader();
   changeProduct();
 
+  configTextEditor();
+
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(pixelRatio);
   renderer.setSize(width, height);
@@ -332,6 +334,7 @@ function update_svg(op, value) {
     document.getElementById(nuevoId).style.fontFamily = value;
   }
   if (op == "fs") {
+    document.getElementById(nuevoId).setAttribute("font-size", value.replace("px", ''));
     document.getElementById(nuevoId).style.fontSize = value;
   }
   if (op == "xpos") {

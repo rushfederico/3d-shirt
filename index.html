@@ -146,8 +146,60 @@
           <p>
             Incluye textos en tu remera:
           </p>
-          <div class="texts"></div>
-          <div class="text-editor" style="display: none"></div>
+          <div class="texts">
+            <h3 class="cursorPointer" onclick="addNewText()">+ Agregar texto</h3>
+          </div>
+          <div class="text-editor" style="display: none">
+            <div class="text-editor-container">
+              <i class="fa-solid fa-circle-xmark cursorPointer closeTextX"></i>
+              <div class="form-check form-check-inline">
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked="">
+                <label class="form-check-label" for="frente">Frente</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
+                <label class="form-check-label" for="dorso">Dorso</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="izquierda">
+                <label class="form-check-label" for="mangaizq">Manga Izq</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="derecha">
+                <label class="form-check-label" for="mangader">Manga Der</label>
+              </div>
+            
+              <h1>Nueva Leyenda</h1>
+              <div class="form-group">
+                <input id="ftext" type="text" class="form-control" value="Nueva Leyenda">
+              </div>
+            
+              <div class="form-group">
+                <label for="ff-list">Font-Family</label>
+                <select id="ff" class="form-control">
+                </select>
+            
+              </div>
+              <div class="form-group">
+                <label for="fs">Font-Size</label>
+                <input id="fs" class="form-range form-control" type="range" min="20" max="200" value="60" />
+              </div>
+              <div id="colorAndMoveTextContainer" class="form-group">
+                <div id="colorPickContainer">
+                  <p id="colorPickTitle" class="formTitles">Color</p>
+                  <input type="text" class="colorPickers" id="textColorPick" op="fillText"/>
+                </div>
+                <div id="strokeColorPickContainer">
+                  <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
+                  <input type="text" class="colorPickers" id="textStrokeColorPick" op="fillStroke"/>
+                </div>
+                <div id="moveTextContainer">
+                  <p id="moveTextTitle" class="formTitles">Mover</p>
+                  <i class="fa-solid fa-arrow-up" onclick="update_svg('ypos', -10)"></i>
+                  <i class="fa-solid fa-arrow-down" onclick="update_svg('ypos', 10)"></i>
+                  <i class="fa-solid fa-arrow-left" onclick="update_svg('xpos', -10)"></i>
+                  <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
+                </div>
+              </div>
+              <div>
+                <button id="btnAceptarTexto">Agregar Leyenda</button>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
       <div class="col-md-2" id="buttonPasosContainer">
