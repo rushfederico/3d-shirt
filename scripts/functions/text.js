@@ -30,7 +30,7 @@ function loadTexts() {
     }
   }
   $(".texts").empty();
-  $(".texts").append(textContainer).html();
+  $(".texts").append(textContainer);
 }
 
 function loadText(textId) {
@@ -115,7 +115,10 @@ function createTextEditor(text, ff, fs) {
             <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
           </div>
         </div>` +
-    `<div><button onclick="createTextName()">Agregar Leyenda</button></div></div>`;
+    `<div>
+      <button onclick="closeTextEditor()">Aceptar</button>
+    </div>
+  </div>`;
   return editor;
 }
 function closeTextEditor() {
@@ -194,5 +197,7 @@ function setCoordinates(x, y) {
   update_svg("", "");
 }
 function changeTeamName(e) {
+  console.log(e.target.id);
+  console.log(e.target.value);
   update_svg(e.target.id, e.target.value);
 }
