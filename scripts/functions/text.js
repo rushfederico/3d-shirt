@@ -15,6 +15,8 @@ function addNewText() {
 
 function deleteText(id) {
   $("#texto_" + id).remove();
+  $("#text_" + id).remove();
+  
   loadTexts();
   update_svg("", "");
 }
@@ -24,9 +26,9 @@ function loadTexts() {
   var textContainer = `<h3 class="cursorPointer" onclick="addNewText()">${title}</h3>`;
   var texts = $("#svgContainer text");
   for (var i = 0; i < texts.length; i++) {
-    var textId = i; //$(texts[i]).attr("id");
-    var fill = $(texts[i]).css("fill");
-    var text = $(texts[i]).text();
+    var textId = $(texts[i]).data("index");
+    var fill   = $(texts[i]).css("fill");
+    var text   = $(texts[i]).text();
     //var selected = selectedText == textId ? "active" : "";
     if (textId != undefined) {
       textContainer += `
@@ -50,8 +52,8 @@ function loadText(textId) {
   var text = $(textElement).html();
   newText = textElement;
   // var ff = $(textElement).attr("font-family");
-  var ff = $(textElement).css("font-family");
-  var fs = $(textElement).css("font-size");
+  var ff = $(textElement).attr("font-family");
+  var fs = $(textElement).attr("font-size");
   var textColor = $(textElement).css("fill");
   var textStrokeColor = $(textElement).css("stroke");
 
@@ -183,11 +185,15 @@ function updateTextSize(size) {
 
 function createTextName() {
   newText = $("<text>");
-  var nroDeLeyenda = $("#svgTextContainer text").length;
+  var nroDeLeyenda = $("#svgTextContainer text").length > 0 ? $("#svgTextContainer text").last().data("index") : -1;
+  nroDeLeyenda = (parseInt(nroDeLeyenda) +1);
   nuevoId = "texto_" + nroDeLeyenda;
   $(newText)[0].id = nuevoId;
+  $(newText)[0].setAttribute("data-index", nroDeLeyenda );
+
   $(newText)[0].innerHTML = $("#ftext").val();
   $(newText)[0].setAttribute("font-family", $("#ff").val());
+  $(newText)[0].setAttribute("font-size", $("#fs").val());
   $(newText)[0].setAttribute("font-size", $("#fs").val());
   $(newText).css("fill", $("#textColorPick").spectrum("get").toHexString());
   $(newText).css(
@@ -209,12 +215,12 @@ function createTextName() {
 function setTextLocation(t) {
   const location = $("input[name=zonaPrenda]:checked").val();
   $(t).data("zona", location);
-  setCoordinates(textLocation[location].x, textLocation[location].y);
+  setCoordinates(t, textLocation[location].x, textLocation[location].y);
 }
 
-function setCoordinates(x, y) {
-  $(newText).attr("x", x);
-  $(newText).attr("y", y);
+function setCoordinates(t, x, y) {
+  $(t).attr("x", x);
+  $(t).attr("y", y);
   update_svg("", "");
 }
 function changeTeamName(e) {
