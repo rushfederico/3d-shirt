@@ -175,9 +175,9 @@ var camera, scene, renderer, light, material, materialCount;
 var selectedMaterial = "cls-1";
 var nuevoId = "";
 
-// var newText = "";
+var newText;
 var newTextId = "";
-var selectedText = "TEXT(team-name)";
+var selectedText;
 var selectedTextId = "";
 var selectedMaterialId = "mat_base";
 var animations = [];

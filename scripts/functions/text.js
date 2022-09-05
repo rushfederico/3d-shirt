@@ -37,10 +37,10 @@ function loadText(textId) {
   $(".text-editor").show();
   $(".texts").hide();
 
-  var textElement = $("#texto_"+textId);
-  nuevoId = "texto_"+textId;
+  var textElement = $("#texto_" + textId);
+  nuevoId = "texto_" + textId;
   var text = $(textElement).html();
-  selectedText = text;
+  newText = textElement;
   // var ff = $(textElement).attr("font-family");
   var ff = $(textElement).css("font-family");
   var fs = $(textElement).css("font-size");
@@ -51,10 +51,10 @@ function loadText(textId) {
   //falta setear la fuente, el dato font-family hay que ver como hacemos para que se corresponda con la opción que mostramos en el dropdown
   //$(".text-editor input#ff").val(???);
   //seteo de font size
-  $(".text-editor input#fs").val(fs.replace('px', ''));
+  $(".text-editor input#fs").val(fs.replace("px", ""));
   //seteo de color pickers
-  $("#textColorPick").spectrum('set', textColor);
-  $("#textStrokeColorPick").spectrum('set', textStrokeColor);
+  $("#textColorPick").spectrum("set", textColor);
+  $("#textStrokeColorPick").spectrum("set", textStrokeColor);
 }
 function createTextEditor(text, ff, fs) {
   var textEditorContainer = document.createElement("div");
@@ -127,30 +127,43 @@ function closeTextEditor() {
   selectedText = null;
   loadTexts();
 }
-function configTextEditor(){
-  $(".text-editor").on("click", ".closeTextX", function(e){
+function configTextEditor() {
+  $(".text-editor").on("click", ".closeTextX", function (e) {
     closeTextEditor();
   });
-  $(".text-editor").on("change", "input[name='zonaPrenda']", function(e){
+  $(".text-editor").on("change", "input[name='zonaPrenda']", function (e) {
     setTextLocation(newText);
   });
-  $(".text-editor").on("change", "#ftext, #ff", function(e){
+  $(".text-editor").on("change", "#ftext, #ff", function (e) {
     changeTeamName(e);
   });
 
-  fonts.forEach(function (font) {    
+  fonts.forEach(function (font) {
     $("#ff").append(`<option value="${font}">${font}</option>`);
   });
 
-  $(".text-editor").on("change", "#fs", function(e){
+  $(".text-editor").on("change", "#fs", function (e) {
     updateTextSize($(this).val());
+  });
+
+  $(".fa-solid.fa-arrow-up").on("click", function (e) {
+    update_svg("ypos", -10);
+  });
+  $(".fa-solid.fa-arrow-down").on("click", function (e) {
+    update_svg("ypos", 10);
+  });
+  $(".fa-solid.fa-arrow-left").on("click", function (e) {
+    update_svg("xpos", -10);
+  });
+  $(".fa-solid.fa-arrow-right").on("click", function (e) {
+    update_svg("xpos", 10);
   });
 
   /*loadTextColorPickers("rgb(0,0,0)");
   loadTextStrokeColorPickers("rgb(255,255,255)");*/
   loadColorPickers("rgb(0,0,0)");
 
-  $("#btnAceptarTexto").on("click", function(e){
+  $("#btnAceptarTexto").on("click", function (e) {
     //createTextName();
     closeTextEditor();
   });
@@ -186,6 +199,7 @@ function createTextName() {
 }
 
 function setTextLocation(t) {
+  console.log(t);
   const location = $("input[name=zonaPrenda]:checked").val();
   $(t).data("zona", location);
   setCoordinates(textLocation[location].x, textLocation[location].y);
