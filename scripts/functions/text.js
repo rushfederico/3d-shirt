@@ -13,6 +13,12 @@ function addNewText() {
   createTextName();
 }
 
+function deleteText(id) {
+  $("#texto_" + id).remove();
+  loadTexts();
+  update_svg("", "");
+}
+
 function loadTexts() {
   var title = `+ Agregar texto`;
   var textContainer = `<h3 class="cursorPointer" onclick="addNewText()">${title}</h3>`;
@@ -23,10 +29,12 @@ function loadTexts() {
     var text = $(texts[i]).text();
     //var selected = selectedText == textId ? "active" : "";
     if (textId != undefined) {
-      textContainer += `<div id="txt_${textId}" class="xixcust" onclick="loadText('${textId}')">
-            <span class="molids" style="background: ${fill}"></span>
-            <span class="d-inline-block text-truncate egseas" style="max-width: 300px;">${text}</span>
-          </div>`;
+      textContainer += `
+        <div id="txt_${textId}" class="xixcust">
+          <i class="fa-solid fa-trash molids" onclick="deleteText('${textId}')" style="display: flex; justify-content: center; align-items: center;"></i>
+          <span class="molids" style="background: ${fill}" onclick="loadText('${textId}')"></span>
+          <span class="d-inline-block text-truncate egseas" style="max-width: 300px;" onclick="loadText('${textId}')">${text}</span>
+        </div>`;
     }
   }
   $(".texts").empty();
@@ -199,7 +207,6 @@ function createTextName() {
 }
 
 function setTextLocation(t) {
-  console.log(t);
   const location = $("input[name=zonaPrenda]:checked").val();
   $(t).data("zona", location);
   setCoordinates(textLocation[location].x, textLocation[location].y);
