@@ -56,6 +56,7 @@ function loadText(textId) {
   var fs = $(textElement).attr("font-size");
   var textColor = $(textElement).css("fill");
   var textStrokeColor = $(textElement).css("stroke");
+  var zona = $(textElement).attr("zona");
 
   $(".text-editor input#ftext").val(text);
   //falta setear la fuente, el dato font-family hay que ver como hacemos para que se corresponda con la opción que mostramos en el dropdown
@@ -65,6 +66,7 @@ function loadText(textId) {
   //seteo de color pickers
   $("#textColorPick").spectrum("set", textColor);
   $("#textStrokeColorPick").spectrum("set", textStrokeColor);
+  $("input[name='zonaPrenda'][value='"+zona+"']").prop('checked', true);
 }
 function createTextEditor(text, ff, fs) {
   var textEditorContainer = document.createElement("div");
@@ -194,7 +196,7 @@ function createTextName() {
   $(newText)[0].innerHTML = $("#ftext").val();
   $(newText)[0].setAttribute("font-family", $("#ff").val());
   $(newText)[0].setAttribute("font-size", $("#fs").val());
-  $(newText)[0].setAttribute("font-size", $("#fs").val());
+  $(newText)[0].setAttribute("zona", $("input[name='zonaPrenda']:checked").val());
   $(newText).css("fill", $("#textColorPick").spectrum("get").toHexString());
   $(newText).css(
     "stroke",
@@ -213,8 +215,8 @@ function createTextName() {
 }
 
 function setTextLocation(t) {
-  const location = $("input[name=zonaPrenda]:checked").val();
-  $(t).data("zona", location);
+  const location = $("input[name='zonaPrenda']:checked").val();
+  $(t).attr("zona", location);
   setCoordinates(t, textLocation[location].x, textLocation[location].y);
 }
 
