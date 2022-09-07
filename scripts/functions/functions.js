@@ -151,7 +151,7 @@ function obj2_model_load(model) {
 
     scene.add(object);
 
-    model_logo_load();
+    //model_logo_load();
   });
 }
 
