@@ -54,14 +54,15 @@ function load_materials() {
   for (var i = 0; i < paths.length; i++) {
     var id = $(paths[i]).attr("id");
     var bg = $(paths[i]).css("fill");
+    var dataColor = $(paths[i]).data("color");
 
     if (bg != undefined && id != undefined) {
-      var data = id;
       var selected = selectedMaterial == id ? "active" : "";
       materialContainer +=
         '<div id="mat_' +
-        data +
-        '" class="xixcust colorZona' +
+        id +
+        '" data-color="'+ dataColor + '"'+
+        ' class="xixcust colorZona' +
         selected +
         '" onclick="selectMaterial(\'' +
         id +

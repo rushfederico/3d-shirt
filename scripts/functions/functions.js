@@ -316,7 +316,8 @@ function set_materials(response) {
 
 function update_svg(op, value) {
   if (op == "color") {
-    $(`#${selectedMaterial}`)[0].setAttribute("fill", value);
+    //$(`#${selectedMaterial}`)[0].setAttribute("fill", value);
+    $("path[data-color='"+$(`#${selectedMaterial}`).data("color")+"']").attr("fill", value);
   }
   if (op == "ftext") {
     document.getElementById(nuevoId).innerHTML = value;
