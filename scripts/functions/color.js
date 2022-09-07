@@ -50,27 +50,23 @@ function selectMaterial(id) {
 function load_materials() {
   var paths = $("#svgContainer path");
   var materialContainer = "";
+  var dataColorArray = [];
 
   for (var i = 0; i < paths.length; i++) {
     var id = $(paths[i]).attr("id");
     var bg = $(paths[i]).css("fill");
     var dataColor = $(paths[i]).data("color");
 
-    if (bg != undefined && id != undefined) {
+    if (
+      (bg, id, dataColor != undefined && !dataColorArray.includes(dataColor))
+    ) {
+      dataColorArray.push(dataColor);
       var selected = selectedMaterial == id ? "active" : "";
-      materialContainer +=
-        '<div id="mat_' +
-        id +
-        '" data-color="'+ dataColor + '"'+
-        ' class="xixcust colorZona' +
-        selected +
-        '" onclick="selectMaterial(\'' +
-        id +
-        '\')"><span class="molids" style="background:' +
-        bg +
-        '"></span><span class="egseas">' +
-        id +
-        "</span></div>";
+      materialContainer += `
+      <div id="mat_${id}" data-color="${dataColor}" class="xixcust colorZona ${selected}" onclick="selectMaterial('${id}')">
+        <span class="molids" style="background:${bg}"></span>
+        <span class="egseas">${dataColor}</span>
+      </div>`;
     }
   }
   $(".materials").empty();
