@@ -26,6 +26,18 @@ const textLocation = {
   },
 };
 
+const dataColorObject = {
+  color1: "Color 1",
+  color2: "Color 2",
+  color3: "Color 3",
+  color4: "Color 4",
+  color5: "Color 5",
+  color6: "Color 6",
+  color7: "Color 7",
+  color8: "Color 8",
+  color9: "Color 9",
+};
+
 var colors = [
   "rgb(255, 255, 255)",
   "rgb(255, 248, 241)",

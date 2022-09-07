@@ -65,7 +65,7 @@ function load_materials() {
       materialContainer += `
       <div id="mat_${id}" data-color="${dataColor}" class="xixcust colorZona ${selected}" onclick="selectMaterial('${id}')">
         <span class="molids" style="background:${bg}"></span>
-        <span class="egseas">${dataColor}</span>
+        <span class="egseas">${dataColorObject[dataColor]}</span>
       </div>`;
     }
   }
