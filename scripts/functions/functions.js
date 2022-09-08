@@ -316,8 +316,14 @@ function set_materials(response) {
 
 function update_svg(op, value) {
   if (op == "color") {
-    //$(`#${selectedMaterial}`)[0].setAttribute("fill", value);
-    $("path[data-color='"+$(`#${selectedMaterial}`).data("color")+"']").attr("fill", value);
+    $(`path[data-color="${$(`#${selectedMaterial}`).data("color")}"]`).attr(
+      "fill",
+      value
+    );
+    $(`rect[data-color="${$(`#${selectedMaterial}`).data("color")}"]`).attr(
+      "fill",
+      value
+    );
   }
   if (op == "ftext") {
     document.getElementById(nuevoId).innerHTML = value;
@@ -335,7 +341,9 @@ function update_svg(op, value) {
     document.getElementById(nuevoId).style.fontFamily = value;
   }
   if (op == "fs") {
-    document.getElementById(nuevoId).setAttribute("font-size", value.replace("px", ''));
+    document
+      .getElementById(nuevoId)
+      .setAttribute("font-size", value.replace("px", ""));
     document.getElementById(nuevoId).style.fontSize = value;
   }
   if (op == "xpos") {
