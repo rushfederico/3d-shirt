@@ -57,7 +57,6 @@ function load_materials() {
     var id = $(paths[i]).attr("id");
     var bg = $(paths[i]).css("fill");
     var dataColor = $(paths[i]).data("color");
-
     if (
       (bg, id, dataColor != undefined && !dataColorArray.includes(dataColor))
     ) {
@@ -71,7 +70,6 @@ function load_materials() {
       </div>`;
     }
   }
-  // order color labels alphabetically
   var keys = Object.keys(object);
   keys.sort();
   for (var i = 0; i < keys.length; i++) {
