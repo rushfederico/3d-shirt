@@ -51,6 +51,7 @@ function load_materials() {
   var paths = $("#svgContainer path");
   var materialContainer = "";
   var dataColorArray = [];
+  var object = dataColorObject();
 
   for (var i = 0; i < paths.length; i++) {
     var id = $(paths[i]).attr("id");
@@ -62,16 +63,25 @@ function load_materials() {
     ) {
       dataColorArray.push(dataColor);
       var selected = selectedMaterial == id ? "active" : "";
-      materialContainer += `
-      <div id="mat_${id}" data-color="${dataColor}" class="xixcust colorZona ${selected}" onclick="selectMaterial('${id}')">
+      object[
+        dataColor
+      ].element = `<div id="mat_${id}" data-color="${dataColor}" class="xixcust colorZona ${selected}" onclick="selectMaterial('${id}')">
         <span class="molids" style="background:${bg}"></span>
-        <span class="egseas">${dataColorObject[dataColor]}</span>
+        <span class="egseas">${object[dataColor].label}</span>
       </div>`;
     }
+  }
+  // order color labels alphabetically
+  var keys = Object.keys(object);
+  keys.sort();
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    materialContainer += object[key].element;
   }
   $(".materials").empty();
   $(".materials").append(materialContainer).html();
 }
+
 function closeColorContainer() {
   $(".color-palete").hide();
   $(".colorZona").not(".active").removeClass("hidden");
