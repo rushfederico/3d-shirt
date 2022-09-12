@@ -1,11 +1,283 @@
-html,
-body {
-  //overflow: hidden;
-  width: 100%;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: "Rubik", sans-serif !important;
+  color: rgb(0, 0, 0);
+}
+.hidden {
+  display: none;
+}
+main {
+  height: 85vh;
+}
+
+#theRow {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #ddedf9;
+}
+
+#sectorRemera {
+  background-image: url("../assets/precarga.gif");
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: center;
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+#sectorRemera #container {
+  /* border: 2px solid brown; */
+  height: 100%;
+}
+
+#sectorRemera #container div {
+  /* border: 2px solid green; */
+  height: 100%;
+}
+
+#sectorRemera #container div canvas {
+  height: 100%;
+}
+
+#pasosContainer {
+  border-left: 2px solid black;
+  height: 100%;
+}
+
+#pasosContainer > div {
+  height: 94%;
+}
+
+.materials {
+  max-height: 86%;
+  overflow-y: scroll;
+}
+
+.texts {
+  max-height: 89%;
+  overflow-y: scroll;
+}
+
+#buttonPasosContainer {
+  font-size: 0.9em;
+
+  height: 100%;
+}
+
+#buttonPasosContainer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nMrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nFrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nDrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nPrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nBrXw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nMrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nFrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nDrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nPrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nBrXw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nMrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nFrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nDrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nPrXyi0A.woff2)
+    format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rubik/v20/iJWKBXyIfDnIV7nBrXw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+#model-container {
+}
+#svgPathContainer svg {
+}
+
+#colorAndMoveTextContainer {
+  display: flex;
+}
+#colorPickContainer {
+  margin-right: 40px;
+}
+#strokeColorPickContainer {
+  margin-right: 40px;
+}
+.formTitles {
+  font-weight: bold;
+}
+#moveTextContainer i {
+  margin-right: 3px;
+  cursor: pointer;
+  font-size: 30px;
+}
+#colorPick {
+  height: 35px;
+  width: 35px;
+  background-color: #000;
+  margin-left: 2px;
+}
+#strokeColorPick {
+  height: 35px;
+  width: 35px;
+  background-color: #000;
+  margin-left: 2px;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.hider {
+  display: none;
 }
 
 .lab-panel_main {
@@ -23,10 +295,16 @@ body {
   position: relative;
   z-index: 5;
 }
-@media only screen and (min-width: 991px) {
+/* @media only screen and (max-width: 991px) {
   #container canvas {
     margin-left: -40vw;
   }
+} */
+
+#container {
+}
+
+#container canvas {
 }
 
 .lab_ui-region {
@@ -89,14 +367,7 @@ span.egseas {
   height: 40px;
   margin: 4px;
 }
-/*/.colaz {
-                width: 30px;
-                height: 30px;
-                display: inline-block;
-                margin: 6px;
-                border-radius: 50%;
-                cursor: pointer;
-            }*/
+
 .colaz {
   align-items: flex-start;
   text-align: center;
@@ -124,13 +395,14 @@ span.egseas {
 
 .xixcust:hover .molids:after,
 .xixcust.active .molids:after {
-  content: "\2713";
+  /* TILDE DEL COLOR PICKER */
+  /* content: "\2712";
   display: inline-block;
   color: white;
   width: 40px;
   height: 20px;
   margin-top: 9px;
-  text-align: center;
+  text-align: center; */
 }
 
 #mat0 .molids {
@@ -225,9 +497,115 @@ span.egseas {
   border: none !important;
 }
 .text-editor-container {
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 1px 2px 0 rgba(43, 45, 66, 0.2),
     0 4px 12px 0 rgba(43, 45, 66, 0.1);
+}
+.closeTextX {
+  text-align: right;
+  width: fit-content;
+  align-self: end;
+}
+.form-check-label {
+  margin-right: 10px;
+}
+#headerLeft {
+}
+
+#headerLeft ul {
+  justify-content: space-between;
+  margin-right: 40%;
+}
+
+#headerLogo {
+}
+
+#headerRight {
+}
+
+#headerRight ul {
+  list-style: none;
+  justify-content: space-between;
+  margin-left: 40%;
+}
+
+.linkBlanco:hover,
+.linkBlanco {
+  color: #fff;
+  font-family: "Rubik", sans-serif;
+}
+
+#navBar {
+  background-color: #000;
+  letter-spacing: 1.5px;
+  padding: 5px;
+  font-size: 0.8rem;
+}
+
+#foot {
+  background-color: #1a1a1a;
+  font-size: 1.1em;
+}
+
+#foot div {
+}
+
+#foot div .row {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#foot div .row div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#foot div .row div:first-child {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.paso {
+  display: none;
+}
+.paso.active {
+  display: block;
+}
+
+.color-palete {
+  /* margin-top: -2px; */
+  border: 3px solid black;
+}
+
+.buttonPaso {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  border-radius: 50%;
+  border: 2px solid rgb(192, 192, 192);
+  color: rgb(192, 192, 192);
+}
+
+.buttonPaso i {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+}
+
+.buttonPaso.active {
+  border: 2px solid black;
+  color: #000;
 }

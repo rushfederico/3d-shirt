@@ -1,1 +1,0 @@
-python convert_to_threejs.py  dude.fbx dude.js -c -t -l

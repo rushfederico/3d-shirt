@@ -1,190 +1,277 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>3D-TShirt-Design</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />
-    <link rel="stylesheet" href="stylesheets/bootstrap-combined.min.css" />
-    <link rel="stylesheet" href="stylesheets/font-awesome.min.css" />
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script>
-      var models = [
-        {
-          gender: "men",
-          category: [
-            {
-              name: "1",
-              products: ["1", "2", "3"],
-            },
-            {
-              name: "2",
-              products: ["1", "2"],
-            },
-          ],
-        },
-        {
-          gender: "women",
-          category: [
-            {
-              name: "1",
-              products: ["1", "2"],
-            },
-            {
-              name: "2",
-              products: ["1", "2"],
-            },
-          ],
-        },
-      ];
-      var gender = "men";
-      var category = "1";
-      var product = "1";
-    </script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row" style="display: none">
-        <div id="model-container" class="col-md-4 col-md-push-4"></div>
-        <div class="col-md-4 col-md-pull-4">
-          <h3>Customize</h3>
-          <p>Select a color zone below, then choose your team colors.</p>
-          <div class="action-container">
-            <div class="dropdown">
-              <button id="gender" class="dropbtn">Gender</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setGender('men')">men</a>
-                <a href="#" onclick="setGender('women')">women</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button id="category" class="dropbtn">Category</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setCategory('1')">1</a>
-                <a href="#" onclick="setCategory('2')">2</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button id="product" class="dropbtn">product</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setProduct('1')">1</a>
-                <a href="#" onclick="setProduct('2')">2</a>
-              </div>
-            </div>
-          </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="pragma-directive: no-cache" />
+  <meta http-equiv="cache-directive: no-cache" />
+  <title>Magenta Jersey Customizer</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="assets/logos/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/a5bf3b6506.js" crossorigin="anonymous"></script>
+  <script>
+    var models = [
+      {
+        gender: "men",
+        category: [
+          {
+            name: "1",
+            products: ["1", "2", "3"],
+          },
+          {
+            name: "2",
+            products: ["1", "2"],
+          },
+        ],
+      },
+      {
+        gender: "women",
+        category: [
+          {
+            name: "1",
+            products: ["1", "2"],
+          },
+          {
+            name: "2",
+            products: ["1", "2"],
+          },
+        ],
+      },
+    ];
+    var gender = "men";
+    var category = "1";
+    var product = "1";
+  </script>
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css" />
+</head>
+
+<body>
+  <header>
+    <nav id="navBar" class="navbar text-white">
+      <div class="container-fluid">
+        <div id="headerLeft" class="col-md-4">
+          <ul class="navbar-nav flex-row">
+            <li id="">
+              <a class="linkBlanco" href="index.html">INICIO</a>
+            </li>
+            <li id="">
+              <a class="linkBlanco" href="index.html">CAMBIAR DE PRENDA</a>
+            </li>
+          </ul>
         </div>
-        <div class="col-md-4 col-md-push-right">
-          <h3>Colors</h3>
-          <div class="color-palete"></div>
+        <div id="headerLogo" class="navbar-header col-md-4 text-center">
+          <a class="navbar-brand" href="#">
+            <img class="img-fluid"
+              src="assets/logos/logo-1886178982-1571185614-027fdfa80d8b26f1f44c6170ad03fb1a1571185614-320-0.png"
+              alt="3D-TShirt-Design" />
+          </a>
+        </div>
+        <div id="headerRight" class="col-md-4">
+          <ul class="navbar-nav flex-row">
+            <li id="">
+              <a class="linkBlanco" href="index.html">TIENDA</a>
+            </li>
+            <li id="">
+              <a class="linkBlanco" href="index.html">BLOG</a>
+            </li>
+            <li>
+              <a class="linkBlanco" href="index.html">CONTACTO</a>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="lab" id="container"></div>
-        </div>
-        <div class="col-md-6">
-          <h3>Customize</h3>
-          <p>Select a color zone below, then choose your team colors.</p>
-          <div class="action-container">
-            <div class="dropdown">
-              <button id="gender" class="dropbtn">Gender</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setGender('men')">men</a>
-                <a href="#" onclick="setGender('women')">women</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button id="category" class="dropbtn">Category</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setCategory('1')">1</a>
-                <a href="#" onclick="setCategory('2')">2</a>
-              </div>
-            </div>
-            <div class="dropdown">
-              <button id="product" class="dropbtn">product</button>
-              <div class="dropdown-content">
-                <a href="#" onclick="setProduct('1')">1</a>
-                <a href="#" onclick="setProduct('2')">2</a>
-              </div>
+    </nav>
+  </header>
+  <main id="subBody" class="container-fluid">
+    <div class="row" style="display: none">
+      <div id="model-container" class="col-md-4 col-md-push-4"></div>
+      <div class="col-md-4 col-md-pull-4">
+        <h3>Customize</h3>
+        <p>Select a color zone below, then choose your team colors.</p>
+        <div class="action-container">
+          <div class="dropdown">
+            <button id="gender" class="dropbtn">Gender</button>
+            <div class="dropdown-content">
+              <a href="#" onclick="setGender('men')">men</a>
+              <a href="#" onclick="setGender('women')">women</a>
             </div>
           </div>
-          <div class="color-palete"></div>
-          <div class="text-editor"></div>
-          <div id="tabs">
-            <ul>
-              <li><a href="#tabs-1">Zones</a></li>
-              <li><a href="#tabs-2">Texts</a></li>
-            </ul>
-            <div id="tabs-1" class="materials"></div>
-            <div id="tabs-2" class="texts"></div>
+          <div class="dropdown">
+            <button id="category" class="dropbtn">Category</button>
+            <div class="dropdown-content">
+              <a href="#" onclick="setCategory('1')">1</a>
+              <a href="#" onclick="setCategory('2')">2</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button id="product" class="dropbtn">product</button>
+            <div class="dropdown-content">
+              <a href="#" onclick="setProduct('1')">1</a>
+              <a href="#" onclick="setProduct('2')">2</a>
+            </div>
           </div>
         </div>
       </div>
-
-      <div id="svgContainer" style="display: none"></div>
-      <div id="svgPathContainer" style="display: none"></div>
-      <div id="svgTextContainer" style="display: none"></div>
+      <div class="col-md-4 col-md-push-right">
+        <h3>Colors</h3>
+        <div class="color-palete"></div>
+      </div>
     </div>
 
-    <!--<script type="text/javascript" src="javascripts/lib/jungle.js"></script>
-<script type="text/javascript" src="javascripts/lib/volume-meter.js"></script>-->
+    <div id="theRow" class="row mt-5 mb-5 pb-5">
+      <div class="col-md-6" id="sectorRemera">
+        <div class="lab" id="container"></div>
+      </div>
+      <div class="col-md-4" id="pasosContainer">
+        <h3>Personaliza tu prenda</h3>
+        <div id="pasoDisenio" class="paso active">
+          <p>
+            Selecciona tipo de prenda, colores y textos que quieras incluir.
+          </p>
+          <div class="materials"></div>
+          <div class="color-palete"></div>
+          
+        </div>
+        <div id="pasoTexto" class="paso">
+          <p>
+            Incluye textos en tu remera:
+          </p>
+          <div class="texts">
+            <h3 class="cursorPointer" onclick="addNewText()">+ Agregar texto</h3>
+          </div>
+          <div class="text-editor" style="display: none">
+            <div class="text-editor-container">
+              <i class="fa-solid fa-circle-xmark cursorPointer closeTextX"></i>
+              <div class="form-check form-check-inline">
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="frente" value="frente" checked="">
+                <label class="form-check-label" for="frente">Frente</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="dorso" value="dorso">
+                <label class="form-check-label" for="dorso">Dorso</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="mangaizq" value="izquierda">
+                <label class="form-check-label" for="mangaizq">Manga Izq</label>
+                <input name="zonaPrenda" type="radio" class="form-check-input" id="mangader" value="derecha">
+                <label class="form-check-label" for="mangader">Manga Der</label>
+              </div>
+            
+              <h1>Nueva Leyenda</h1>
+              <div class="form-group">
+                <input id="ftext" type="text" class="form-control" value="Nueva Leyenda">
+              </div>
+            
+              <div class="form-group">
+                <label for="ff-list">Font-Family</label>
+                <select id="ff" class="form-control">
+                </select>
+            
+              </div>
+              <div class="form-group">
+                <label for="fs">Font-Size</label>
+                <input id="fs" class="form-range form-control" type="range" min="20" max="200" value="60" />
+              </div>
+              <div id="colorAndMoveTextContainer" class="form-group">
+                <div id="colorPickContainer">
+                  <p id="colorPickTitle" class="formTitles">Color</p>
+                  <input type="text" class="colorPickers" id="textColorPick" op="fillText"/>
+                </div>
+                <div id="strokeColorPickContainer">
+                  <p id="strokeColorPickTitle" class="formTitles">Color del borde</p>
+                  <input type="text" class="colorPickers" id="textStrokeColorPick" op="fillStroke"/>
+                </div>
+                <div id="moveTextContainer">
+                  <p id="moveTextTitle" class="formTitles">Mover</p>
+                  <i class="fa-solid fa-arrow-up" ></i>
+                  <i class="fa-solid fa-arrow-down" onclick="update_svg('ypos', 10)"></i>
+                  <i class="fa-solid fa-arrow-left" onclick="update_svg('xpos', -10)"></i>
+                  <i class="fa-solid fa-arrow-right" onclick="update_svg('xpos', 10)"></i>
+                </div>
+              </div>
+              <!-- <div>
+                <button id="btnAceptarTexto">Agregar Leyenda</button>
+              </div> -->
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-2" id="buttonPasosContainer">
+        <div >
+          <div  class="buttonPaso active" data-paso="pasoDisenio">
+            <i>
+              DISEÑO
+            </i>
+          </div>
+          <div  class="buttonPaso" data-paso="pasoTexto">
+            <i>
+              TEXTO
+            </i>
+          </div>
+          <div class="buttonPaso" data-paso="pasoImagen">
+            <i>
+              IMAGEN
+            </i>
+          </div>
+          <div class="buttonPaso" data-paso="pasoPedido">
+            <i>
+              PEDIDO
+            </i>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script
-      type="text/javascript"
-      src="javascripts/jquery/jquery-1.11.3.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="javascripts/three-min/three.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="javascripts/three/LoaderSupport.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="javascripts/three/OrbitControls.js"
-    ></script>
-    <!--<script type="text/javascript" src="javascripts/three/NURBSCurve.js"></script>
-<script type="text/javascript" src="javascripts/three/NURBSUtils.js"></script>-->
-    <script
-      type="text/javascript"
-      src="javascripts/three/OBJLoader2.js"
-    ></script>
-    <!--<script type="text/javascript" src="javascripts/three/SVGLoader.js"></script>-->
-    <script type="text/javascript" src="javascripts/three/Detector.js"></script>
-    <script
-      type="text/javascript"
-      src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"
-    ></script>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-      $(function () {
-        $("#tabs")
-          .tabs()
-          .on("click", function (event) {
-            console.log("t", event.target.id);
-            if (event.target.id == "ui-id-1") {
-              $(".color-palete").show();
-              $(".text-editor").hide();
-            }
-            if (event.target.id == "ui-id-2") {
-              $(".color-palete").hide();
-              $(".text-editor").show();
-              load_text_details(selectedText);
-            }
-          });
-      });
-    </script>
-    <script type="text/javascript" src="javascripts/main_s.js"></script>
+    <div id="svgContainer" style="display: none"></div>
+    <div id="svgPathContainer" style="display: none"></div>
+    <div id="svgTextContainer" style="display: none"></div>
+    <div id="svgLogoContainer" style="display: none"></div>
+  </main>
+  <footer id="foot" class="pt-5 pb-5">
+    <div class="container-fluid flex-row justify-content-center">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="linkBlanco" href="https://www.facebook.com/3D-TShirt-Design-109846590109878/"><i class="fa fa-facebook-square"
+              aria-hidden="true"></i></a>
+          <a class="linkBlanco" href="https://www.instagram.com/3dtshirtdesign/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a class="linkBlanco" href="https://www.twitter.com/3dtshirtdesign/"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4">
+          <a class="linkBlanco" href="index.html">
+            <i class="fa fa-whatsapp linkBlanco"></i>
+            <span class="linkBlanco">+57 301 609-8686</span>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="linkBlanco" href="index.html">
+            <i class="fa-solid fa-envelope linkBlanco"></i>
+            <span class="linkBlanco">info@magentacycling.com</span>
+          </a>
+        </div>
+      </div>
+  </footer>
+  <script type="text/javascript" src="scripts/jquery/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="scripts/three-min/three.min.js"></script>
+  <script type="text/javascript" src="scripts/three/LoaderSupport.js"></script>
+  <script type="text/javascript" src="scripts/three/OrbitControls.js"></script>
+  <script type="text/javascript" src="scripts/three/OBJLoader2.js"></script>
+  <script type="text/javascript" src="scripts/three/Detector.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+  <script type="text/javascript" src="scripts/variables.js"></script>
+  <script type="text/javascript" src="scripts/functions/color.js"></script>
+  <script type="text/javascript" src="scripts/functions/text.js"></script>
+  <script type="text/javascript" src="scripts/functions/functions.js?v=11"></script>
+  <script type="text/javascript" src="scripts/main.js"></script>
+</body>
 
-    <script></script>
-  </body>
 </html>
