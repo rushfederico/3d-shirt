@@ -128,7 +128,8 @@ var onError = function (xhr) {
 
 function obj2_model_load(model) {
   var loader = new THREE.OBJLoader2(manager);
-  loader.load("assets/" + model + ".obj", function (data) {
+  var varTime = new Date();
+  loader.load("assets/" + model + ".obj?v="+varTime.getTime(), function (data) {
     if (object != null) {
       scene.remove(object);
     }
@@ -187,6 +188,7 @@ function changeProduct() {
   });
 }
 function loadSvg(response) {
+  var varTime = new Date();
   $.ajax({
     url:
       "assets/" +
@@ -195,7 +197,7 @@ function loadSvg(response) {
       category +
       "/prod" +
       product +
-      "/pattern.svg",
+      "/pattern.svg?v=" + varTime.getTime(),
     async: false,
     success: function (data) {
       var svgData = new XMLSerializer().serializeToString(data.documentElement);
@@ -212,6 +214,7 @@ function loadSvg(response) {
       $("#svgLogoContainer").append(svgData).html();
     },
   });
+  
   set_materials(function (resp) {
     response(resp);
   });
