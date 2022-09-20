@@ -12,5 +12,10 @@ $(window).on("click", (event) => {
   clickMouse.y = -(y / canvas.clientHeight) * 2 + 1;
   raycaster.setFromCamera(clickMouse, camera);
   const intersects = raycaster.intersectObjects(scene.children, true);
-  console.log(intersects);
+  console.log(intersects.length);
+  if (intersects.length > 0) {
+    for (intersect of intersects) {
+      console.log(intersect);
+    }
+  }
 });
