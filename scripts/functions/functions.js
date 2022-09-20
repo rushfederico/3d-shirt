@@ -1,16 +1,19 @@
 function init() {
-  createScene();
-  getContainer();
-  getCamera();
-  getControls();
-  getLights();
-  fillScene();
-  createObject();
+  scene = new THREE.Scene();
+  container = $("#container")[0];
+  camera = new THREE.PerspectiveCamera(40, screen_rate, 100, 1200);
+  camera.position.set(600, 0, 200);
+  configControls();
+  configLights();
+  scene.add(camera);
+  scene.add(new THREE.AmbientLight(0x666666));
+  scene.add(light);
+  createObjects();
   textureLoader = new THREE.TextureLoader();
-  changeProduct();
-
+  loadSvg(function (resp) {
+    obj2_model_load(gender + "/cat" + category + "/model");
+  });
   configTextEditor();
-
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(pixelRatio);
   renderer.setSize(width, height);
@@ -22,32 +25,7 @@ function init() {
   renderer.shadowMap.soft = true;
 }
 
-function fillScene() {
-  scene.add(camera);
-  scene.add(new THREE.AmbientLight(0x666666));
-  scene.add(light);
-}
-
-function createScene() {
-  scene = new THREE.Scene();
-}
-
-function createObject() {
-  object = new THREE.Object3D();
-  objectLogo = new THREE.Object3D();
-}
-
-function getContainer() {
-  //container = document.createElement("div");
-  //document.getElementById("container").appendChild(container);
-  container = document.getElementById("container");
-}
-function getCamera() {
-  // acá quizás esté el quid de la cuestión del resize?
-  camera = new THREE.PerspectiveCamera(40, screen_rate, 100, 1200);
-  camera.position.set(600, 0, 200);
-}
-function getControls() {
+function configControls() {
   controls = new THREE.OrbitControls(camera, container);
   controls.enableKeys = false;
   controls.enablePan = false;
@@ -56,7 +34,7 @@ function getControls() {
   controls.update();
 }
 
-function getLights() {
+function configLights() {
   lights.forEach(function (light) {
     var dlight = new THREE.DirectionalLight(light.color, light.intensity);
     var p = light.position;
@@ -90,6 +68,11 @@ function getLights() {
   light.shadowCameraVisible = true;
 }
 
+function createObjects() {
+  object = new THREE.Object3D();
+  objectLogo = new THREE.Object3D();
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 function onWindowResize() {
@@ -113,6 +96,7 @@ function animate() {
 }
 
 function render() {
+  raycaster.setFromCamera(pointer, camera);
   renderer.render(scene, camera);
 }
 
@@ -128,6 +112,7 @@ var onError = function (xhr) {
 
 function obj2_model_load(model) {
   var loader = new THREE.OBJLoader2(manager);
+  console.log("model: " + model);
   loader.load("assets/" + model + ".obj", function (data) {
     if (object != null) {
       scene.remove(object);
@@ -181,11 +166,6 @@ function model_logo_load() {
   });
 }
 
-function changeProduct() {
-  loadSvg(function (resp) {
-    obj2_model_load(gender + "/cat" + category + "/model");
-  });
-}
 function loadSvg(response) {
   $.ajax({
     url:
@@ -218,9 +198,10 @@ function loadSvg(response) {
 }
 
 function set_materials(response) {
-  var baseSvg = document.getElementById("svgContainer").querySelector("svg");
-  var baseSvgData = new XMLSerializer().serializeToString(baseSvg);
-
+  var baseSvgData = new XMLSerializer().serializeToString(
+    $("#svgContainer svg")[0]
+  );
+  console.log("baseSvgData: " + baseSvgData);
   $("#svgPathContainer").empty();
   $("#svgTextContainer").empty();
   $("#svgPathContainer").append(baseSvgData).html();
@@ -306,6 +287,10 @@ function set_materials(response) {
           texture.needsUpdate = true;
           map = texture;
           textureMaterial = new THREE.MeshPhongMaterial({ map: map });
+          // textureMaterial.transparent = true;
+          // textureMaterial.opacity = 0.5;
+          // textureMaterial.needsUpdate = true;
+          // textureMaterial.position = 0;
           load_materials();
           response(true);
         };
