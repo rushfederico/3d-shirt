@@ -96,7 +96,6 @@ function animate() {
 }
 
 function render() {
-  raycaster.setFromCamera(pointer, camera);
   renderer.render(scene, camera);
 }
 
@@ -112,7 +111,6 @@ var onError = function (xhr) {
 
 function obj2_model_load(model) {
   var loader = new THREE.OBJLoader2(manager);
-  console.log("model: " + model);
   loader.load("assets/" + model + ".obj", function (data) {
     if (object != null) {
       scene.remove(object);
@@ -201,7 +199,6 @@ function set_materials(response) {
   var baseSvgData = new XMLSerializer().serializeToString(
     $("#svgContainer svg")[0]
   );
-  console.log("baseSvgData: " + baseSvgData);
   $("#svgPathContainer").empty();
   $("#svgTextContainer").empty();
   $("#svgPathContainer").append(baseSvgData).html();

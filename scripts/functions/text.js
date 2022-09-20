@@ -16,7 +16,7 @@ function addNewText() {
 function deleteText(id) {
   $("#texto_" + id).remove();
   $("#text_" + id).remove();
-  
+
   loadTexts();
   update_svg("", "");
 }
@@ -27,8 +27,8 @@ function loadTexts() {
   var texts = $("#svgContainer text");
   for (var i = 0; i < texts.length; i++) {
     var textId = $(texts[i]).data("index");
-    var fill   = $(texts[i]).css("fill");
-    var text   = $(texts[i]).text();
+    var fill = $(texts[i]).css("fill");
+    var text = $(texts[i]).text();
     //var selected = selectedText == textId ? "active" : "";
     if (textId != undefined) {
       textContainer += `
@@ -66,7 +66,7 @@ function loadText(textId) {
   //seteo de color pickers
   $("#textColorPick").spectrum("set", textColor);
   $("#textStrokeColorPick").spectrum("set", textStrokeColor);
-  $("input[name='zonaPrenda'][value='"+zona+"']").prop('checked', true);
+  $("input[name='zonaPrenda'][value='" + zona + "']").prop("checked", true);
 }
 function createTextEditor(text, ff, fs) {
   var textEditorContainer = document.createElement("div");
@@ -182,21 +182,26 @@ function configTextEditor() {
 }
 function updateTextSize(size) {
   update_svg("fs", `${size}px`);
-  console.log(size);
 }
 
 function createTextName() {
   newText = $("<text>");
-  var nroDeLeyenda = $("#svgTextContainer text").length > 0 ? $("#svgTextContainer text").last().data("index") : -1;
-  nroDeLeyenda = (parseInt(nroDeLeyenda) +1);
+  var nroDeLeyenda =
+    $("#svgTextContainer text").length > 0
+      ? $("#svgTextContainer text").last().data("index")
+      : -1;
+  nroDeLeyenda = parseInt(nroDeLeyenda) + 1;
   nuevoId = "texto_" + nroDeLeyenda;
   $(newText)[0].id = nuevoId;
-  $(newText)[0].setAttribute("data-index", nroDeLeyenda );
+  $(newText)[0].setAttribute("data-index", nroDeLeyenda);
 
   $(newText)[0].innerHTML = $("#ftext").val();
   $(newText)[0].setAttribute("font-family", $("#ff").val());
   $(newText)[0].setAttribute("font-size", $("#fs").val());
-  $(newText)[0].setAttribute("zona", $("input[name='zonaPrenda']:checked").val());
+  $(newText)[0].setAttribute(
+    "zona",
+    $("input[name='zonaPrenda']:checked").val()
+  );
   $(newText).css("fill", $("#textColorPick").spectrum("get").toHexString());
   $(newText).css(
     "stroke",
@@ -226,7 +231,5 @@ function setCoordinates(t, x, y) {
   update_svg("", "");
 }
 function changeTeamName(e) {
-  console.log(e.target.id);
-  console.log(e.target.value);
   update_svg(e.target.id, e.target.value);
 }
