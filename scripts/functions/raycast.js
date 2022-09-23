@@ -27,14 +27,15 @@ $(window).on("click", (event) => {
   console.log(intersectedMeshes);
   console.log(intersectedMaterials);
 
-  // if (intersectedMaterials && intersectedMaterials.length > 0) {
-  //   intersectedMaterials.forEach((material) => {
-  //     if (material.name === "textoZarpado") {
-  //       // update_svg("fillText", "#ffffff");
-  //       console.log(material.clientX);
-  //     }
-  //   });
-  // }
+  if (intersectedMaterials && intersectedMaterials.length > 0) {
+    intersectedMaterials.forEach((material) => {
+      if (material.color) {
+        material.color.set(
+          "#" + Math.floor(Math.random() * 16777215).toString(16)
+        );
+      }
+    });
+  }
 
   // intersectedMeshes.forEach((mesh) => {
   //   mesh.visible = false;
