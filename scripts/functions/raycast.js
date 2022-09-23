@@ -11,11 +11,38 @@ $(window).on("click", (event) => {
   clickMouse.x = (x / canvas.clientWidth) * 2 - 1;
   clickMouse.y = -(y / canvas.clientHeight) * 2 + 1;
   raycaster.setFromCamera(clickMouse, camera);
-  const intersects = raycaster.intersectObjects(scene.children, true);
-  console.log(intersects.length);
-  if (intersects.length > 0) {
-    for (intersect of intersects) {
-      console.log(intersect);
-    }
-  }
+  // const found = raycaster.intersectObject(scene, true);
+  // console.log(found);
+  const intersects = raycaster.intersectObject(scene, true);
+  const intersectedMeshes = intersects.map((intersect) => intersect.object);
+  const intersectedMaterials = intersectedMeshes.map((mesh) => mesh.material);
+
+  console.log("NEAR: ", raycaster.near);
+  console.log("FAR: ", raycaster.far);
+  console.log("CAMERA: ", raycaster.camera);
+  console.log("LAYERS: ", raycaster.layers);
+  console.log("PARAMS: ", raycaster.params);
+  console.log("RAY: ", raycaster.ray);
+  console.log("INTERSECTS: ", intersects);
+  console.log(intersectedMeshes);
+  console.log(intersectedMaterials);
+
+  // if (intersectedMaterials && intersectedMaterials.length > 0) {
+  //   intersectedMaterials.forEach((material) => {
+  //     if (material.name === "textoZarpado") {
+  //       // update_svg("fillText", "#ffffff");
+  //       console.log(material.clientX);
+  //     }
+  //   });
+  // }
+
+  // intersectedMeshes.forEach((mesh) => {
+  //   mesh.visible = false;
+  // });
+  // console.log(intersects.length);
+  // if (intersects.length > 0) {
+  //   for (intersect of intersects) {
+  //     // console.log(intersect);
+  //   }
+  // }
 });

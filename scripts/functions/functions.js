@@ -196,31 +196,16 @@ function loadSvg(response) {
 }
 
 function set_materials(response) {
-  var baseSvgData = new XMLSerializer().serializeToString(
-    $("#svgContainer svg")[0]
-  );
-  $("#svgPathContainer").empty();
-  $("#svgTextContainer").empty();
-  $("#svgPathContainer").append(baseSvgData).html();
-  $("#svgTextContainer").append(baseSvgData).html();
-  var texts = $("#svgPathContainer text");
-  for (var i = 0; i < texts.length; i++) {
-    $(texts[i]).remove();
-  }
-  var paths = $("#svgTextContainer path");
-  for (var i = 0; i < paths.length; i++) {
-    $(paths[i]).remove();
-  }
-
-  var svg = document.getElementById("svgPathContainer").querySelector("svg");
-  var svgData = new XMLSerializer().serializeToString(svg);
-  var canvas = document.createElement("canvas");
+  process_svg();
+  // var svg = document.getElementById("svgPathContainer").querySelector("svg");
+  let svg = $("#svgPathContainer").find("svg")[0];
+  let svgData = new XMLSerializer().serializeToString(svg);
+  let canvas = document.createElement("canvas");
   canvas.width = $(svg).width();
   canvas.height = $(svg).height();
   var ctx = canvas.getContext("2d");
 
   var img = document.createElement("img");
-  var material;
   img.setAttribute(
     "src",
     "data:image/svg+xml;base64," +
@@ -236,6 +221,7 @@ function set_materials(response) {
       "src",
       "assets/" + gender + "/cat" + category + "/texture.png"
     );
+
     oImg.onload = function () {
       ctx.globalAlpha = 0.4;
       ctx.scale(0.3, 0.3);
@@ -294,6 +280,24 @@ function set_materials(response) {
       };
     };
   };
+}
+
+function process_svg() {
+  var baseSvgData = new XMLSerializer().serializeToString(
+    $("#svgContainer svg")[0]
+  );
+  $("#svgPathContainer").empty();
+  $("#svgTextContainer").empty();
+  $("#svgPathContainer").append(baseSvgData).html();
+  $("#svgTextContainer").append(baseSvgData).html();
+  var texts = $("#svgPathContainer text");
+  for (var i = 0; i < texts.length; i++) {
+    $(texts[i]).remove();
+  }
+  var paths = $("#svgTextContainer path");
+  for (var i = 0; i < paths.length; i++) {
+    $(paths[i]).remove();
+  }
 }
 
 function update_svg(op, value) {
