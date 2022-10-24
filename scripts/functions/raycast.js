@@ -1,8 +1,8 @@
+/*
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
 let draggable;
-
 $(window).on("click", (event) => {
   let canvas = $(`#container canvas`)[0];
   const rect = renderer.domElement.getBoundingClientRect();
@@ -47,3 +47,4 @@ $(window).on("click", (event) => {
   //   }
   // }
 });
+*/
